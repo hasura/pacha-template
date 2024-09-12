@@ -34,6 +34,9 @@ sudo curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOS
 # Apply executable permissions to the Docker Compose binary
 sudo chmod +x /usr/local/bin/docker-compose
 
+sudo curl -L https://graphql-engine-cdn.hasura.io/ddn/cli/v4/get.sh | bash
+
 # Verify Docker and Docker Compose installation
 docker --version
 docker compose version
+ddn --version
