@@ -1,0 +1,432 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Issues
+  fields:
+    - name: activeLockReason
+      type: Text
+    - name: assignee
+      type: Json
+    - name: assignees
+      type: Json
+    - name: authorAssociation
+      type: Text
+    - name: body
+      type: Text
+    - name: closedAt
+      type: Timestamptz
+    - name: closedBy
+      type: Text
+    - name: comments
+      type: Text
+    - name: commentsUrl
+      type: Text
+    - name: createdAt
+      type: Timestamptz
+    - name: eventsUrl
+      type: Text
+    - name: htmlUrl
+      type: Text
+    - name: id
+      type: Int8!
+    - name: labels
+      type: Json
+    - name: labelsUrl
+      type: Text
+    - name: locked
+      type: Text
+    - name: milestone
+      type: Text
+    - name: nodeId
+      type: Text
+    - name: number
+      type: Int4
+    - name: performedViaGithubApp
+      type: Text
+    - name: reactions
+      type: Json
+    - name: repositoryUrl
+      type: Text
+    - name: state
+      type: Text
+    - name: stateReason
+      type: Text
+    - name: timelineUrl
+      type: Text
+    - name: title
+      type: Text
+    - name: updatedAt
+      type: Timestamptz
+    - name: url
+      type: Text!
+    - name: user
+      type: Json
+  graphql:
+    typeName: Issues
+    inputTypeName: IssuesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: issues
+      fieldMapping:
+        activeLockReason:
+          column:
+            name: active_lock_reason
+        assignee:
+          column:
+            name: assignee
+        assignees:
+          column:
+            name: assignees
+        authorAssociation:
+          column:
+            name: author_association
+        body:
+          column:
+            name: body
+        closedAt:
+          column:
+            name: closed_at
+        closedBy:
+          column:
+            name: closed_by
+        comments:
+          column:
+            name: comments
+        commentsUrl:
+          column:
+            name: comments_url
+        createdAt:
+          column:
+            name: created_at
+        eventsUrl:
+          column:
+            name: events_url
+        htmlUrl:
+          column:
+            name: html_url
+        id:
+          column:
+            name: id
+        labels:
+          column:
+            name: labels
+        labelsUrl:
+          column:
+            name: labels_url
+        locked:
+          column:
+            name: locked
+        milestone:
+          column:
+            name: milestone
+        nodeId:
+          column:
+            name: node_id
+        number:
+          column:
+            name: number
+        performedViaGithubApp:
+          column:
+            name: performed_via_github_app
+        reactions:
+          column:
+            name: reactions
+        repositoryUrl:
+          column:
+            name: repository_url
+        state:
+          column:
+            name: state
+        stateReason:
+          column:
+            name: state_reason
+        timelineUrl:
+          column:
+            name: timeline_url
+        title:
+          column:
+            name: title
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+        user:
+          column:
+            name: user
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Issues
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - activeLockReason
+          - assignee
+          - assignees
+          - authorAssociation
+          - body
+          - closedAt
+          - closedBy
+          - comments
+          - commentsUrl
+          - createdAt
+          - eventsUrl
+          - htmlUrl
+          - id
+          - labels
+          - labelsUrl
+          - locked
+          - milestone
+          - nodeId
+          - number
+          - performedViaGithubApp
+          - reactions
+          - repositoryUrl
+          - state
+          - stateReason
+          - timelineUrl
+          - title
+          - updatedAt
+          - url
+          - user
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssuesBoolExp
+  objectType: Issues
+  dataConnectorName: postgres
+  dataConnectorObjectType: issues
+  comparableFields:
+    - fieldName: activeLockReason
+      operators:
+        enableAll: true
+    - fieldName: assignee
+      operators:
+        enableAll: true
+    - fieldName: assignees
+      operators:
+        enableAll: true
+    - fieldName: authorAssociation
+      operators:
+        enableAll: true
+    - fieldName: body
+      operators:
+        enableAll: true
+    - fieldName: closedAt
+      operators:
+        enableAll: true
+    - fieldName: closedBy
+      operators:
+        enableAll: true
+    - fieldName: comments
+      operators:
+        enableAll: true
+    - fieldName: commentsUrl
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: eventsUrl
+      operators:
+        enableAll: true
+    - fieldName: htmlUrl
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: labels
+      operators:
+        enableAll: true
+    - fieldName: labelsUrl
+      operators:
+        enableAll: true
+    - fieldName: locked
+      operators:
+        enableAll: true
+    - fieldName: milestone
+      operators:
+        enableAll: true
+    - fieldName: nodeId
+      operators:
+        enableAll: true
+    - fieldName: number
+      operators:
+        enableAll: true
+    - fieldName: performedViaGithubApp
+      operators:
+        enableAll: true
+    - fieldName: reactions
+      operators:
+        enableAll: true
+    - fieldName: repositoryUrl
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+    - fieldName: stateReason
+      operators:
+        enableAll: true
+    - fieldName: timelineUrl
+      operators:
+        enableAll: true
+    - fieldName: title
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+    - fieldName: url
+      operators:
+        enableAll: true
+    - fieldName: user
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssuesBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Issues
+  objectType: Issues
+  source:
+    dataConnectorName: postgres
+    collection: issues
+  filterExpressionType: IssuesBoolExp
+  orderableFields:
+    - fieldName: activeLockReason
+      orderByDirections:
+        enableAll: true
+    - fieldName: assignee
+      orderByDirections:
+        enableAll: true
+    - fieldName: assignees
+      orderByDirections:
+        enableAll: true
+    - fieldName: authorAssociation
+      orderByDirections:
+        enableAll: true
+    - fieldName: body
+      orderByDirections:
+        enableAll: true
+    - fieldName: closedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: closedBy
+      orderByDirections:
+        enableAll: true
+    - fieldName: comments
+      orderByDirections:
+        enableAll: true
+    - fieldName: commentsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: eventsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: htmlUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: labels
+      orderByDirections:
+        enableAll: true
+    - fieldName: labelsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: locked
+      orderByDirections:
+        enableAll: true
+    - fieldName: milestone
+      orderByDirections:
+        enableAll: true
+    - fieldName: nodeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: number
+      orderByDirections:
+        enableAll: true
+    - fieldName: performedViaGithubApp
+      orderByDirections:
+        enableAll: true
+    - fieldName: reactions
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+    - fieldName: stateReason
+      orderByDirections:
+        enableAll: true
+    - fieldName: timelineUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: title
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: url
+      orderByDirections:
+        enableAll: true
+    - fieldName: user
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issues
+    selectUniques:
+      - queryRootField: issuesByUrl
+        uniqueIdentifier:
+          - url
+    orderByExpressionType: IssuesOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Issues
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: commentsByIssueUrl
+  sourceType: Issues
+  target:
+    model:
+      name: Comments
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: url
+      target:
+        modelField:
+          - fieldName: issueUrl
+

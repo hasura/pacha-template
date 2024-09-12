@@ -1,0 +1,228 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Comments
+  fields:
+    - name: authorAssociation
+      type: Text
+    - name: body
+      type: Text
+    - name: createdAt
+      type: Timestamptz
+    - name: htmlUrl
+      type: Text
+    - name: id
+      type: Int8!
+    - name: issueUrl
+      type: Text
+    - name: nodeId
+      type: Text
+    - name: performedViaGithubApp
+      type: Text
+    - name: reactions
+      type: Json
+    - name: updatedAt
+      type: Timestamptz
+    - name: url
+      type: Text!
+    - name: user
+      type: Json
+  graphql:
+    typeName: Comments
+    inputTypeName: CommentsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: comments
+      fieldMapping:
+        authorAssociation:
+          column:
+            name: author_association
+        body:
+          column:
+            name: body
+        createdAt:
+          column:
+            name: created_at
+        htmlUrl:
+          column:
+            name: html_url
+        id:
+          column:
+            name: id
+        issueUrl:
+          column:
+            name: issue_url
+        nodeId:
+          column:
+            name: node_id
+        performedViaGithubApp:
+          column:
+            name: performed_via_github_app
+        reactions:
+          column:
+            name: reactions
+        updatedAt:
+          column:
+            name: updated_at
+        url:
+          column:
+            name: url
+        user:
+          column:
+            name: user
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Comments
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - authorAssociation
+          - body
+          - createdAt
+          - htmlUrl
+          - id
+          - issueUrl
+          - nodeId
+          - performedViaGithubApp
+          - reactions
+          - updatedAt
+          - url
+          - user
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommentsBoolExp
+  objectType: Comments
+  dataConnectorName: postgres
+  dataConnectorObjectType: comments
+  comparableFields:
+    - fieldName: authorAssociation
+      operators:
+        enableAll: true
+    - fieldName: body
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: htmlUrl
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: issueUrl
+      operators:
+        enableAll: true
+    - fieldName: nodeId
+      operators:
+        enableAll: true
+    - fieldName: performedViaGithubApp
+      operators:
+        enableAll: true
+    - fieldName: reactions
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+    - fieldName: url
+      operators:
+        enableAll: true
+    - fieldName: user
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommentsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Comments
+  objectType: Comments
+  source:
+    dataConnectorName: postgres
+    collection: comments
+  filterExpressionType: CommentsBoolExp
+  orderableFields:
+    - fieldName: authorAssociation
+      orderByDirections:
+        enableAll: true
+    - fieldName: body
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: htmlUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: nodeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: performedViaGithubApp
+      orderByDirections:
+        enableAll: true
+    - fieldName: reactions
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: url
+      orderByDirections:
+        enableAll: true
+    - fieldName: user
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: comments
+    selectUniques:
+      - queryRootField: commentsByUrl
+        uniqueIdentifier:
+          - url
+    orderByExpressionType: CommentsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Comments
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issue
+  sourceType: Comments
+  target:
+    model:
+      name: Issues
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: issueUrl
+      target:
+        modelField:
+          - fieldName: url
+

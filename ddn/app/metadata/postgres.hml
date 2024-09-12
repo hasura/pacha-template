@@ -1,0 +1,764 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: postgres
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_POSTGRES_READ_URL
+      write:
+        valueFromEnv: APP_POSTGRES_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_POSTGRES_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        int4:
+          representation:
+            type: int32
+          aggregate_functions:
+            avg:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            bit_and:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            bit_or:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            bit_xor:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            stddev:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            stddev_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            stddev_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            sum:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            var_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            var_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            variance:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: int4
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: int4
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: int4
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: int4
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: int4
+        int8:
+          representation:
+            type: int64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            bit_and:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            bit_or:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            bit_xor:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            stddev:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            stddev_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            stddev_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            sum:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            var_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            var_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            variance:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+        json:
+          aggregate_functions: {}
+          comparison_operators:
+            _in:
+              type: in
+        numeric:
+          representation:
+            type: bigdecimal
+          aggregate_functions:
+            avg:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            stddev:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            stddev_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            stddev_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            sum:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            var_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            var_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+            variance:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: numeric
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+        text:
+          representation:
+            type: string
+          aggregate_functions:
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _ilike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _in:
+              type: in
+            _iregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _like:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nilike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _niregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nlike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _regex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            starts_with:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            ts_match_tt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+        timestamptz:
+          representation:
+            type: timestamptz
+          aggregate_functions:
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamptz
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamptz
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamptz
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamptz
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamptz
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamptz
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamptz
+      object_types:
+        comments:
+          fields:
+            author_association:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamptz
+            html_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            id:
+              type:
+                type: named
+                name: int8
+            issue_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            node_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            performed_via_github_app:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            reactions:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamptz
+            url:
+              type:
+                type: named
+                name: text
+            user:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+        issues:
+          fields:
+            active_lock_reason:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            assignee:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+            assignees:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+            author_association:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            closed_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamptz
+            closed_by:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            comments:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            comments_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamptz
+            events_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            html_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            id:
+              type:
+                type: named
+                name: int8
+            labels:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+            labels_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            locked:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            milestone:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            node_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            performed_via_github_app:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            reactions:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+            repository_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            state_reason:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            timeline_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            title:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamptz
+            url:
+              type:
+                type: named
+                name: text
+            user:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+      collections:
+        - name: comments
+          arguments: {}
+          type: comments
+          uniqueness_constraints:
+            comments_pkey:
+              unique_columns:
+                - url
+          foreign_keys:
+            comments_issue_url_fkey:
+              column_mapping:
+                issue_url: url
+              foreign_collection: issues
+        - name: issues
+          arguments: {}
+          type: issues
+          uniqueness_constraints:
+            issues_pkey:
+              unique_columns:
+                - url
+          foreign_keys: {}
+      functions: []
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+          nested_fields:
+            filter_by: {}
+            order_by: {}
+        mutation:
+          transactional: {}
+          explain: {}
+        relationships:
+          relation_comparisons: {}
+          order_by_aggregate: {}
