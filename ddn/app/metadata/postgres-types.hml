@@ -61,16 +61,6 @@ definition:
     comparisonExpressionTypeName: Int8ComparisonExp
 
 ---
-kind: DataConnectorScalarRepresentation
-version: v1
-definition:
-  dataConnectorName: postgres
-  dataConnectorScalarType: json
-  representation: Json
-  graphql:
-    comparisonExpressionTypeName: JsonComparisonExp
-
----
 kind: ScalarType
 version: v1
 definition:
@@ -87,4 +77,22 @@ definition:
   representation: Int4
   graphql:
     comparisonExpressionTypeName: Int4ComparisonExp
+
+---
+kind: ScalarType
+version: v1
+definition:
+  name: Bool
+  graphql:
+    typeName: Bool
+
+---
+kind: DataConnectorScalarRepresentation
+version: v1
+definition:
+  dataConnectorName: postgres
+  dataConnectorScalarType: bool
+  representation: Bool
+  graphql:
+    comparisonExpressionTypeName: BoolComparisonExp
 

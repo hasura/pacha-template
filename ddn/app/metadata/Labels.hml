@@ -1,0 +1,168 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Labels
+  fields:
+    - name: color
+      type: Text
+    - name: default
+      type: Bool
+    - name: description
+      type: Text
+    - name: id
+      type: Int8!
+    - name: name
+      type: Text
+    - name: nodeId
+      type: Text
+    - name: url
+      type: Text
+  graphql:
+    typeName: Labels
+    inputTypeName: LabelsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: labels
+      fieldMapping:
+        color:
+          column:
+            name: color
+        default:
+          column:
+            name: default
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        nodeId:
+          column:
+            name: node_id
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Labels
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - color
+          - default
+          - description
+          - id
+          - name
+          - nodeId
+          - url
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: LabelsBoolExp
+  objectType: Labels
+  dataConnectorName: postgres
+  dataConnectorObjectType: labels
+  comparableFields:
+    - fieldName: color
+      operators:
+        enableAll: true
+    - fieldName: default
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: nodeId
+      operators:
+        enableAll: true
+    - fieldName: url
+      operators:
+        enableAll: true
+  graphql:
+    typeName: LabelsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Labels
+  objectType: Labels
+  source:
+    dataConnectorName: postgres
+    collection: labels
+  filterExpressionType: LabelsBoolExp
+  orderableFields:
+    - fieldName: color
+      orderByDirections:
+        enableAll: true
+    - fieldName: default
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: nodeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: url
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: labels
+    selectUniques:
+      - queryRootField: labelsById
+        uniqueIdentifier:
+          - id
+    orderByExpressionType: LabelsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Labels
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issueLabels
+  sourceType: Labels
+  target:
+    model:
+      name: IssueLabels
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: labelId
+

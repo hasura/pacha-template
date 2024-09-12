@@ -1,0 +1,216 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CommentReactions
+  fields:
+    - name: _1
+      type: Int4
+    - name: _1_1
+      type: Int4
+    - name: commentId
+      type: Int8!
+    - name: confused
+      type: Int4
+    - name: eyes
+      type: Int4
+    - name: heart
+      type: Int4
+    - name: hooray
+      type: Int4
+    - name: laugh
+      type: Int4
+    - name: rocket
+      type: Int4
+    - name: totalCount
+      type: Int4
+    - name: url
+      type: Text!
+  graphql:
+    typeName: CommentReactions
+    inputTypeName: CommentReactionsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: comment_reactions
+      fieldMapping:
+        _1:
+          column:
+            name: "+1"
+        _1_1:
+          column:
+            name: "-1"
+        commentId:
+          column:
+            name: comment_id
+        confused:
+          column:
+            name: confused
+        eyes:
+          column:
+            name: eyes
+        heart:
+          column:
+            name: heart
+        hooray:
+          column:
+            name: hooray
+        laugh:
+          column:
+            name: laugh
+        rocket:
+          column:
+            name: rocket
+        totalCount:
+          column:
+            name: total_count
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CommentReactions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _1
+          - _1_1
+          - commentId
+          - confused
+          - eyes
+          - heart
+          - hooray
+          - laugh
+          - rocket
+          - totalCount
+          - url
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommentReactionsBoolExp
+  objectType: CommentReactions
+  dataConnectorName: postgres
+  dataConnectorObjectType: comment_reactions
+  comparableFields:
+    - fieldName: _1
+      operators:
+        enableAll: true
+    - fieldName: _1_1
+      operators:
+        enableAll: true
+    - fieldName: commentId
+      operators:
+        enableAll: true
+    - fieldName: confused
+      operators:
+        enableAll: true
+    - fieldName: eyes
+      operators:
+        enableAll: true
+    - fieldName: heart
+      operators:
+        enableAll: true
+    - fieldName: hooray
+      operators:
+        enableAll: true
+    - fieldName: laugh
+      operators:
+        enableAll: true
+    - fieldName: rocket
+      operators:
+        enableAll: true
+    - fieldName: totalCount
+      operators:
+        enableAll: true
+    - fieldName: url
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommentReactionsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: CommentReactions
+  objectType: CommentReactions
+  source:
+    dataConnectorName: postgres
+    collection: comment_reactions
+  filterExpressionType: CommentReactionsBoolExp
+  orderableFields:
+    - fieldName: _1
+      orderByDirections:
+        enableAll: true
+    - fieldName: _1_1
+      orderByDirections:
+        enableAll: true
+    - fieldName: commentId
+      orderByDirections:
+        enableAll: true
+    - fieldName: confused
+      orderByDirections:
+        enableAll: true
+    - fieldName: eyes
+      orderByDirections:
+        enableAll: true
+    - fieldName: heart
+      orderByDirections:
+        enableAll: true
+    - fieldName: hooray
+      orderByDirections:
+        enableAll: true
+    - fieldName: laugh
+      orderByDirections:
+        enableAll: true
+    - fieldName: rocket
+      orderByDirections:
+        enableAll: true
+    - fieldName: totalCount
+      orderByDirections:
+        enableAll: true
+    - fieldName: url
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commentReactions
+    selectUniques:
+      - queryRootField: commentReactionsByUrl
+        uniqueIdentifier:
+          - url
+    orderByExpressionType: CommentReactionsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: CommentReactions
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: comment
+  sourceType: CommentReactions
+  target:
+    model:
+      name: Comments
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: commentId
+      target:
+        modelField:
+          - fieldName: id
+

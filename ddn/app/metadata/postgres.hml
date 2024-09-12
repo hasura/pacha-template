@@ -15,6 +15,58 @@ definition:
     version: v0.1
     schema:
       scalar_types:
+        bool:
+          representation:
+            type: boolean
+          aggregate_functions:
+            bool_and:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+            bool_or:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+            every:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
         int4:
           representation:
             type: int32
@@ -239,11 +291,6 @@ definition:
               argument_type:
                 type: named
                 name: int8
-        json:
-          aggregate_functions: {}
-          comparison_operators:
-            _in:
-              type: in
         numeric:
           representation:
             type: bigdecimal
@@ -481,6 +528,70 @@ definition:
                 type: named
                 name: timestamptz
       object_types:
+        comment_reactions:
+          fields:
+            "+1":
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            "-1":
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            comment_id:
+              type:
+                type: named
+                name: int8
+            confused:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            eyes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            heart:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            hooray:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            laugh:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            rocket:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            total_count:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            url:
+              type:
+                type: named
+                name: text
         comments:
           fields:
             author_association:
@@ -529,12 +640,6 @@ definition:
                 underlying_type:
                   type: named
                   name: text
-            reactions:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: json
             updated_at:
               type:
                 type: nullable
@@ -545,12 +650,94 @@ definition:
               type:
                 type: named
                 name: text
-            user:
+            user_id:
+              type:
+                type: named
+                name: int8
+        issue_assignees:
+          fields:
+            assignee_id:
+              type:
+                type: named
+                name: int8
+            issue_id:
+              type:
+                type: named
+                name: int8
+        issue_labels:
+          fields:
+            issue_id:
+              type:
+                type: named
+                name: int8
+            label_id:
+              type:
+                type: named
+                name: int8
+        issue_reactions:
+          fields:
+            "+1":
               type:
                 type: nullable
                 underlying_type:
                   type: named
-                  name: json
+                  name: int4
+            "-1":
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            confused:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            eyes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            heart:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            hooray:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            issue_id:
+              type:
+                type: named
+                name: int8
+            laugh:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            rocket:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            total_count:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int4
+            url:
+              type:
+                type: named
+                name: text
         issues:
           fields:
             active_lock_reason:
@@ -559,18 +746,6 @@ definition:
                 underlying_type:
                   type: named
                   name: text
-            assignee:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: json
-            assignees:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: json
             author_association:
               type:
                 type: nullable
@@ -629,12 +804,6 @@ definition:
               type:
                 type: named
                 name: int8
-            labels:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: json
             labels_url:
               type:
                 type: nullable
@@ -671,12 +840,6 @@ definition:
                 underlying_type:
                   type: named
                   name: text
-            reactions:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: json
             repository_url:
               type:
                 type: nullable
@@ -717,17 +880,180 @@ definition:
               type:
                 type: named
                 name: text
-            user:
+            user_id:
+              type:
+                type: named
+                name: int8
+        labels:
+          fields:
+            color:
               type:
                 type: nullable
                 underlying_type:
                   type: named
-                  name: json
+                  name: text
+            default:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            id:
+              type:
+                type: named
+                name: int8
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            node_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        users:
+          fields:
+            avatar_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            events_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            followers_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            following_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            gists_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            gravatar_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            html_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            id:
+              type:
+                type: named
+                name: int8
+            login:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            node_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            organizations_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            received_events_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            repos_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            site_admin:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+            starred_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            subscriptions_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            type:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
       collections:
+        - name: comment_reactions
+          arguments: {}
+          type: comment_reactions
+          uniqueness_constraints:
+            comment_reactions_pkey:
+              unique_columns:
+                - url
+          foreign_keys:
+            comment_reactions_comment_id_fkey:
+              column_mapping:
+                comment_id: id
+              foreign_collection: comments
         - name: comments
           arguments: {}
           type: comments
           uniqueness_constraints:
+            comments_id_key:
+              unique_columns:
+                - id
             comments_pkey:
               unique_columns:
                 - url
@@ -736,13 +1062,86 @@ definition:
               column_mapping:
                 issue_url: url
               foreign_collection: issues
+            comments_user_id_fkey:
+              column_mapping:
+                user_id: id
+              foreign_collection: users
+        - name: issue_assignees
+          arguments: {}
+          type: issue_assignees
+          uniqueness_constraints:
+            issue_assignees_pkey:
+              unique_columns:
+                - assignee_id
+                - issue_id
+          foreign_keys:
+            issue_assignees_assignee_id_fkey:
+              column_mapping:
+                assignee_id: id
+              foreign_collection: users
+            issue_assignees_issue_id_fkey:
+              column_mapping:
+                issue_id: id
+              foreign_collection: issues
+        - name: issue_labels
+          arguments: {}
+          type: issue_labels
+          uniqueness_constraints:
+            issue_labels_pkey:
+              unique_columns:
+                - issue_id
+                - label_id
+          foreign_keys:
+            issue_labels_issue_id_fkey:
+              column_mapping:
+                issue_id: id
+              foreign_collection: issues
+            issue_labels_label_id_fkey:
+              column_mapping:
+                label_id: id
+              foreign_collection: labels
+        - name: issue_reactions
+          arguments: {}
+          type: issue_reactions
+          uniqueness_constraints:
+            issue_reactions_pkey:
+              unique_columns:
+                - url
+          foreign_keys:
+            issue_reactions_issue_id_fkey:
+              column_mapping:
+                issue_id: id
+              foreign_collection: issues
         - name: issues
           arguments: {}
           type: issues
           uniqueness_constraints:
+            issues_id_key:
+              unique_columns:
+                - id
             issues_pkey:
               unique_columns:
                 - url
+          foreign_keys:
+            issues_user_id_fkey:
+              column_mapping:
+                user_id: id
+              foreign_collection: users
+        - name: labels
+          arguments: {}
+          type: labels
+          uniqueness_constraints:
+            labels_pkey:
+              unique_columns:
+                - id
+          foreign_keys: {}
+        - name: users
+          arguments: {}
+          type: users
+          uniqueness_constraints:
+            users_pkey:
+              unique_columns:
+                - id
           foreign_keys: {}
       functions: []
       procedures: []

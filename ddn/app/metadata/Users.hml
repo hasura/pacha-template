@@ -1,0 +1,336 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Users
+  fields:
+    - name: avatarUrl
+      type: Text
+    - name: eventsUrl
+      type: Text
+    - name: followersUrl
+      type: Text
+    - name: followingUrl
+      type: Text
+    - name: gistsUrl
+      type: Text
+    - name: gravatarId
+      type: Text
+    - name: htmlUrl
+      type: Text
+    - name: id
+      type: Int8!
+    - name: login
+      type: Text
+    - name: nodeId
+      type: Text
+    - name: organizationsUrl
+      type: Text
+    - name: receivedEventsUrl
+      type: Text
+    - name: reposUrl
+      type: Text
+    - name: siteAdmin
+      type: Bool
+    - name: starredUrl
+      type: Text
+    - name: subscriptionsUrl
+      type: Text
+    - name: type
+      type: Text
+    - name: url
+      type: Text
+  graphql:
+    typeName: Users
+    inputTypeName: UsersInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: users
+      fieldMapping:
+        avatarUrl:
+          column:
+            name: avatar_url
+        eventsUrl:
+          column:
+            name: events_url
+        followersUrl:
+          column:
+            name: followers_url
+        followingUrl:
+          column:
+            name: following_url
+        gistsUrl:
+          column:
+            name: gists_url
+        gravatarId:
+          column:
+            name: gravatar_id
+        htmlUrl:
+          column:
+            name: html_url
+        id:
+          column:
+            name: id
+        login:
+          column:
+            name: login
+        nodeId:
+          column:
+            name: node_id
+        organizationsUrl:
+          column:
+            name: organizations_url
+        receivedEventsUrl:
+          column:
+            name: received_events_url
+        reposUrl:
+          column:
+            name: repos_url
+        siteAdmin:
+          column:
+            name: site_admin
+        starredUrl:
+          column:
+            name: starred_url
+        subscriptionsUrl:
+          column:
+            name: subscriptions_url
+        type:
+          column:
+            name: type
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Users
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - avatarUrl
+          - eventsUrl
+          - followersUrl
+          - followingUrl
+          - gistsUrl
+          - gravatarId
+          - htmlUrl
+          - id
+          - login
+          - nodeId
+          - organizationsUrl
+          - receivedEventsUrl
+          - reposUrl
+          - siteAdmin
+          - starredUrl
+          - subscriptionsUrl
+          - type
+          - url
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: UsersBoolExp
+  objectType: Users
+  dataConnectorName: postgres
+  dataConnectorObjectType: users
+  comparableFields:
+    - fieldName: avatarUrl
+      operators:
+        enableAll: true
+    - fieldName: eventsUrl
+      operators:
+        enableAll: true
+    - fieldName: followersUrl
+      operators:
+        enableAll: true
+    - fieldName: followingUrl
+      operators:
+        enableAll: true
+    - fieldName: gistsUrl
+      operators:
+        enableAll: true
+    - fieldName: gravatarId
+      operators:
+        enableAll: true
+    - fieldName: htmlUrl
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: login
+      operators:
+        enableAll: true
+    - fieldName: nodeId
+      operators:
+        enableAll: true
+    - fieldName: organizationsUrl
+      operators:
+        enableAll: true
+    - fieldName: receivedEventsUrl
+      operators:
+        enableAll: true
+    - fieldName: reposUrl
+      operators:
+        enableAll: true
+    - fieldName: siteAdmin
+      operators:
+        enableAll: true
+    - fieldName: starredUrl
+      operators:
+        enableAll: true
+    - fieldName: subscriptionsUrl
+      operators:
+        enableAll: true
+    - fieldName: type
+      operators:
+        enableAll: true
+    - fieldName: url
+      operators:
+        enableAll: true
+  graphql:
+    typeName: UsersBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Users
+  objectType: Users
+  source:
+    dataConnectorName: postgres
+    collection: users
+  filterExpressionType: UsersBoolExp
+  orderableFields:
+    - fieldName: avatarUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: eventsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: followersUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: followingUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: gistsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: gravatarId
+      orderByDirections:
+        enableAll: true
+    - fieldName: htmlUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: login
+      orderByDirections:
+        enableAll: true
+    - fieldName: nodeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: organizationsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: receivedEventsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: reposUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: siteAdmin
+      orderByDirections:
+        enableAll: true
+    - fieldName: starredUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: subscriptionsUrl
+      orderByDirections:
+        enableAll: true
+    - fieldName: type
+      orderByDirections:
+        enableAll: true
+    - fieldName: url
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: users
+    selectUniques:
+      - queryRootField: usersById
+        uniqueIdentifier:
+          - id
+    orderByExpressionType: UsersOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Users
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: comments
+  sourceType: Users
+  target:
+    model:
+      name: Comments
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: userId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issueAssignees
+  sourceType: Users
+  target:
+    model:
+      name: IssueAssignees
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: assigneeId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issues
+  sourceType: Users
+  target:
+    model:
+      name: Issues
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: userId
+

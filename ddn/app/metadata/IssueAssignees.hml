@@ -1,0 +1,127 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: IssueAssignees
+  fields:
+    - name: assigneeId
+      type: Int8!
+    - name: issueId
+      type: Int8!
+  graphql:
+    typeName: IssueAssignees
+    inputTypeName: IssueAssigneesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: issue_assignees
+      fieldMapping:
+        assigneeId:
+          column:
+            name: assignee_id
+        issueId:
+          column:
+            name: issue_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: IssueAssignees
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - assigneeId
+          - issueId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssueAssigneesBoolExp
+  objectType: IssueAssignees
+  dataConnectorName: postgres
+  dataConnectorObjectType: issue_assignees
+  comparableFields:
+    - fieldName: assigneeId
+      operators:
+        enableAll: true
+    - fieldName: issueId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssueAssigneesBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: IssueAssignees
+  objectType: IssueAssignees
+  source:
+    dataConnectorName: postgres
+    collection: issue_assignees
+  filterExpressionType: IssueAssigneesBoolExp
+  orderableFields:
+    - fieldName: assigneeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issueAssignees
+    selectUniques:
+      - queryRootField: issueAssigneesByIssueAssigneesPkey
+        uniqueIdentifier:
+          - assigneeId
+          - issueId
+    orderByExpressionType: IssueAssigneesOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: IssueAssignees
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: user
+  sourceType: IssueAssignees
+  target:
+    model:
+      name: Users
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: assigneeId
+      target:
+        modelField:
+          - fieldName: id
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issue
+  sourceType: IssueAssignees
+  target:
+    model:
+      name: Issues
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: issueId
+      target:
+        modelField:
+          - fieldName: id
+

@@ -16,6 +16,115 @@
   },
   "metadata": {
     "tables": {
+      "comment_reactions": {
+        "schemaName": "public",
+        "tableName": "comment_reactions",
+        "columns": {
+          "+1": {
+            "name": "+1",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "-1": {
+            "name": "-1",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "comment_id": {
+            "name": "comment_id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "confused": {
+            "name": "confused",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "eyes": {
+            "name": "eyes",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "heart": {
+            "name": "heart",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "hooray": {
+            "name": "hooray",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "laugh": {
+            "name": "laugh",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "rocket": {
+            "name": "rocket",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "total_count": {
+            "name": "total_count",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "url": {
+            "name": "url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "comment_reactions_pkey": [
+            "url"
+          ]
+        },
+        "foreignRelations": {
+          "comment_reactions_comment_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "comments",
+            "columnMapping": {
+              "comment_id": "id"
+            }
+          }
+        },
+        "description": null
+      },
       "comments": {
         "schemaName": "public",
         "tableName": "comments",
@@ -84,14 +193,6 @@
             "nullable": "nullable",
             "description": null
           },
-          "reactions": {
-            "name": "reactions",
-            "type": {
-              "scalarType": "json"
-            },
-            "nullable": "nullable",
-            "description": null
-          },
           "updated_at": {
             "name": "updated_at",
             "type": {
@@ -108,16 +209,19 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "user": {
-            "name": "user",
+          "user_id": {
+            "name": "user_id",
             "type": {
-              "scalarType": "json"
+              "scalarType": "int8"
             },
-            "nullable": "nullable",
+            "nullable": "nonNullable",
             "description": null
           }
         },
         "uniquenessConstraints": {
+          "comments_id_key": [
+            "id"
+          ],
           "comments_pkey": [
             "url"
           ]
@@ -128,6 +232,212 @@
             "foreignTable": "issues",
             "columnMapping": {
               "issue_url": "url"
+            }
+          },
+          "comments_user_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "users",
+            "columnMapping": {
+              "user_id": "id"
+            }
+          }
+        },
+        "description": null
+      },
+      "issue_assignees": {
+        "schemaName": "public",
+        "tableName": "issue_assignees",
+        "columns": {
+          "assignee_id": {
+            "name": "assignee_id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "issue_assignees_pkey": [
+            "assignee_id",
+            "issue_id"
+          ]
+        },
+        "foreignRelations": {
+          "issue_assignees_assignee_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "users",
+            "columnMapping": {
+              "assignee_id": "id"
+            }
+          },
+          "issue_assignees_issue_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "issues",
+            "columnMapping": {
+              "issue_id": "id"
+            }
+          }
+        },
+        "description": null
+      },
+      "issue_labels": {
+        "schemaName": "public",
+        "tableName": "issue_labels",
+        "columns": {
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "label_id": {
+            "name": "label_id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "issue_labels_pkey": [
+            "issue_id",
+            "label_id"
+          ]
+        },
+        "foreignRelations": {
+          "issue_labels_issue_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "issues",
+            "columnMapping": {
+              "issue_id": "id"
+            }
+          },
+          "issue_labels_label_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "labels",
+            "columnMapping": {
+              "label_id": "id"
+            }
+          }
+        },
+        "description": null
+      },
+      "issue_reactions": {
+        "schemaName": "public",
+        "tableName": "issue_reactions",
+        "columns": {
+          "+1": {
+            "name": "+1",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "-1": {
+            "name": "-1",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "confused": {
+            "name": "confused",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "eyes": {
+            "name": "eyes",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "heart": {
+            "name": "heart",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "hooray": {
+            "name": "hooray",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "laugh": {
+            "name": "laugh",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "rocket": {
+            "name": "rocket",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "total_count": {
+            "name": "total_count",
+            "type": {
+              "scalarType": "int4"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "url": {
+            "name": "url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "issue_reactions_pkey": [
+            "url"
+          ]
+        },
+        "foreignRelations": {
+          "issue_reactions_issue_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "issues",
+            "columnMapping": {
+              "issue_id": "id"
             }
           }
         },
@@ -141,22 +451,6 @@
             "name": "active_lock_reason",
             "type": {
               "scalarType": "text"
-            },
-            "nullable": "nullable",
-            "description": null
-          },
-          "assignee": {
-            "name": "assignee",
-            "type": {
-              "scalarType": "json"
-            },
-            "nullable": "nullable",
-            "description": null
-          },
-          "assignees": {
-            "name": "assignees",
-            "type": {
-              "scalarType": "json"
             },
             "nullable": "nullable",
             "description": null
@@ -241,14 +535,6 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "labels": {
-            "name": "labels",
-            "type": {
-              "scalarType": "json"
-            },
-            "nullable": "nullable",
-            "description": null
-          },
           "labels_url": {
             "name": "labels_url",
             "type": {
@@ -293,14 +579,6 @@
             "name": "performed_via_github_app",
             "type": {
               "scalarType": "text"
-            },
-            "nullable": "nullable",
-            "description": null
-          },
-          "reactions": {
-            "name": "reactions",
-            "type": {
-              "scalarType": "json"
             },
             "nullable": "nullable",
             "description": null
@@ -361,18 +639,255 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "user": {
-            "name": "user",
+          "user_id": {
+            "name": "user_id",
             "type": {
-              "scalarType": "json"
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "issues_id_key": [
+            "id"
+          ],
+          "issues_pkey": [
+            "url"
+          ]
+        },
+        "foreignRelations": {
+          "issues_user_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "users",
+            "columnMapping": {
+              "user_id": "id"
+            }
+          }
+        },
+        "description": null
+      },
+      "labels": {
+        "schemaName": "public",
+        "tableName": "labels",
+        "columns": {
+          "color": {
+            "name": "color",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "default": {
+            "name": "default",
+            "type": {
+              "scalarType": "bool"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "node_id": {
+            "name": "node_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "url": {
+            "name": "url",
+            "type": {
+              "scalarType": "text"
             },
             "nullable": "nullable",
             "description": null
           }
         },
         "uniquenessConstraints": {
-          "issues_pkey": [
-            "url"
+          "labels_pkey": [
+            "id"
+          ]
+        },
+        "foreignRelations": {},
+        "description": null
+      },
+      "users": {
+        "schemaName": "public",
+        "tableName": "users",
+        "columns": {
+          "avatar_url": {
+            "name": "avatar_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "events_url": {
+            "name": "events_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "followers_url": {
+            "name": "followers_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "following_url": {
+            "name": "following_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "gists_url": {
+            "name": "gists_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "gravatar_id": {
+            "name": "gravatar_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "html_url": {
+            "name": "html_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "int8"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "login": {
+            "name": "login",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "node_id": {
+            "name": "node_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "organizations_url": {
+            "name": "organizations_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "received_events_url": {
+            "name": "received_events_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repos_url": {
+            "name": "repos_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "site_admin": {
+            "name": "site_admin",
+            "type": {
+              "scalarType": "bool"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "starred_url": {
+            "name": "starred_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "subscriptions_url": {
+            "name": "subscriptions_url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "type": {
+            "name": "type",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "url": {
+            "name": "url",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "users_pkey": [
+            "id"
           ]
         },
         "foreignRelations": {},
@@ -381,6 +896,67 @@
     },
     "types": {
       "scalar": {
+        "bool": {
+          "typeName": "bool",
+          "schemaName": "pg_catalog",
+          "description": null,
+          "aggregateFunctions": {
+            "bool_and": {
+              "returnType": "bool"
+            },
+            "bool_or": {
+              "returnType": "bool"
+            },
+            "every": {
+              "returnType": "bool"
+            }
+          },
+          "comparisonOperators": {
+            "_eq": {
+              "operatorName": "=",
+              "operatorKind": "equal",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_gt": {
+              "operatorName": ">",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_gte": {
+              "operatorName": ">=",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_in": {
+              "operatorName": "IN",
+              "operatorKind": "in",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_lt": {
+              "operatorName": "<",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_lte": {
+              "operatorName": "<=",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_neq": {
+              "operatorName": "<>",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            }
+          },
+          "typeRepresentation": "boolean"
+        },
         "int4": {
           "typeName": "int4",
           "schemaName": "pg_catalog",
@@ -562,21 +1138,6 @@
             }
           },
           "typeRepresentation": "int64AsString"
-        },
-        "json": {
-          "typeName": "json",
-          "schemaName": "pg_catalog",
-          "description": null,
-          "aggregateFunctions": {},
-          "comparisonOperators": {
-            "_in": {
-              "operatorName": "IN",
-              "operatorKind": "in",
-              "argumentType": "json",
-              "isInfix": true
-            }
-          },
-          "typeRepresentation": null
         },
         "numeric": {
           "typeName": "numeric",

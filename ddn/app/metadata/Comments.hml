@@ -20,14 +20,12 @@ definition:
       type: Text
     - name: performedViaGithubApp
       type: Text
-    - name: reactions
-      type: Json
     - name: updatedAt
       type: Timestamptz
     - name: url
       type: Text!
-    - name: user
-      type: Json
+    - name: userId
+      type: Int8!
   graphql:
     typeName: Comments
     inputTypeName: CommentsInput
@@ -59,18 +57,15 @@ definition:
         performedViaGithubApp:
           column:
             name: performed_via_github_app
-        reactions:
-          column:
-            name: reactions
         updatedAt:
           column:
             name: updated_at
         url:
           column:
             name: url
-        user:
+        userId:
           column:
-            name: user
+            name: user_id
 
 ---
 kind: TypePermissions
@@ -89,10 +84,9 @@ definition:
           - issueUrl
           - nodeId
           - performedViaGithubApp
-          - reactions
           - updatedAt
           - url
-          - user
+          - userId
 
 ---
 kind: ObjectBooleanExpressionType
@@ -127,16 +121,13 @@ definition:
     - fieldName: performedViaGithubApp
       operators:
         enableAll: true
-    - fieldName: reactions
-      operators:
-        enableAll: true
     - fieldName: updatedAt
       operators:
         enableAll: true
     - fieldName: url
       operators:
         enableAll: true
-    - fieldName: user
+    - fieldName: userId
       operators:
         enableAll: true
   graphql:
@@ -177,22 +168,22 @@ definition:
     - fieldName: performedViaGithubApp
       orderByDirections:
         enableAll: true
-    - fieldName: reactions
-      orderByDirections:
-        enableAll: true
     - fieldName: updatedAt
       orderByDirections:
         enableAll: true
     - fieldName: url
       orderByDirections:
         enableAll: true
-    - fieldName: user
+    - fieldName: userId
       orderByDirections:
         enableAll: true
   graphql:
     selectMany:
       queryRootField: comments
     selectUniques:
+      - queryRootField: commentsById
+        uniqueIdentifier:
+          - id
       - queryRootField: commentsByUrl
         uniqueIdentifier:
           - url
@@ -212,6 +203,24 @@ definition:
 kind: Relationship
 version: v1
 definition:
+  name: commentReactions
+  sourceType: Comments
+  target:
+    model:
+      name: CommentReactions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: commentId
+
+---
+kind: Relationship
+version: v1
+definition:
   name: issue
   sourceType: Comments
   target:
@@ -225,4 +234,22 @@ definition:
       target:
         modelField:
           - fieldName: url
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: user
+  sourceType: Comments
+  target:
+    model:
+      name: Users
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: userId
+      target:
+        modelField:
+          - fieldName: id
 

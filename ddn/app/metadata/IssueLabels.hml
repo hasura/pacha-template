@@ -1,0 +1,127 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: IssueLabels
+  fields:
+    - name: issueId
+      type: Int8!
+    - name: labelId
+      type: Int8!
+  graphql:
+    typeName: IssueLabels
+    inputTypeName: IssueLabelsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: issue_labels
+      fieldMapping:
+        issueId:
+          column:
+            name: issue_id
+        labelId:
+          column:
+            name: label_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: IssueLabels
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - issueId
+          - labelId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssueLabelsBoolExp
+  objectType: IssueLabels
+  dataConnectorName: postgres
+  dataConnectorObjectType: issue_labels
+  comparableFields:
+    - fieldName: issueId
+      operators:
+        enableAll: true
+    - fieldName: labelId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssueLabelsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: IssueLabels
+  objectType: IssueLabels
+  source:
+    dataConnectorName: postgres
+    collection: issue_labels
+  filterExpressionType: IssueLabelsBoolExp
+  orderableFields:
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+    - fieldName: labelId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issueLabels
+    selectUniques:
+      - queryRootField: issueLabelsByIssueLabelsPkey
+        uniqueIdentifier:
+          - issueId
+          - labelId
+    orderByExpressionType: IssueLabelsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: IssueLabels
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issue
+  sourceType: IssueLabels
+  target:
+    model:
+      name: Issues
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: issueId
+      target:
+        modelField:
+          - fieldName: id
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: label
+  sourceType: IssueLabels
+  target:
+    model:
+      name: Labels
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: labelId
+      target:
+        modelField:
+          - fieldName: id
+

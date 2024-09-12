@@ -1,0 +1,216 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: IssueReactions
+  fields:
+    - name: _1
+      type: Int4
+    - name: _1_1
+      type: Int4
+    - name: confused
+      type: Int4
+    - name: eyes
+      type: Int4
+    - name: heart
+      type: Int4
+    - name: hooray
+      type: Int4
+    - name: issueId
+      type: Int8!
+    - name: laugh
+      type: Int4
+    - name: rocket
+      type: Int4
+    - name: totalCount
+      type: Int4
+    - name: url
+      type: Text!
+  graphql:
+    typeName: IssueReactions
+    inputTypeName: IssueReactionsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: issue_reactions
+      fieldMapping:
+        _1:
+          column:
+            name: "+1"
+        _1_1:
+          column:
+            name: "-1"
+        confused:
+          column:
+            name: confused
+        eyes:
+          column:
+            name: eyes
+        heart:
+          column:
+            name: heart
+        hooray:
+          column:
+            name: hooray
+        issueId:
+          column:
+            name: issue_id
+        laugh:
+          column:
+            name: laugh
+        rocket:
+          column:
+            name: rocket
+        totalCount:
+          column:
+            name: total_count
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: IssueReactions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _1
+          - _1_1
+          - confused
+          - eyes
+          - heart
+          - hooray
+          - issueId
+          - laugh
+          - rocket
+          - totalCount
+          - url
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssueReactionsBoolExp
+  objectType: IssueReactions
+  dataConnectorName: postgres
+  dataConnectorObjectType: issue_reactions
+  comparableFields:
+    - fieldName: _1
+      operators:
+        enableAll: true
+    - fieldName: _1_1
+      operators:
+        enableAll: true
+    - fieldName: confused
+      operators:
+        enableAll: true
+    - fieldName: eyes
+      operators:
+        enableAll: true
+    - fieldName: heart
+      operators:
+        enableAll: true
+    - fieldName: hooray
+      operators:
+        enableAll: true
+    - fieldName: issueId
+      operators:
+        enableAll: true
+    - fieldName: laugh
+      operators:
+        enableAll: true
+    - fieldName: rocket
+      operators:
+        enableAll: true
+    - fieldName: totalCount
+      operators:
+        enableAll: true
+    - fieldName: url
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssueReactionsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: IssueReactions
+  objectType: IssueReactions
+  source:
+    dataConnectorName: postgres
+    collection: issue_reactions
+  filterExpressionType: IssueReactionsBoolExp
+  orderableFields:
+    - fieldName: _1
+      orderByDirections:
+        enableAll: true
+    - fieldName: _1_1
+      orderByDirections:
+        enableAll: true
+    - fieldName: confused
+      orderByDirections:
+        enableAll: true
+    - fieldName: eyes
+      orderByDirections:
+        enableAll: true
+    - fieldName: heart
+      orderByDirections:
+        enableAll: true
+    - fieldName: hooray
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+    - fieldName: laugh
+      orderByDirections:
+        enableAll: true
+    - fieldName: rocket
+      orderByDirections:
+        enableAll: true
+    - fieldName: totalCount
+      orderByDirections:
+        enableAll: true
+    - fieldName: url
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issueReactions
+    selectUniques:
+      - queryRootField: issueReactionsByUrl
+        uniqueIdentifier:
+          - url
+    orderByExpressionType: IssueReactionsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: IssueReactions
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issue
+  sourceType: IssueReactions
+  target:
+    model:
+      name: Issues
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: issueId
+      target:
+        modelField:
+          - fieldName: id
+

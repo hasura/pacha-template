@@ -6,10 +6,6 @@ definition:
   fields:
     - name: activeLockReason
       type: Text
-    - name: assignee
-      type: Json
-    - name: assignees
-      type: Json
     - name: authorAssociation
       type: Text
     - name: body
@@ -30,8 +26,6 @@ definition:
       type: Text
     - name: id
       type: Int8!
-    - name: labels
-      type: Json
     - name: labelsUrl
       type: Text
     - name: locked
@@ -44,8 +38,6 @@ definition:
       type: Int4
     - name: performedViaGithubApp
       type: Text
-    - name: reactions
-      type: Json
     - name: repositoryUrl
       type: Text
     - name: state
@@ -60,8 +52,8 @@ definition:
       type: Timestamptz
     - name: url
       type: Text!
-    - name: user
-      type: Json
+    - name: userId
+      type: Int8!
   graphql:
     typeName: Issues
     inputTypeName: IssuesInput
@@ -72,12 +64,6 @@ definition:
         activeLockReason:
           column:
             name: active_lock_reason
-        assignee:
-          column:
-            name: assignee
-        assignees:
-          column:
-            name: assignees
         authorAssociation:
           column:
             name: author_association
@@ -108,9 +94,6 @@ definition:
         id:
           column:
             name: id
-        labels:
-          column:
-            name: labels
         labelsUrl:
           column:
             name: labels_url
@@ -129,9 +112,6 @@ definition:
         performedViaGithubApp:
           column:
             name: performed_via_github_app
-        reactions:
-          column:
-            name: reactions
         repositoryUrl:
           column:
             name: repository_url
@@ -153,9 +133,9 @@ definition:
         url:
           column:
             name: url
-        user:
+        userId:
           column:
-            name: user
+            name: user_id
 
 ---
 kind: TypePermissions
@@ -167,8 +147,6 @@ definition:
       output:
         allowedFields:
           - activeLockReason
-          - assignee
-          - assignees
           - authorAssociation
           - body
           - closedAt
@@ -179,14 +157,12 @@ definition:
           - eventsUrl
           - htmlUrl
           - id
-          - labels
           - labelsUrl
           - locked
           - milestone
           - nodeId
           - number
           - performedViaGithubApp
-          - reactions
           - repositoryUrl
           - state
           - stateReason
@@ -194,7 +170,7 @@ definition:
           - title
           - updatedAt
           - url
-          - user
+          - userId
 
 ---
 kind: ObjectBooleanExpressionType
@@ -206,12 +182,6 @@ definition:
   dataConnectorObjectType: issues
   comparableFields:
     - fieldName: activeLockReason
-      operators:
-        enableAll: true
-    - fieldName: assignee
-      operators:
-        enableAll: true
-    - fieldName: assignees
       operators:
         enableAll: true
     - fieldName: authorAssociation
@@ -244,9 +214,6 @@ definition:
     - fieldName: id
       operators:
         enableAll: true
-    - fieldName: labels
-      operators:
-        enableAll: true
     - fieldName: labelsUrl
       operators:
         enableAll: true
@@ -263,9 +230,6 @@ definition:
       operators:
         enableAll: true
     - fieldName: performedViaGithubApp
-      operators:
-        enableAll: true
-    - fieldName: reactions
       operators:
         enableAll: true
     - fieldName: repositoryUrl
@@ -289,7 +253,7 @@ definition:
     - fieldName: url
       operators:
         enableAll: true
-    - fieldName: user
+    - fieldName: userId
       operators:
         enableAll: true
   graphql:
@@ -309,12 +273,6 @@ definition:
     - fieldName: activeLockReason
       orderByDirections:
         enableAll: true
-    - fieldName: assignee
-      orderByDirections:
-        enableAll: true
-    - fieldName: assignees
-      orderByDirections:
-        enableAll: true
     - fieldName: authorAssociation
       orderByDirections:
         enableAll: true
@@ -345,9 +303,6 @@ definition:
     - fieldName: id
       orderByDirections:
         enableAll: true
-    - fieldName: labels
-      orderByDirections:
-        enableAll: true
     - fieldName: labelsUrl
       orderByDirections:
         enableAll: true
@@ -364,9 +319,6 @@ definition:
       orderByDirections:
         enableAll: true
     - fieldName: performedViaGithubApp
-      orderByDirections:
-        enableAll: true
-    - fieldName: reactions
       orderByDirections:
         enableAll: true
     - fieldName: repositoryUrl
@@ -390,13 +342,16 @@ definition:
     - fieldName: url
       orderByDirections:
         enableAll: true
-    - fieldName: user
+    - fieldName: userId
       orderByDirections:
         enableAll: true
   graphql:
     selectMany:
       queryRootField: issues
     selectUniques:
+      - queryRootField: issuesById
+        uniqueIdentifier:
+          - id
       - queryRootField: issuesByUrl
         uniqueIdentifier:
           - url
@@ -429,4 +384,76 @@ definition:
       target:
         modelField:
           - fieldName: issueUrl
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issueAssignees
+  sourceType: Issues
+  target:
+    model:
+      name: IssueAssignees
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: issueId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issueLabels
+  sourceType: Issues
+  target:
+    model:
+      name: IssueLabels
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: issueId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: issueReactions
+  sourceType: Issues
+  target:
+    model:
+      name: IssueReactions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: issueId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: user
+  sourceType: Issues
+  target:
+    model:
+      name: Users
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: userId
+      target:
+        modelField:
+          - fieldName: id
 
