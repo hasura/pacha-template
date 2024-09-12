@@ -1,0 +1,7 @@
+pacha-demo.example.io {
+  reverse_proxy pacha:5001
+}
+
+engine.pacha-demo.example.io {
+  reverse_proxy engine:3000
+}

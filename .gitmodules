@@ -1,0 +1,3 @@
+[submodule "pacha"]
+	path = pacha
+	url = https://github.com/hasura/pacha.git
