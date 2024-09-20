@@ -1,0 +1,96 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Projects
+  fields:
+    - name: projectId
+      type: Text!
+  graphql:
+    typeName: Projects
+    inputTypeName: ProjectsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: projects
+      fieldMapping:
+        projectId:
+          column:
+            name: project_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Projects
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - projectId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: ProjectsBoolExp
+  objectType: Projects
+  dataConnectorName: postgres
+  dataConnectorObjectType: projects
+  comparableFields:
+    - fieldName: projectId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: ProjectsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Projects
+  objectType: Projects
+  source:
+    dataConnectorName: postgres
+    collection: projects
+  filterExpressionType: ProjectsBoolExp
+  orderableFields:
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: projects
+    selectUniques:
+      - queryRootField: projectsByProjectId
+        uniqueIdentifier:
+          - projectId
+    orderByExpressionType: ProjectsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Projects
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: builds
+  sourceType: Projects
+  target:
+    model:
+      name: Builds
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+

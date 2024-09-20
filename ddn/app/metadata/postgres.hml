@@ -1,0 +1,867 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: postgres
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_POSTGRES_READ_URL
+      write:
+        valueFromEnv: APP_POSTGRES_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_POSTGRES_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        text:
+          representation:
+            type: string
+          aggregate_functions:
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _ilike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _in:
+              type: in
+            _iregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _like:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nilike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _niregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nlike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _regex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            starts_with:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            ts_match_tt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+        timestamp:
+          representation:
+            type: timestamp
+          aggregate_functions:
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+      object_types:
+        builds:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            created_at:
+              type:
+                type: named
+                name: timestamp
+            project_id:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: named
+                name: text
+        command_relationships:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            mapping_source_field:
+              type:
+                type: named
+                name: text
+            mapping_target_argument:
+              type:
+                type: named
+                name: text
+            name:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            relationship_id:
+              type:
+                type: named
+                name: text
+            source:
+              type:
+                type: named
+                name: text
+            source_object_type_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            target_command_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            target_command_name:
+              type:
+                type: named
+                name: text
+            target_command_subgraph:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        commands:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            command_id:
+              type:
+                type: named
+                name: text
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            graphql_root_field_kind:
+              type:
+                type: named
+                name: text
+            graphql_root_field_name:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            name:
+              type:
+                type: named
+                name: text
+            output_type:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            source_data_connector_function:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            source_data_connector_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            source_data_connector_procedure:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        commands_arguments:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            command_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            name:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            type:
+              type:
+                type: named
+                name: text
+        model:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            model_id:
+              type:
+                type: named
+                name: text
+            name:
+              type:
+                type: named
+                name: text
+            object_type:
+              type:
+                type: named
+                name: text
+            object_type_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            select_many_query_root_field:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            source_collection:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            source_data_connector_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        model_relationships:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            mapping_source_field:
+              type:
+                type: named
+                name: text
+            mapping_target_field:
+              type:
+                type: named
+                name: text
+            name:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            relationship_id:
+              type:
+                type: named
+                name: text
+            source:
+              type:
+                type: named
+                name: text
+            source_object_type_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            target_model_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            target_model_name:
+              type:
+                type: named
+                name: text
+            target_model_relationship_type:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        model_uniques:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            model_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            query_root_field:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            unique_identifier:
+              type:
+                type: array
+                element_type:
+                  type: nullable
+                  underlying_type:
+                    type: named
+                    name: text
+        object_types:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            graphql_input_type_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            graphql_type_name:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            name:
+              type:
+                type: named
+                name: text
+            object_type_id:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        object_types_fields:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            name:
+              type:
+                type: named
+                name: text
+            object_type_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            type:
+              type:
+                type: named
+                name: text
+        projects:
+          fields:
+            project_id:
+              type:
+                type: named
+                name: text
+        scalar_types:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            graphql_type_name:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            name:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        subgraphs:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+      collections:
+        - name: builds
+          arguments: {}
+          type: builds
+          uniqueness_constraints:
+            builds_pkey:
+              unique_columns:
+                - build_id
+                - project_id
+          foreign_keys:
+            builds_project_id_fkey:
+              column_mapping:
+                project_id: project_id
+              foreign_collection: projects
+        - name: command_relationships
+          arguments: {}
+          type: command_relationships
+          uniqueness_constraints:
+            command_relationships_pkey:
+              unique_columns:
+                - relationship_id
+          foreign_keys:
+            command_relationships_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            command_relationships_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+                subgraph: subgraph
+              foreign_collection: subgraphs
+            command_relationships_source_object_type_id_fkey:
+              column_mapping:
+                source_object_type_id: object_type_id
+              foreign_collection: object_types
+            command_relationships_target_command_id_fkey:
+              column_mapping:
+                target_command_id: command_id
+              foreign_collection: commands
+        - name: commands
+          arguments: {}
+          type: commands
+          uniqueness_constraints:
+            commands_pkey:
+              unique_columns:
+                - command_id
+          foreign_keys:
+            commands_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            commands_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: subgraph
+                subgraph: project_id
+              foreign_collection: subgraphs
+        - name: commands_arguments
+          arguments: {}
+          type: commands_arguments
+          uniqueness_constraints: {}
+          foreign_keys:
+            commands_arguments_command_id_fkey:
+              column_mapping:
+                command_id: command_id
+              foreign_collection: commands
+            commands_arguments_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            commands_arguments_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: subgraph
+                project_id: build_id
+                subgraph: project_id
+              foreign_collection: subgraphs
+        - name: model
+          arguments: {}
+          type: model
+          uniqueness_constraints:
+            model_pkey:
+              unique_columns:
+                - model_id
+          foreign_keys:
+            model_object_type_id_fkey:
+              column_mapping:
+                object_type_id: object_type_id
+              foreign_collection: object_types
+            model_project_id_build_id_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+              foreign_collection: builds
+            model_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+                subgraph: subgraph
+              foreign_collection: subgraphs
+        - name: model_relationships
+          arguments: {}
+          type: model_relationships
+          uniqueness_constraints:
+            model_relationships_pkey:
+              unique_columns:
+                - relationship_id
+          foreign_keys:
+            model_relationships_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            model_relationships_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+                subgraph: subgraph
+              foreign_collection: subgraphs
+            model_relationships_source_object_type_id_fkey:
+              column_mapping:
+                source_object_type_id: object_type_id
+              foreign_collection: object_types
+            model_relationships_target_model_id_fkey:
+              column_mapping:
+                target_model_id: model_id
+              foreign_collection: model
+        - name: model_uniques
+          arguments: {}
+          type: model_uniques
+          uniqueness_constraints: {}
+          foreign_keys:
+            model_uniques_model_id_fkey:
+              column_mapping:
+                model_id: model_id
+              foreign_collection: model
+            model_uniques_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            model_uniques_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+                subgraph: subgraph
+              foreign_collection: subgraphs
+        - name: object_types
+          arguments: {}
+          type: object_types
+          uniqueness_constraints:
+            object_types_pkey:
+              unique_columns:
+                - object_type_id
+          foreign_keys:
+            object_types_project_id_build_id_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+              foreign_collection: builds
+            object_types_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: subgraph
+                subgraph: build_id
+              foreign_collection: subgraphs
+        - name: object_types_fields
+          arguments: {}
+          type: object_types_fields
+          uniqueness_constraints: {}
+          foreign_keys:
+            object_types_fields_object_type_id_fkey:
+              column_mapping:
+                object_type_id: object_type_id
+              foreign_collection: object_types
+            object_types_fields_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            object_types_fields_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+                subgraph: subgraph
+              foreign_collection: subgraphs
+        - name: projects
+          arguments: {}
+          type: projects
+          uniqueness_constraints:
+            projects_pkey:
+              unique_columns:
+                - project_id
+          foreign_keys: {}
+        - name: scalar_types
+          arguments: {}
+          type: scalar_types
+          uniqueness_constraints: {}
+          foreign_keys:
+            scalar_types_project_id_build_id_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+              foreign_collection: builds
+            scalar_types_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: subgraph
+                subgraph: build_id
+              foreign_collection: subgraphs
+        - name: subgraphs
+          arguments: {}
+          type: subgraphs
+          uniqueness_constraints:
+            subgraphs_pkey:
+              unique_columns:
+                - build_id
+                - project_id
+                - subgraph
+          foreign_keys: {}
+      functions: []
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+          nested_fields:
+            filter_by: {}
+            order_by: {}
+        mutation:
+          transactional: {}
+          explain: {}
+        relationships:
+          relation_comparisons: {}
+          order_by_aggregate: {}

@@ -1,0 +1,324 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Commands
+  fields:
+    - name: buildId
+      type: Text!
+    - name: commandId
+      type: Text!
+    - name: description
+      type: Text
+    - name: graphqlRootFieldKind
+      type: Text!
+    - name: graphqlRootFieldName
+      type: Text!
+    - name: kind
+      type: Text!
+    - name: name
+      type: Text!
+    - name: outputType
+      type: Text
+    - name: projectId
+      type: Text!
+    - name: sourceDataConnectorFunction
+      type: Text
+    - name: sourceDataConnectorName
+      type: Text
+    - name: sourceDataConnectorProcedure
+      type: Text
+    - name: subgraph
+      type: Text!
+    - name: version
+      type: Text
+  graphql:
+    typeName: Commands
+    inputTypeName: CommandsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: commands
+      fieldMapping:
+        buildId:
+          column:
+            name: build_id
+        commandId:
+          column:
+            name: command_id
+        description:
+          column:
+            name: description
+        graphqlRootFieldKind:
+          column:
+            name: graphql_root_field_kind
+        graphqlRootFieldName:
+          column:
+            name: graphql_root_field_name
+        kind:
+          column:
+            name: kind
+        name:
+          column:
+            name: name
+        outputType:
+          column:
+            name: output_type
+        projectId:
+          column:
+            name: project_id
+        sourceDataConnectorFunction:
+          column:
+            name: source_data_connector_function
+        sourceDataConnectorName:
+          column:
+            name: source_data_connector_name
+        sourceDataConnectorProcedure:
+          column:
+            name: source_data_connector_procedure
+        subgraph:
+          column:
+            name: subgraph
+        version:
+          column:
+            name: version
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Commands
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - buildId
+          - commandId
+          - description
+          - graphqlRootFieldKind
+          - graphqlRootFieldName
+          - kind
+          - name
+          - outputType
+          - projectId
+          - sourceDataConnectorFunction
+          - sourceDataConnectorName
+          - sourceDataConnectorProcedure
+          - subgraph
+          - version
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommandsBoolExp
+  objectType: Commands
+  dataConnectorName: postgres
+  dataConnectorObjectType: commands
+  comparableFields:
+    - fieldName: buildId
+      operators:
+        enableAll: true
+    - fieldName: commandId
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: graphqlRootFieldKind
+      operators:
+        enableAll: true
+    - fieldName: graphqlRootFieldName
+      operators:
+        enableAll: true
+    - fieldName: kind
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: outputType
+      operators:
+        enableAll: true
+    - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: sourceDataConnectorFunction
+      operators:
+        enableAll: true
+    - fieldName: sourceDataConnectorName
+      operators:
+        enableAll: true
+    - fieldName: sourceDataConnectorProcedure
+      operators:
+        enableAll: true
+    - fieldName: subgraph
+      operators:
+        enableAll: true
+    - fieldName: version
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommandsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Commands
+  objectType: Commands
+  source:
+    dataConnectorName: postgres
+    collection: commands
+  filterExpressionType: CommandsBoolExp
+  orderableFields:
+    - fieldName: buildId
+      orderByDirections:
+        enableAll: true
+    - fieldName: commandId
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: graphqlRootFieldKind
+      orderByDirections:
+        enableAll: true
+    - fieldName: graphqlRootFieldName
+      orderByDirections:
+        enableAll: true
+    - fieldName: kind
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: outputType
+      orderByDirections:
+        enableAll: true
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: sourceDataConnectorFunction
+      orderByDirections:
+        enableAll: true
+    - fieldName: sourceDataConnectorName
+      orderByDirections:
+        enableAll: true
+    - fieldName: sourceDataConnectorProcedure
+      orderByDirections:
+        enableAll: true
+    - fieldName: subgraph
+      orderByDirections:
+        enableAll: true
+    - fieldName: version
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commands
+    selectUniques:
+      - queryRootField: commandsByCommandId
+        uniqueIdentifier:
+          - commandId
+    orderByExpressionType: CommandsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Commands
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: commandRelationships
+  sourceType: Commands
+  target:
+    model:
+      name: CommandRelationships
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: commandId
+      target:
+        modelField:
+          - fieldName: targetCommandId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: build
+  sourceType: Commands
+  target:
+    model:
+      name: Builds
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: subgraphByBuildIdAndProjectIdAndSubgraph
+  sourceType: Commands
+  target:
+    model:
+      name: Subgraphs
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: commandsArguments
+  sourceType: Commands
+  target:
+    model:
+      name: CommandsArguments
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: commandId
+      target:
+        modelField:
+          - fieldName: commandId
+

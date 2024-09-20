@@ -1,0 +1,324 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CommandRelationships
+  fields:
+    - name: buildId
+      type: Text!
+    - name: kind
+      type: Text!
+    - name: mappingSourceField
+      type: Text!
+    - name: mappingTargetArgument
+      type: Text!
+    - name: name
+      type: Text!
+    - name: projectId
+      type: Text!
+    - name: relationshipId
+      type: Text!
+    - name: source
+      type: Text!
+    - name: sourceObjectTypeId
+      type: Text
+    - name: subgraph
+      type: Text!
+    - name: targetCommandId
+      type: Text
+    - name: targetCommandName
+      type: Text!
+    - name: targetCommandSubgraph
+      type: Text
+    - name: version
+      type: Text
+  graphql:
+    typeName: CommandRelationships
+    inputTypeName: CommandRelationshipsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: command_relationships
+      fieldMapping:
+        buildId:
+          column:
+            name: build_id
+        kind:
+          column:
+            name: kind
+        mappingSourceField:
+          column:
+            name: mapping_source_field
+        mappingTargetArgument:
+          column:
+            name: mapping_target_argument
+        name:
+          column:
+            name: name
+        projectId:
+          column:
+            name: project_id
+        relationshipId:
+          column:
+            name: relationship_id
+        source:
+          column:
+            name: source
+        sourceObjectTypeId:
+          column:
+            name: source_object_type_id
+        subgraph:
+          column:
+            name: subgraph
+        targetCommandId:
+          column:
+            name: target_command_id
+        targetCommandName:
+          column:
+            name: target_command_name
+        targetCommandSubgraph:
+          column:
+            name: target_command_subgraph
+        version:
+          column:
+            name: version
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CommandRelationships
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - buildId
+          - kind
+          - mappingSourceField
+          - mappingTargetArgument
+          - name
+          - projectId
+          - relationshipId
+          - source
+          - sourceObjectTypeId
+          - subgraph
+          - targetCommandId
+          - targetCommandName
+          - targetCommandSubgraph
+          - version
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommandRelationshipsBoolExp
+  objectType: CommandRelationships
+  dataConnectorName: postgres
+  dataConnectorObjectType: command_relationships
+  comparableFields:
+    - fieldName: buildId
+      operators:
+        enableAll: true
+    - fieldName: kind
+      operators:
+        enableAll: true
+    - fieldName: mappingSourceField
+      operators:
+        enableAll: true
+    - fieldName: mappingTargetArgument
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: relationshipId
+      operators:
+        enableAll: true
+    - fieldName: source
+      operators:
+        enableAll: true
+    - fieldName: sourceObjectTypeId
+      operators:
+        enableAll: true
+    - fieldName: subgraph
+      operators:
+        enableAll: true
+    - fieldName: targetCommandId
+      operators:
+        enableAll: true
+    - fieldName: targetCommandName
+      operators:
+        enableAll: true
+    - fieldName: targetCommandSubgraph
+      operators:
+        enableAll: true
+    - fieldName: version
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommandRelationshipsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: CommandRelationships
+  objectType: CommandRelationships
+  source:
+    dataConnectorName: postgres
+    collection: command_relationships
+  filterExpressionType: CommandRelationshipsBoolExp
+  orderableFields:
+    - fieldName: buildId
+      orderByDirections:
+        enableAll: true
+    - fieldName: kind
+      orderByDirections:
+        enableAll: true
+    - fieldName: mappingSourceField
+      orderByDirections:
+        enableAll: true
+    - fieldName: mappingTargetArgument
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: relationshipId
+      orderByDirections:
+        enableAll: true
+    - fieldName: source
+      orderByDirections:
+        enableAll: true
+    - fieldName: sourceObjectTypeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: subgraph
+      orderByDirections:
+        enableAll: true
+    - fieldName: targetCommandId
+      orderByDirections:
+        enableAll: true
+    - fieldName: targetCommandName
+      orderByDirections:
+        enableAll: true
+    - fieldName: targetCommandSubgraph
+      orderByDirections:
+        enableAll: true
+    - fieldName: version
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commandRelationships
+    selectUniques:
+      - queryRootField: commandRelationshipsByRelationshipId
+        uniqueIdentifier:
+          - relationshipId
+    orderByExpressionType: CommandRelationshipsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: CommandRelationships
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: build
+  sourceType: CommandRelationships
+  target:
+    model:
+      name: Builds
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: subgraphByBuildIdAndProjectIdAndSubgraph
+  sourceType: CommandRelationships
+  target:
+    model:
+      name: Subgraphs
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: objectType
+  sourceType: CommandRelationships
+  target:
+    model:
+      name: ObjectTypes
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: sourceObjectTypeId
+      target:
+        modelField:
+          - fieldName: objectTypeId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: command
+  sourceType: CommandRelationships
+  target:
+    model:
+      name: Commands
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: targetCommandId
+      target:
+        modelField:
+          - fieldName: commandId
+

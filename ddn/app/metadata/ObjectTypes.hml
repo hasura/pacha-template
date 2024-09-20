@@ -1,0 +1,312 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ObjectTypes
+  fields:
+    - name: buildId
+      type: Text!
+    - name: description
+      type: Text
+    - name: graphqlInputTypeName
+      type: Text
+    - name: graphqlTypeName
+      type: Text!
+    - name: kind
+      type: Text!
+    - name: name
+      type: Text!
+    - name: objectTypeId
+      type: Text!
+    - name: projectId
+      type: Text!
+    - name: subgraph
+      type: Text!
+    - name: version
+      type: Text
+  graphql:
+    typeName: ObjectTypes
+    inputTypeName: ObjectTypesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: object_types
+      fieldMapping:
+        buildId:
+          column:
+            name: build_id
+        description:
+          column:
+            name: description
+        graphqlInputTypeName:
+          column:
+            name: graphql_input_type_name
+        graphqlTypeName:
+          column:
+            name: graphql_type_name
+        kind:
+          column:
+            name: kind
+        name:
+          column:
+            name: name
+        objectTypeId:
+          column:
+            name: object_type_id
+        projectId:
+          column:
+            name: project_id
+        subgraph:
+          column:
+            name: subgraph
+        version:
+          column:
+            name: version
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ObjectTypes
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - buildId
+          - description
+          - graphqlInputTypeName
+          - graphqlTypeName
+          - kind
+          - name
+          - objectTypeId
+          - projectId
+          - subgraph
+          - version
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: ObjectTypesBoolExp
+  objectType: ObjectTypes
+  dataConnectorName: postgres
+  dataConnectorObjectType: object_types
+  comparableFields:
+    - fieldName: buildId
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: graphqlInputTypeName
+      operators:
+        enableAll: true
+    - fieldName: graphqlTypeName
+      operators:
+        enableAll: true
+    - fieldName: kind
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: objectTypeId
+      operators:
+        enableAll: true
+    - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: subgraph
+      operators:
+        enableAll: true
+    - fieldName: version
+      operators:
+        enableAll: true
+  graphql:
+    typeName: ObjectTypesBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: ObjectTypes
+  objectType: ObjectTypes
+  source:
+    dataConnectorName: postgres
+    collection: object_types
+  filterExpressionType: ObjectTypesBoolExp
+  orderableFields:
+    - fieldName: buildId
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: graphqlInputTypeName
+      orderByDirections:
+        enableAll: true
+    - fieldName: graphqlTypeName
+      orderByDirections:
+        enableAll: true
+    - fieldName: kind
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: objectTypeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: subgraph
+      orderByDirections:
+        enableAll: true
+    - fieldName: version
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: objectTypes
+    selectUniques:
+      - queryRootField: objectTypesByObjectTypeId
+        uniqueIdentifier:
+          - objectTypeId
+    orderByExpressionType: ObjectTypesOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: ObjectTypes
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: commandRelationships
+  sourceType: ObjectTypes
+  target:
+    model:
+      name: CommandRelationships
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: objectTypeId
+      target:
+        modelField:
+          - fieldName: sourceObjectTypeId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: models
+  sourceType: ObjectTypes
+  target:
+    model:
+      name: Model
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: objectTypeId
+      target:
+        modelField:
+          - fieldName: objectTypeId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: modelRelationships
+  sourceType: ObjectTypes
+  target:
+    model:
+      name: ModelRelationships
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: objectTypeId
+      target:
+        modelField:
+          - fieldName: sourceObjectTypeId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: build
+  sourceType: ObjectTypes
+  target:
+    model:
+      name: Builds
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: subgraphByBuildIdAndProjectIdAndSubgraph
+  sourceType: ObjectTypes
+  target:
+    model:
+      name: Subgraphs
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: objectTypesFields
+  sourceType: ObjectTypes
+  target:
+    model:
+      name: ObjectTypesFields
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: objectTypeId
+      target:
+        modelField:
+          - fieldName: objectTypeId
+

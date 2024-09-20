@@ -1,0 +1,207 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: ModelUniques
+  fields:
+    - name: buildId
+      type: Text!
+    - name: modelId
+      type: Text
+    - name: projectId
+      type: Text!
+    - name: queryRootField
+      type: Text!
+    - name: subgraph
+      type: Text!
+    - name: uniqueIdentifier
+      type: "[Text]!"
+  graphql:
+    typeName: ModelUniques
+    inputTypeName: ModelUniquesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: model_uniques
+      fieldMapping:
+        buildId:
+          column:
+            name: build_id
+        modelId:
+          column:
+            name: model_id
+        projectId:
+          column:
+            name: project_id
+        queryRootField:
+          column:
+            name: query_root_field
+        subgraph:
+          column:
+            name: subgraph
+        uniqueIdentifier:
+          column:
+            name: unique_identifier
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: ModelUniques
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - buildId
+          - modelId
+          - projectId
+          - queryRootField
+          - subgraph
+          - uniqueIdentifier
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: ModelUniquesBoolExp
+  objectType: ModelUniques
+  dataConnectorName: postgres
+  dataConnectorObjectType: model_uniques
+  comparableFields:
+    - fieldName: buildId
+      operators:
+        enableAll: true
+    - fieldName: modelId
+      operators:
+        enableAll: true
+    - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: queryRootField
+      operators:
+        enableAll: true
+    - fieldName: subgraph
+      operators:
+        enableAll: true
+    - fieldName: uniqueIdentifier
+      operators:
+        enableAll: true
+  graphql:
+    typeName: ModelUniquesBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: ModelUniques
+  objectType: ModelUniques
+  source:
+    dataConnectorName: postgres
+    collection: model_uniques
+  filterExpressionType: ModelUniquesBoolExp
+  orderableFields:
+    - fieldName: buildId
+      orderByDirections:
+        enableAll: true
+    - fieldName: modelId
+      orderByDirections:
+        enableAll: true
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: queryRootField
+      orderByDirections:
+        enableAll: true
+    - fieldName: subgraph
+      orderByDirections:
+        enableAll: true
+    - fieldName: uniqueIdentifier
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: modelUniques
+    selectUniques: []
+    orderByExpressionType: ModelUniquesOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: ModelUniques
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: model
+  sourceType: ModelUniques
+  target:
+    model:
+      name: Model
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: modelId
+      target:
+        modelField:
+          - fieldName: modelId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: build
+  sourceType: ModelUniques
+  target:
+    model:
+      name: Builds
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: subgraphByBuildIdAndProjectIdAndSubgraph
+  sourceType: ModelUniques
+  target:
+    model:
+      name: Subgraphs
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+

@@ -1,0 +1,207 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CommandsArguments
+  fields:
+    - name: buildId
+      type: Text!
+    - name: commandId
+      type: Text
+    - name: name
+      type: Text!
+    - name: projectId
+      type: Text!
+    - name: subgraph
+      type: Text!
+    - name: type
+      type: Text!
+  graphql:
+    typeName: CommandsArguments
+    inputTypeName: CommandsArgumentsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: commands_arguments
+      fieldMapping:
+        buildId:
+          column:
+            name: build_id
+        commandId:
+          column:
+            name: command_id
+        name:
+          column:
+            name: name
+        projectId:
+          column:
+            name: project_id
+        subgraph:
+          column:
+            name: subgraph
+        type:
+          column:
+            name: type
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CommandsArguments
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - buildId
+          - commandId
+          - name
+          - projectId
+          - subgraph
+          - type
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommandsArgumentsBoolExp
+  objectType: CommandsArguments
+  dataConnectorName: postgres
+  dataConnectorObjectType: commands_arguments
+  comparableFields:
+    - fieldName: buildId
+      operators:
+        enableAll: true
+    - fieldName: commandId
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: subgraph
+      operators:
+        enableAll: true
+    - fieldName: type
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommandsArgumentsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: CommandsArguments
+  objectType: CommandsArguments
+  source:
+    dataConnectorName: postgres
+    collection: commands_arguments
+  filterExpressionType: CommandsArgumentsBoolExp
+  orderableFields:
+    - fieldName: buildId
+      orderByDirections:
+        enableAll: true
+    - fieldName: commandId
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: subgraph
+      orderByDirections:
+        enableAll: true
+    - fieldName: type
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commandsArguments
+    selectUniques: []
+    orderByExpressionType: CommandsArgumentsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: CommandsArguments
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: command
+  sourceType: CommandsArguments
+  target:
+    model:
+      name: Commands
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: commandId
+      target:
+        modelField:
+          - fieldName: commandId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: build
+  sourceType: CommandsArguments
+  target:
+    model:
+      name: Builds
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: subgraphByBuildIdAndProjectIdAndSubgraph
+  sourceType: CommandsArguments
+  target:
+    model:
+      name: Subgraphs
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+

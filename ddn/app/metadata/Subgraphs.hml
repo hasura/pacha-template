@@ -1,0 +1,374 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Subgraphs
+  fields:
+    - name: buildId
+      type: Text!
+    - name: projectId
+      type: Text!
+    - name: subgraph
+      type: Text!
+  graphql:
+    typeName: Subgraphs
+    inputTypeName: SubgraphsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: postgres
+      dataConnectorObjectType: subgraphs
+      fieldMapping:
+        buildId:
+          column:
+            name: build_id
+        projectId:
+          column:
+            name: project_id
+        subgraph:
+          column:
+            name: subgraph
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Subgraphs
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - buildId
+          - projectId
+          - subgraph
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: SubgraphsBoolExp
+  objectType: Subgraphs
+  dataConnectorName: postgres
+  dataConnectorObjectType: subgraphs
+  comparableFields:
+    - fieldName: buildId
+      operators:
+        enableAll: true
+    - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: subgraph
+      operators:
+        enableAll: true
+  graphql:
+    typeName: SubgraphsBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Subgraphs
+  objectType: Subgraphs
+  source:
+    dataConnectorName: postgres
+    collection: subgraphs
+  filterExpressionType: SubgraphsBoolExp
+  orderableFields:
+    - fieldName: buildId
+      orderByDirections:
+        enableAll: true
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: subgraph
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: subgraphs
+    selectUniques:
+      - queryRootField: subgraphsBySubgraphsPkey
+        uniqueIdentifier:
+          - buildId
+          - projectId
+          - subgraph
+    orderByExpressionType: SubgraphsOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Subgraphs
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: commandRelationships
+  sourceType: Subgraphs
+  target:
+    model:
+      name: CommandRelationships
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: commands
+  sourceType: Subgraphs
+  target:
+    model:
+      name: Commands
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: commandsArguments
+  sourceType: Subgraphs
+  target:
+    model:
+      name: CommandsArguments
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: models
+  sourceType: Subgraphs
+  target:
+    model:
+      name: Model
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: modelRelationships
+  sourceType: Subgraphs
+  target:
+    model:
+      name: ModelRelationships
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: modelUniques
+  sourceType: Subgraphs
+  target:
+    model:
+      name: ModelUniques
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: objectTypes
+  sourceType: Subgraphs
+  target:
+    model:
+      name: ObjectTypes
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: objectTypesFields
+  sourceType: Subgraphs
+  target:
+    model:
+      name: ObjectTypesFields
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: scalarTypes
+  sourceType: Subgraphs
+  target:
+    model:
+      name: ScalarTypes
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+
