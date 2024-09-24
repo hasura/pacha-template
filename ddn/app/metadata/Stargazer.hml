@@ -1,0 +1,123 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Stargazer
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: login
+      type: String_1
+    - name: repositoryId
+      type: Bigint
+    - name: starredAt
+      type: Timestamp
+  graphql:
+    typeName: Stargazer
+    inputTypeName: StargazerInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: stargazer
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        login:
+          column:
+            name: login
+        repositoryId:
+          column:
+            name: repository_id
+        starredAt:
+          column:
+            name: starred_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Stargazer
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - login
+          - repositoryId
+          - starredAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: StargazerBoolExp
+  objectType: Stargazer
+  dataConnectorName: bigquery
+  dataConnectorObjectType: stargazer
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: login
+      operators:
+        enableAll: true
+    - fieldName: repositoryId
+      operators:
+        enableAll: true
+    - fieldName: starredAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: StargazerBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Stargazer
+  objectType: Stargazer
+  source:
+    dataConnectorName: bigquery
+    collection: stargazer
+  filterExpressionType: StargazerBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: login
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryId
+      orderByDirections:
+        enableAll: true
+    - fieldName: starredAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: stargazer
+    selectUniques: []
+    orderByExpressionType: StargazerOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Stargazer
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

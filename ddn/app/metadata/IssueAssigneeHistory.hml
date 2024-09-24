@@ -1,0 +1,135 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: IssueAssigneeHistory
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: assigned
+      type: Boolean_1
+    - name: assignerId
+      type: Bigint
+    - name: issueId
+      type: Bigint
+    - name: updatedAt
+      type: Timestamp
+    - name: userId
+      type: Bigint
+  graphql:
+    typeName: IssueAssigneeHistory
+    inputTypeName: IssueAssigneeHistoryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: issue_assignee_history
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        assigned:
+          column:
+            name: assigned
+        assignerId:
+          column:
+            name: assigner_id
+        issueId:
+          column:
+            name: issue_id
+        updatedAt:
+          column:
+            name: updated_at
+        userId:
+          column:
+            name: user_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: IssueAssigneeHistory
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - assigned
+          - assignerId
+          - issueId
+          - updatedAt
+          - userId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssueAssigneeHistoryBoolExp
+  objectType: IssueAssigneeHistory
+  dataConnectorName: bigquery
+  dataConnectorObjectType: issue_assignee_history
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: assigned
+      operators:
+        enableAll: true
+    - fieldName: assignerId
+      operators:
+        enableAll: true
+    - fieldName: issueId
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+    - fieldName: userId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssueAssigneeHistoryBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: IssueAssigneeHistory
+  objectType: IssueAssigneeHistory
+  source:
+    dataConnectorName: bigquery
+    collection: issue_assignee_history
+  filterExpressionType: IssueAssigneeHistoryBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: assigned
+      orderByDirections:
+        enableAll: true
+    - fieldName: assignerId
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: userId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issueAssigneeHistory
+    selectUniques: []
+    orderByExpressionType: IssueAssigneeHistoryOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: IssueAssigneeHistory
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

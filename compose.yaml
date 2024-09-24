@@ -1,8 +1,8 @@
 include:
+  - path: ddn/compose.yaml
   - path: pacha/compose.yaml
 services:
   caddy:
-    container_name: caddy
     image: caddy:2.8-alpine
     restart: unless-stopped
     ports:

@@ -1,0 +1,18 @@
+kind: Subgraph
+version: v2
+definition:
+  name: app
+  generator:
+    rootPath: .
+  includePaths:
+    - metadata
+  envMapping:
+    APP_BIGQUERY_AUTHORIZATION_HEADER:
+      fromEnv: APP_BIGQUERY_AUTHORIZATION_HEADER
+    APP_BIGQUERY_READ_URL:
+      fromEnv: APP_BIGQUERY_READ_URL
+    APP_BIGQUERY_WRITE_URL:
+      fromEnv: APP_BIGQUERY_WRITE_URL
+  connectors:
+    - path: connector/bigquery/connector.yaml
+      connectorLinkName: bigquery

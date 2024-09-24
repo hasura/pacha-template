@@ -1,0 +1,135 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: IssueClosedHistory
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: actorId
+      type: Bigint
+    - name: closed
+      type: Boolean_1
+    - name: commitSha
+      type: String_1
+    - name: issueId
+      type: Bigint
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: IssueClosedHistory
+    inputTypeName: IssueClosedHistoryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: issue_closed_history
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        actorId:
+          column:
+            name: actor_id
+        closed:
+          column:
+            name: closed
+        commitSha:
+          column:
+            name: commit_sha
+        issueId:
+          column:
+            name: issue_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: IssueClosedHistory
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - actorId
+          - closed
+          - commitSha
+          - issueId
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssueClosedHistoryBoolExp
+  objectType: IssueClosedHistory
+  dataConnectorName: bigquery
+  dataConnectorObjectType: issue_closed_history
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: actorId
+      operators:
+        enableAll: true
+    - fieldName: closed
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+    - fieldName: issueId
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssueClosedHistoryBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: IssueClosedHistory
+  objectType: IssueClosedHistory
+  source:
+    dataConnectorName: bigquery
+    collection: issue_closed_history
+  filterExpressionType: IssueClosedHistoryBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: actorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: closed
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issueClosedHistory
+    selectUniques: []
+    orderByExpressionType: IssueClosedHistoryOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: IssueClosedHistory
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

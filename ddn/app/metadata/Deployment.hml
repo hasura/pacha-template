@@ -1,0 +1,243 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Deployment
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: commitSha
+      type: String_1
+    - name: createdAt
+      type: Timestamp
+    - name: creatorId
+      type: Bigint
+    - name: description
+      type: String_1
+    - name: environment
+      type: String_1
+    - name: id
+      type: Bigint
+    - name: originalEnvironment
+      type: String_1
+    - name: payload
+      type: String_1
+    - name: productionEnvironment
+      type: Boolean_1
+    - name: ref
+      type: String_1
+    - name: task
+      type: String_1
+    - name: transientEnvironment
+      type: Boolean_1
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: Deployment
+    inputTypeName: DeploymentInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: deployment
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        commitSha:
+          column:
+            name: commit_sha
+        createdAt:
+          column:
+            name: created_at
+        creatorId:
+          column:
+            name: creator_id
+        description:
+          column:
+            name: description
+        environment:
+          column:
+            name: environment
+        id:
+          column:
+            name: id
+        originalEnvironment:
+          column:
+            name: original_environment
+        payload:
+          column:
+            name: payload
+        productionEnvironment:
+          column:
+            name: production_environment
+        ref:
+          column:
+            name: ref
+        task:
+          column:
+            name: task
+        transientEnvironment:
+          column:
+            name: transient_environment
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Deployment
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - commitSha
+          - createdAt
+          - creatorId
+          - description
+          - environment
+          - id
+          - originalEnvironment
+          - payload
+          - productionEnvironment
+          - ref
+          - task
+          - transientEnvironment
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: DeploymentBoolExp
+  objectType: Deployment
+  dataConnectorName: bigquery
+  dataConnectorObjectType: deployment
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: creatorId
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: environment
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: originalEnvironment
+      operators:
+        enableAll: true
+    - fieldName: payload
+      operators:
+        enableAll: true
+    - fieldName: productionEnvironment
+      operators:
+        enableAll: true
+    - fieldName: ref
+      operators:
+        enableAll: true
+    - fieldName: task
+      operators:
+        enableAll: true
+    - fieldName: transientEnvironment
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: DeploymentBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Deployment
+  objectType: Deployment
+  source:
+    dataConnectorName: bigquery
+    collection: deployment
+  filterExpressionType: DeploymentBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: creatorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: environment
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: originalEnvironment
+      orderByDirections:
+        enableAll: true
+    - fieldName: payload
+      orderByDirections:
+        enableAll: true
+    - fieldName: productionEnvironment
+      orderByDirections:
+        enableAll: true
+    - fieldName: ref
+      orderByDirections:
+        enableAll: true
+    - fieldName: task
+      orderByDirections:
+        enableAll: true
+    - fieldName: transientEnvironment
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: deployment
+    selectUniques: []
+    orderByExpressionType: DeploymentOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Deployment
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

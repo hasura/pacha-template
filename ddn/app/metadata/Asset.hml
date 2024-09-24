@@ -1,0 +1,219 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Asset
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: contentType
+      type: String_1
+    - name: createdAt
+      type: Timestamp
+    - name: downloadCount
+      type: Bigint
+    - name: id
+      type: Bigint
+    - name: label
+      type: String_1
+    - name: name
+      type: String_1
+    - name: releaseId
+      type: Bigint
+    - name: size
+      type: Bigint
+    - name: state
+      type: String_1
+    - name: updatedAt
+      type: Timestamp
+    - name: uploaderId
+      type: Bigint
+  graphql:
+    typeName: Asset
+    inputTypeName: AssetInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: asset
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        contentType:
+          column:
+            name: content_type
+        createdAt:
+          column:
+            name: created_at
+        downloadCount:
+          column:
+            name: download_count
+        id:
+          column:
+            name: id
+        label:
+          column:
+            name: label
+        name:
+          column:
+            name: name
+        releaseId:
+          column:
+            name: release_id
+        size:
+          column:
+            name: size
+        state:
+          column:
+            name: state
+        updatedAt:
+          column:
+            name: updated_at
+        uploaderId:
+          column:
+            name: uploader_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Asset
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - contentType
+          - createdAt
+          - downloadCount
+          - id
+          - label
+          - name
+          - releaseId
+          - size
+          - state
+          - updatedAt
+          - uploaderId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: AssetBoolExp
+  objectType: Asset
+  dataConnectorName: bigquery
+  dataConnectorObjectType: asset
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: contentType
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: downloadCount
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: label
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: releaseId
+      operators:
+        enableAll: true
+    - fieldName: size
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+    - fieldName: uploaderId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: AssetBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Asset
+  objectType: Asset
+  source:
+    dataConnectorName: bigquery
+    collection: asset
+  filterExpressionType: AssetBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: contentType
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: downloadCount
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: label
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: releaseId
+      orderByDirections:
+        enableAll: true
+    - fieldName: size
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: uploaderId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: asset
+    selectUniques: []
+    orderByExpressionType: AssetOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Asset
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

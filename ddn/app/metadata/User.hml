@@ -1,0 +1,219 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: User
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: bio
+      type: String_1
+    - name: blog
+      type: String_1
+    - name: company
+      type: String_1
+    - name: createdAt
+      type: Timestamp
+    - name: hireable
+      type: Boolean_1
+    - name: id
+      type: Bigint
+    - name: location
+      type: String_1
+    - name: login
+      type: String_1
+    - name: name
+      type: String_1
+    - name: siteAdmin
+      type: Boolean_1
+    - name: type
+      type: String_1
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: User
+    inputTypeName: UserInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: user
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        bio:
+          column:
+            name: bio
+        blog:
+          column:
+            name: blog
+        company:
+          column:
+            name: company
+        createdAt:
+          column:
+            name: created_at
+        hireable:
+          column:
+            name: hireable
+        id:
+          column:
+            name: id
+        location:
+          column:
+            name: location
+        login:
+          column:
+            name: login
+        name:
+          column:
+            name: name
+        siteAdmin:
+          column:
+            name: site_admin
+        type:
+          column:
+            name: type
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: User
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - bio
+          - blog
+          - company
+          - createdAt
+          - hireable
+          - id
+          - location
+          - login
+          - name
+          - siteAdmin
+          - type
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: UserBoolExp
+  objectType: User
+  dataConnectorName: bigquery
+  dataConnectorObjectType: user
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: bio
+      operators:
+        enableAll: true
+    - fieldName: blog
+      operators:
+        enableAll: true
+    - fieldName: company
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: hireable
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: location
+      operators:
+        enableAll: true
+    - fieldName: login
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: siteAdmin
+      operators:
+        enableAll: true
+    - fieldName: type
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: UserBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: User
+  objectType: User
+  source:
+    dataConnectorName: bigquery
+    collection: user
+  filterExpressionType: UserBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: bio
+      orderByDirections:
+        enableAll: true
+    - fieldName: blog
+      orderByDirections:
+        enableAll: true
+    - fieldName: company
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: hireable
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: location
+      orderByDirections:
+        enableAll: true
+    - fieldName: login
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: siteAdmin
+      orderByDirections:
+        enableAll: true
+    - fieldName: type
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: user
+    selectUniques: []
+    orderByExpressionType: UserOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: User
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

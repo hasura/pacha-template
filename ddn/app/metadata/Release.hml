@@ -1,0 +1,231 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Release
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: authorId
+      type: Bigint
+    - name: body
+      type: String_1
+    - name: createdAt
+      type: Timestamp
+    - name: draft
+      type: Boolean_1
+    - name: id
+      type: Bigint
+    - name: name
+      type: String_1
+    - name: prerelease
+      type: Boolean_1
+    - name: publishedAt
+      type: Timestamp
+    - name: repositoryId
+      type: Bigint
+    - name: tagName
+      type: String_1
+    - name: targetCommitish
+      type: String_1
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: Release
+    inputTypeName: ReleaseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: release
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        authorId:
+          column:
+            name: author_id
+        body:
+          column:
+            name: body
+        createdAt:
+          column:
+            name: created_at
+        draft:
+          column:
+            name: draft
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        prerelease:
+          column:
+            name: prerelease
+        publishedAt:
+          column:
+            name: published_at
+        repositoryId:
+          column:
+            name: repository_id
+        tagName:
+          column:
+            name: tag_name
+        targetCommitish:
+          column:
+            name: target_commitish
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Release
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - authorId
+          - body
+          - createdAt
+          - draft
+          - id
+          - name
+          - prerelease
+          - publishedAt
+          - repositoryId
+          - tagName
+          - targetCommitish
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: ReleaseBoolExp
+  objectType: Release
+  dataConnectorName: bigquery
+  dataConnectorObjectType: release
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: authorId
+      operators:
+        enableAll: true
+    - fieldName: body
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: draft
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: prerelease
+      operators:
+        enableAll: true
+    - fieldName: publishedAt
+      operators:
+        enableAll: true
+    - fieldName: repositoryId
+      operators:
+        enableAll: true
+    - fieldName: tagName
+      operators:
+        enableAll: true
+    - fieldName: targetCommitish
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: ReleaseBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Release
+  objectType: Release
+  source:
+    dataConnectorName: bigquery
+    collection: release
+  filterExpressionType: ReleaseBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: authorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: body
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: draft
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: prerelease
+      orderByDirections:
+        enableAll: true
+    - fieldName: publishedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryId
+      orderByDirections:
+        enableAll: true
+    - fieldName: tagName
+      orderByDirections:
+        enableAll: true
+    - fieldName: targetCommitish
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: release
+    selectUniques: []
+    orderByExpressionType: ReleaseOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Release
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

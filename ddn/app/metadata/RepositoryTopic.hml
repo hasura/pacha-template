@@ -1,0 +1,99 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RepositoryTopic
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: name
+      type: String_1
+    - name: repositoryId
+      type: Bigint
+  graphql:
+    typeName: RepositoryTopic
+    inputTypeName: RepositoryTopicInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: repository_topic
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        name:
+          column:
+            name: name
+        repositoryId:
+          column:
+            name: repository_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RepositoryTopic
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - name
+          - repositoryId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: RepositoryTopicBoolExp
+  objectType: RepositoryTopic
+  dataConnectorName: bigquery
+  dataConnectorObjectType: repository_topic
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: repositoryId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: RepositoryTopicBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: RepositoryTopic
+  objectType: RepositoryTopic
+  source:
+    dataConnectorName: bigquery
+    collection: repository_topic
+  filterExpressionType: RepositoryTopicBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: repositoryTopic
+    selectUniques: []
+    orderByExpressionType: RepositoryTopicOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: RepositoryTopic
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

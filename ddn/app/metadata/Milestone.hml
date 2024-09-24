@@ -1,0 +1,219 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Milestone
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: closedAt
+      type: Timestamp
+    - name: createdAt
+      type: Timestamp
+    - name: creatorId
+      type: Bigint
+    - name: description
+      type: String_1
+    - name: dueOn
+      type: Timestamp
+    - name: id
+      type: Bigint
+    - name: isDeleted
+      type: Boolean_1
+    - name: number
+      type: Bigint
+    - name: repositoryId
+      type: Bigint
+    - name: state
+      type: String_1
+    - name: title
+      type: String_1
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: Milestone
+    inputTypeName: MilestoneInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: milestone
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        closedAt:
+          column:
+            name: closed_at
+        createdAt:
+          column:
+            name: created_at
+        creatorId:
+          column:
+            name: creator_id
+        description:
+          column:
+            name: description
+        dueOn:
+          column:
+            name: due_on
+        id:
+          column:
+            name: id
+        isDeleted:
+          column:
+            name: is_deleted
+        number:
+          column:
+            name: number
+        repositoryId:
+          column:
+            name: repository_id
+        state:
+          column:
+            name: state
+        title:
+          column:
+            name: title
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Milestone
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - closedAt
+          - createdAt
+          - creatorId
+          - description
+          - dueOn
+          - id
+          - isDeleted
+          - number
+          - repositoryId
+          - state
+          - title
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: MilestoneBoolExp
+  objectType: Milestone
+  dataConnectorName: bigquery
+  dataConnectorObjectType: milestone
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: closedAt
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: creatorId
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: dueOn
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: isDeleted
+      operators:
+        enableAll: true
+    - fieldName: number
+      operators:
+        enableAll: true
+    - fieldName: repositoryId
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+    - fieldName: title
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: MilestoneBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Milestone
+  objectType: Milestone
+  source:
+    dataConnectorName: bigquery
+    collection: milestone
+  filterExpressionType: MilestoneBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: closedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: creatorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: dueOn
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: isDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: number
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryId
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+    - fieldName: title
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: milestone
+    selectUniques: []
+    orderByExpressionType: MilestoneOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Milestone
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

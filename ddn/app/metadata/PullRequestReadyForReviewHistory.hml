@@ -1,0 +1,123 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PullRequestReadyForReviewHistory
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: actorId
+      type: Bigint
+    - name: createdAt
+      type: Timestamp
+    - name: pullRequestId
+      type: Bigint
+    - name: readyForReview
+      type: Boolean_1
+  graphql:
+    typeName: PullRequestReadyForReviewHistory
+    inputTypeName: PullRequestReadyForReviewHistoryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: pull_request_ready_for_review_history
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        actorId:
+          column:
+            name: actor_id
+        createdAt:
+          column:
+            name: created_at
+        pullRequestId:
+          column:
+            name: pull_request_id
+        readyForReview:
+          column:
+            name: ready_for_review
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PullRequestReadyForReviewHistory
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - actorId
+          - createdAt
+          - pullRequestId
+          - readyForReview
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: PullRequestReadyForReviewHistoryBoolExp
+  objectType: PullRequestReadyForReviewHistory
+  dataConnectorName: bigquery
+  dataConnectorObjectType: pull_request_ready_for_review_history
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: actorId
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: pullRequestId
+      operators:
+        enableAll: true
+    - fieldName: readyForReview
+      operators:
+        enableAll: true
+  graphql:
+    typeName: PullRequestReadyForReviewHistoryBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: PullRequestReadyForReviewHistory
+  objectType: PullRequestReadyForReviewHistory
+  source:
+    dataConnectorName: bigquery
+    collection: pull_request_ready_for_review_history
+  filterExpressionType: PullRequestReadyForReviewHistoryBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: actorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: pullRequestId
+      orderByDirections:
+        enableAll: true
+    - fieldName: readyForReview
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: pullRequestReadyForReviewHistory
+    selectUniques: []
+    orderByExpressionType: PullRequestReadyForReviewHistoryOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: PullRequestReadyForReviewHistory
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

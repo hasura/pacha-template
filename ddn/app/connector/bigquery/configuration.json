@@ -1,0 +1,3587 @@
+{
+  "version": 1,
+  "connectionSettings": {
+    "serviceKey": {
+      "variable": "HASURA_BIGQUERY_SERVICE_KEY"
+    },
+    "projectId": {
+      "variable": "HASURA_BIGQUERY_PROJECT_ID"
+    },
+    "datasetId": {
+      "variable": "HASURA_BIGQUERY_DATASET_ID"
+    }
+  },
+  "metadata": {
+    "tables": {
+      "asset": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "asset",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "content_type": {
+            "name": "content_type",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "download_count": {
+            "name": "download_count",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "label": {
+            "name": "label",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "release_id": {
+            "name": "release_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "size": {
+            "name": "size",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "uploader_id": {
+            "name": "uploader_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "branch_commit_relation": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "branch_commit_relation",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "branch_name": {
+            "name": "branch_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "card": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "card",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "archived": {
+            "name": "archived",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "column_id": {
+            "name": "column_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "creator_id": {
+            "name": "creator_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "is_deleted": {
+            "name": "is_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "note": {
+            "name": "note",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "column": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "column",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "is_deleted": {
+            "name": "is_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "project_id": {
+            "name": "project_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "commit": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "commit",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "author_date": {
+            "name": "author_date",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "author_email": {
+            "name": "author_email",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "author_name": {
+            "name": "author_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "committer_date": {
+            "name": "committer_date",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "committer_email": {
+            "name": "committer_email",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "committer_name": {
+            "name": "committer_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "message": {
+            "name": "message",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "sha": {
+            "name": "sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "commit_file": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "commit_file",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "additions": {
+            "name": "additions",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "changes": {
+            "name": "changes",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "deletions": {
+            "name": "deletions",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "filename": {
+            "name": "filename",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "status": {
+            "name": "status",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "commit_parent": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "commit_parent",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "parent_sha": {
+            "name": "parent_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "commit_pull_request": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "commit_pull_request",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_id": {
+            "name": "pull_request_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "deployment": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "deployment",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "creator_id": {
+            "name": "creator_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "environment": {
+            "name": "environment",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "original_environment": {
+            "name": "original_environment",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "payload": {
+            "name": "payload",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "production_environment": {
+            "name": "production_environment",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "ref": {
+            "name": "ref",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "task": {
+            "name": "task",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "transient_environment": {
+            "name": "transient_environment",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "deployment_status": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "deployment_status",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "creator_id": {
+            "name": "creator_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "deployment_id": {
+            "name": "deployment_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "environment": {
+            "name": "environment",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "fivetran_audit": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "fivetran_audit",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "done": {
+            "name": "done",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "message": {
+            "name": "message",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "progress": {
+            "name": "progress",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "rows_updated_or_inserted": {
+            "name": "rows_updated_or_inserted",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "schema": {
+            "name": "schema",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "start": {
+            "name": "start",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "status": {
+            "name": "status",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "table": {
+            "name": "table",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "update_id": {
+            "name": "update_id",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "update_started": {
+            "name": "update_started",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "body": {
+            "name": "body",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "closed_at": {
+            "name": "closed_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "locked": {
+            "name": "locked",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "milestone_id": {
+            "name": "milestone_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "number": {
+            "name": "number",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request": {
+            "name": "pull_request",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "title": {
+            "name": "title",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_assignee": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_assignee",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_assignee_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_assignee_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "assigned": {
+            "name": "assigned",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "assigner_id": {
+            "name": "assigner_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_closed_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_closed_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "closed": {
+            "name": "closed",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_comment": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_comment",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "body": {
+            "name": "body",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_label": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_label",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "label_id": {
+            "name": "label_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_label_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_label_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "label_id": {
+            "name": "label_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "labeled": {
+            "name": "labeled",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_locked_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_locked_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "locked": {
+            "name": "locked",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_mention": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_mention",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_merged": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_merged",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "merged_at": {
+            "name": "merged_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_milestone_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_milestone_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "milestone_id": {
+            "name": "milestone_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "milestoned": {
+            "name": "milestoned",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_project_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_project_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "card_id": {
+            "name": "card_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "column_name": {
+            "name": "column_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "previous_column_name": {
+            "name": "previous_column_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "project_id": {
+            "name": "project_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "removed": {
+            "name": "removed",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_referenced": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_referenced",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "referenced_at": {
+            "name": "referenced_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "issue_renamed": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "issue_renamed",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "from_name": {
+            "name": "from_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "to_name": {
+            "name": "to_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "label": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "label",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "color": {
+            "name": "color",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "is_default": {
+            "name": "is_default",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "url": {
+            "name": "url",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "milestone": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "milestone",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "closed_at": {
+            "name": "closed_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "creator_id": {
+            "name": "creator_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "due_on": {
+            "name": "due_on",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "is_deleted": {
+            "name": "is_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "number": {
+            "name": "number",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "title": {
+            "name": "title",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "project": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "project",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "body": {
+            "name": "body",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "creator_id": {
+            "name": "creator_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "is_deleted": {
+            "name": "is_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "number": {
+            "name": "number",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "pull_request": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "pull_request",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "active_lock_reason": {
+            "name": "active_lock_reason",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "base_label": {
+            "name": "base_label",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "base_ref": {
+            "name": "base_ref",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "base_repo_id": {
+            "name": "base_repo_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "base_sha": {
+            "name": "base_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "base_user_id": {
+            "name": "base_user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "closed_at": {
+            "name": "closed_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "draft": {
+            "name": "draft",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "head_label": {
+            "name": "head_label",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "head_ref": {
+            "name": "head_ref",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "head_repo_id": {
+            "name": "head_repo_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "head_sha": {
+            "name": "head_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "head_user_id": {
+            "name": "head_user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "issue_id": {
+            "name": "issue_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "merge_commit_sha": {
+            "name": "merge_commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "pull_request_ready_for_review_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "pull_request_ready_for_review_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_id": {
+            "name": "pull_request_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "ready_for_review": {
+            "name": "ready_for_review",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "pull_request_review": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "pull_request_review",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "body": {
+            "name": "body",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "commit_sha": {
+            "name": "commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_id": {
+            "name": "pull_request_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "submitted_at": {
+            "name": "submitted_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "pull_request_review_comments": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "pull_request_review_comments",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "body": {
+            "name": "body",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "parent_comment_id": {
+            "name": "parent_comment_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_id": {
+            "name": "pull_request_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_review_id": {
+            "name": "pull_request_review_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "reaction_minus_count": {
+            "name": "reaction_minus_count",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "reaction_plus_count": {
+            "name": "reaction_plus_count",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "pull_request_review_dismissed": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "pull_request_review_dismissed",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "dismissal_commit_sha": {
+            "name": "dismissal_commit_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "dismissal_message": {
+            "name": "dismissal_message",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_review_id": {
+            "name": "pull_request_review_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "release": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "release",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "author_id": {
+            "name": "author_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "body": {
+            "name": "body",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "draft": {
+            "name": "draft",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "prerelease": {
+            "name": "prerelease",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "published_at": {
+            "name": "published_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "tag_name": {
+            "name": "tag_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "target_commitish": {
+            "name": "target_commitish",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "repository": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "repository",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "archived": {
+            "name": "archived",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "default_branch": {
+            "name": "default_branch",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "fork": {
+            "name": "fork",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "forks_count": {
+            "name": "forks_count",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "full_name": {
+            "name": "full_name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "homepage": {
+            "name": "homepage",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "language": {
+            "name": "language",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "owner_id": {
+            "name": "owner_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "private": {
+            "name": "private",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "watchers_count": {
+            "name": "watchers_count",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "repository_topic": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "repository_topic",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "requested_reviewer_history": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "requested_reviewer_history",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_id": {
+            "name": "pull_request_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "removed": {
+            "name": "removed",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "requested_id": {
+            "name": "requested_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "requested_reviewer_type": {
+            "name": "requested_reviewer_type",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "stargazer": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "stargazer",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "login": {
+            "name": "login",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "starred_at": {
+            "name": "starred_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "team": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "team",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "org_id": {
+            "name": "org_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "parent_id": {
+            "name": "parent_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "privacy": {
+            "name": "privacy",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "slug": {
+            "name": "slug",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "team_membership": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "team_membership",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "team_id": {
+            "name": "team_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "user": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "user",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "bio": {
+            "name": "bio",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "blog": {
+            "name": "blog",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "company": {
+            "name": "company",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "hireable": {
+            "name": "hireable",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "location": {
+            "name": "location",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "login": {
+            "name": "login",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "site_admin": {
+            "name": "site_admin",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "type": {
+            "name": "type",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "user_email": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "user_email",
+        "columns": {
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "email": {
+            "name": "email",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "user_id": {
+            "name": "user_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "workflow": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "workflow",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "path": {
+            "name": "path",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "state": {
+            "name": "state",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "workflow_run": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "workflow_run",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "actor_id": {
+            "name": "actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "conclusion": {
+            "name": "conclusion",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "created_at": {
+            "name": "created_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "event": {
+            "name": "event",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "head_branch": {
+            "name": "head_branch",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "head_sha": {
+            "name": "head_sha",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "id": {
+            "name": "id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "repository_id": {
+            "name": "repository_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "run_attempt": {
+            "name": "run_attempt",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "run_number": {
+            "name": "run_number",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "run_started_at": {
+            "name": "run_started_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "status": {
+            "name": "status",
+            "type": {
+              "scalarType": "string"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "triggering_actor_id": {
+            "name": "triggering_actor_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "workflow_id": {
+            "name": "workflow_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      },
+      "workflow_run_pull_request": {
+        "schemaName": "hasura-marketing.github",
+        "tableName": "workflow_run_pull_request",
+        "columns": {
+          "_fivetran_deleted": {
+            "name": "_fivetran_deleted",
+            "type": {
+              "scalarType": "boolean"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "_fivetran_synced": {
+            "name": "_fivetran_synced",
+            "type": {
+              "scalarType": "timestamp"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "pull_request_id": {
+            "name": "pull_request_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "workflow_run_id": {
+            "name": "workflow_run_id",
+            "type": {
+              "scalarType": "bigint"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {},
+        "foreignRelations": {},
+        "description": null
+      }
+    },
+    "nativeOperations": {
+      "queries": {},
+      "mutations": {}
+    },
+    "scalarTypes": {
+      "bigint": {
+        "typeName": "bigint",
+        "schemaName": "hasura-marketing.github",
+        "description": null,
+        "aggregateFunctions": {
+          "APPROX_COUNT_DISTINCT": {
+            "returnType": "bigint"
+          },
+          "AVG": {
+            "returnType": "bigint"
+          },
+          "COUNT": {
+            "returnType": "bigint"
+          },
+          "MAX": {
+            "returnType": "bigint"
+          },
+          "MIN": {
+            "returnType": "bigint"
+          },
+          "SUM": {
+            "returnType": "bigint"
+          }
+        },
+        "comparisonOperators": {
+          "_eq": {
+            "operatorName": "=",
+            "operatorKind": "equal",
+            "argumentType": "bigint",
+            "isInfix": true
+          },
+          "_gt": {
+            "operatorName": ">",
+            "operatorKind": "custom",
+            "argumentType": "bigint",
+            "isInfix": true
+          },
+          "_gte": {
+            "operatorName": ">=",
+            "operatorKind": "custom",
+            "argumentType": "bigint",
+            "isInfix": true
+          },
+          "_in": {
+            "operatorName": "IN",
+            "operatorKind": "in",
+            "argumentType": "bigint",
+            "isInfix": true
+          },
+          "_lt": {
+            "operatorName": "<",
+            "operatorKind": "custom",
+            "argumentType": "bigint",
+            "isInfix": true
+          },
+          "_lte": {
+            "operatorName": "<=",
+            "operatorKind": "custom",
+            "argumentType": "bigint",
+            "isInfix": true
+          },
+          "_neq": {
+            "operatorName": "!=",
+            "operatorKind": "custom",
+            "argumentType": "bigint",
+            "isInfix": true
+          }
+        },
+        "typeRepresentation": null
+      },
+      "boolean": {
+        "typeName": "boolean",
+        "schemaName": "hasura-marketing.github",
+        "description": null,
+        "aggregateFunctions": {
+          "APPROX_COUNT_DISTINCT": {
+            "returnType": "bigint"
+          },
+          "COUNT": {
+            "returnType": "bigint"
+          }
+        },
+        "comparisonOperators": {
+          "_eq": {
+            "operatorName": "=",
+            "operatorKind": "equal",
+            "argumentType": "boolean",
+            "isInfix": true
+          },
+          "_gt": {
+            "operatorName": ">",
+            "operatorKind": "custom",
+            "argumentType": "boolean",
+            "isInfix": true
+          },
+          "_gte": {
+            "operatorName": ">=",
+            "operatorKind": "custom",
+            "argumentType": "boolean",
+            "isInfix": true
+          },
+          "_in": {
+            "operatorName": "IN",
+            "operatorKind": "in",
+            "argumentType": "boolean",
+            "isInfix": true
+          },
+          "_lt": {
+            "operatorName": "<",
+            "operatorKind": "custom",
+            "argumentType": "boolean",
+            "isInfix": true
+          },
+          "_lte": {
+            "operatorName": "<=",
+            "operatorKind": "custom",
+            "argumentType": "boolean",
+            "isInfix": true
+          },
+          "_neq": {
+            "operatorName": "!=",
+            "operatorKind": "custom",
+            "argumentType": "boolean",
+            "isInfix": true
+          }
+        },
+        "typeRepresentation": null
+      },
+      "string": {
+        "typeName": "string",
+        "schemaName": "hasura-marketing.github",
+        "description": null,
+        "aggregateFunctions": {
+          "APPROX_COUNT_DISTINCT": {
+            "returnType": "bigint"
+          },
+          "COUNT": {
+            "returnType": "bigint"
+          },
+          "MAX": {
+            "returnType": "string"
+          },
+          "MIN": {
+            "returnType": "string"
+          }
+        },
+        "comparisonOperators": {
+          "_eq": {
+            "operatorName": "=",
+            "operatorKind": "equal",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_gt": {
+            "operatorName": ">",
+            "operatorKind": "custom",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_gte": {
+            "operatorName": ">=",
+            "operatorKind": "custom",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_in": {
+            "operatorName": "IN",
+            "operatorKind": "in",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_like": {
+            "operatorName": "LIKE",
+            "operatorKind": "custom",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_lt": {
+            "operatorName": "<",
+            "operatorKind": "custom",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_lte": {
+            "operatorName": "<=",
+            "operatorKind": "custom",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_neq": {
+            "operatorName": "!=",
+            "operatorKind": "custom",
+            "argumentType": "string",
+            "isInfix": true
+          },
+          "_nlike": {
+            "operatorName": "NOT LIKE",
+            "operatorKind": "custom",
+            "argumentType": "string",
+            "isInfix": true
+          }
+        },
+        "typeRepresentation": null
+      },
+      "timestamp": {
+        "typeName": "timestamp",
+        "schemaName": "hasura-marketing.github",
+        "description": null,
+        "aggregateFunctions": {
+          "APPROX_COUNT_DISTINCT": {
+            "returnType": "bigint"
+          },
+          "COUNT": {
+            "returnType": "bigint"
+          }
+        },
+        "comparisonOperators": {
+          "_eq": {
+            "operatorName": "=",
+            "operatorKind": "equal",
+            "argumentType": "timestamp",
+            "isInfix": true
+          },
+          "_gt": {
+            "operatorName": ">",
+            "operatorKind": "custom",
+            "argumentType": "timestamp",
+            "isInfix": true
+          },
+          "_gte": {
+            "operatorName": ">=",
+            "operatorKind": "custom",
+            "argumentType": "timestamp",
+            "isInfix": true
+          },
+          "_in": {
+            "operatorName": "IN",
+            "operatorKind": "in",
+            "argumentType": "timestamp",
+            "isInfix": true
+          },
+          "_lt": {
+            "operatorName": "<",
+            "operatorKind": "custom",
+            "argumentType": "timestamp",
+            "isInfix": true
+          },
+          "_lte": {
+            "operatorName": "<=",
+            "operatorKind": "custom",
+            "argumentType": "timestamp",
+            "isInfix": true
+          },
+          "_neq": {
+            "operatorName": "!=",
+            "operatorKind": "custom",
+            "argumentType": "timestamp",
+            "isInfix": true
+          }
+        },
+        "typeRepresentation": null
+      }
+    }
+  }
+}

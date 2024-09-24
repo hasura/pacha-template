@@ -1,0 +1,99 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: IssueLabel
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: issueId
+      type: Bigint
+    - name: labelId
+      type: Bigint
+  graphql:
+    typeName: IssueLabel
+    inputTypeName: IssueLabelInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: issue_label
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        issueId:
+          column:
+            name: issue_id
+        labelId:
+          column:
+            name: label_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: IssueLabel
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - issueId
+          - labelId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssueLabelBoolExp
+  objectType: IssueLabel
+  dataConnectorName: bigquery
+  dataConnectorObjectType: issue_label
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: issueId
+      operators:
+        enableAll: true
+    - fieldName: labelId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssueLabelBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: IssueLabel
+  objectType: IssueLabel
+  source:
+    dataConnectorName: bigquery
+    collection: issue_label
+  filterExpressionType: IssueLabelBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+    - fieldName: labelId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issueLabel
+    selectUniques: []
+    orderByExpressionType: IssueLabelOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: IssueLabel
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

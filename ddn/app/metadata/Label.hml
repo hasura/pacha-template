@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Label
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: color
+      type: String_1
+    - name: description
+      type: String_1
+    - name: id
+      type: Bigint
+    - name: isDefault
+      type: Boolean_1
+    - name: name
+      type: String_1
+    - name: url
+      type: String_1
+  graphql:
+    typeName: Label
+    inputTypeName: LabelInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: label
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        color:
+          column:
+            name: color
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        isDefault:
+          column:
+            name: is_default
+        name:
+          column:
+            name: name
+        url:
+          column:
+            name: url
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Label
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - color
+          - description
+          - id
+          - isDefault
+          - name
+          - url
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: LabelBoolExp
+  objectType: Label
+  dataConnectorName: bigquery
+  dataConnectorObjectType: label
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: color
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: isDefault
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: url
+      operators:
+        enableAll: true
+  graphql:
+    typeName: LabelBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Label
+  objectType: Label
+  source:
+    dataConnectorName: bigquery
+    collection: label
+  filterExpressionType: LabelBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: color
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: isDefault
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: url
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: label
+    selectUniques: []
+    orderByExpressionType: LabelOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Label
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

@@ -1,0 +1,171 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Workflow
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: createdAt
+      type: Timestamp
+    - name: id
+      type: Bigint
+    - name: name
+      type: String_1
+    - name: path
+      type: String_1
+    - name: repositoryId
+      type: Bigint
+    - name: state
+      type: String_1
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: Workflow
+    inputTypeName: WorkflowInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: workflow
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        path:
+          column:
+            name: path
+        repositoryId:
+          column:
+            name: repository_id
+        state:
+          column:
+            name: state
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Workflow
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - createdAt
+          - id
+          - name
+          - path
+          - repositoryId
+          - state
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: WorkflowBoolExp
+  objectType: Workflow
+  dataConnectorName: bigquery
+  dataConnectorObjectType: workflow
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: path
+      operators:
+        enableAll: true
+    - fieldName: repositoryId
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: WorkflowBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Workflow
+  objectType: Workflow
+  source:
+    dataConnectorName: bigquery
+    collection: workflow
+  filterExpressionType: WorkflowBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: path
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryId
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: workflow
+    selectUniques: []
+    orderByExpressionType: WorkflowOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Workflow
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

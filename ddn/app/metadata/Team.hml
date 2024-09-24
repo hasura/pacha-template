@@ -1,0 +1,159 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Team
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: description
+      type: String_1
+    - name: id
+      type: Bigint
+    - name: name
+      type: String_1
+    - name: orgId
+      type: Bigint
+    - name: parentId
+      type: Bigint
+    - name: privacy
+      type: String_1
+    - name: slug
+      type: String_1
+  graphql:
+    typeName: Team
+    inputTypeName: TeamInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: team
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        orgId:
+          column:
+            name: org_id
+        parentId:
+          column:
+            name: parent_id
+        privacy:
+          column:
+            name: privacy
+        slug:
+          column:
+            name: slug
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Team
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - description
+          - id
+          - name
+          - orgId
+          - parentId
+          - privacy
+          - slug
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: TeamBoolExp
+  objectType: Team
+  dataConnectorName: bigquery
+  dataConnectorObjectType: team
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: orgId
+      operators:
+        enableAll: true
+    - fieldName: parentId
+      operators:
+        enableAll: true
+    - fieldName: privacy
+      operators:
+        enableAll: true
+    - fieldName: slug
+      operators:
+        enableAll: true
+  graphql:
+    typeName: TeamBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Team
+  objectType: Team
+  source:
+    dataConnectorName: bigquery
+    collection: team
+  filterExpressionType: TeamBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: orgId
+      orderByDirections:
+        enableAll: true
+    - fieldName: parentId
+      orderByDirections:
+        enableAll: true
+    - fieldName: privacy
+      orderByDirections:
+        enableAll: true
+    - fieldName: slug
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: team
+    selectUniques: []
+    orderByExpressionType: TeamOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Team
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

@@ -1,0 +1,99 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: BranchCommitRelation
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: branchName
+      type: String_1
+    - name: commitSha
+      type: String_1
+  graphql:
+    typeName: BranchCommitRelation
+    inputTypeName: BranchCommitRelationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: branch_commit_relation
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        branchName:
+          column:
+            name: branch_name
+        commitSha:
+          column:
+            name: commit_sha
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: BranchCommitRelation
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - branchName
+          - commitSha
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: BranchCommitRelationBoolExp
+  objectType: BranchCommitRelation
+  dataConnectorName: bigquery
+  dataConnectorObjectType: branch_commit_relation
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: branchName
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+  graphql:
+    typeName: BranchCommitRelationBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: BranchCommitRelation
+  objectType: BranchCommitRelation
+  source:
+    dataConnectorName: bigquery
+    collection: branch_commit_relation
+  filterExpressionType: BranchCommitRelationBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: branchName
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: branchCommitRelation
+    selectUniques: []
+    orderByExpressionType: BranchCommitRelationOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: BranchCommitRelation
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

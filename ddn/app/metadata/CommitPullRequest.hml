@@ -1,0 +1,99 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CommitPullRequest
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: commitSha
+      type: String_1
+    - name: pullRequestId
+      type: Bigint
+  graphql:
+    typeName: CommitPullRequest
+    inputTypeName: CommitPullRequestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: commit_pull_request
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        commitSha:
+          column:
+            name: commit_sha
+        pullRequestId:
+          column:
+            name: pull_request_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CommitPullRequest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - commitSha
+          - pullRequestId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommitPullRequestBoolExp
+  objectType: CommitPullRequest
+  dataConnectorName: bigquery
+  dataConnectorObjectType: commit_pull_request
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+    - fieldName: pullRequestId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommitPullRequestBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: CommitPullRequest
+  objectType: CommitPullRequest
+  source:
+    dataConnectorName: bigquery
+    collection: commit_pull_request
+  filterExpressionType: CommitPullRequestBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: pullRequestId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commitPullRequest
+    selectUniques: []
+    orderByExpressionType: CommitPullRequestOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: CommitPullRequest
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

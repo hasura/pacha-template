@@ -1,0 +1,291 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PullRequest
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: activeLockReason
+      type: String_1
+    - name: baseLabel
+      type: String_1
+    - name: baseRef
+      type: String_1
+    - name: baseRepoId
+      type: Bigint
+    - name: baseSha
+      type: String_1
+    - name: baseUserId
+      type: Bigint
+    - name: closedAt
+      type: Timestamp
+    - name: createdAt
+      type: Timestamp
+    - name: draft
+      type: Boolean_1
+    - name: headLabel
+      type: String_1
+    - name: headRef
+      type: String_1
+    - name: headRepoId
+      type: Bigint
+    - name: headSha
+      type: String_1
+    - name: headUserId
+      type: Bigint
+    - name: id
+      type: Bigint
+    - name: issueId
+      type: Bigint
+    - name: mergeCommitSha
+      type: String_1
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: PullRequest
+    inputTypeName: PullRequestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: pull_request
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        activeLockReason:
+          column:
+            name: active_lock_reason
+        baseLabel:
+          column:
+            name: base_label
+        baseRef:
+          column:
+            name: base_ref
+        baseRepoId:
+          column:
+            name: base_repo_id
+        baseSha:
+          column:
+            name: base_sha
+        baseUserId:
+          column:
+            name: base_user_id
+        closedAt:
+          column:
+            name: closed_at
+        createdAt:
+          column:
+            name: created_at
+        draft:
+          column:
+            name: draft
+        headLabel:
+          column:
+            name: head_label
+        headRef:
+          column:
+            name: head_ref
+        headRepoId:
+          column:
+            name: head_repo_id
+        headSha:
+          column:
+            name: head_sha
+        headUserId:
+          column:
+            name: head_user_id
+        id:
+          column:
+            name: id
+        issueId:
+          column:
+            name: issue_id
+        mergeCommitSha:
+          column:
+            name: merge_commit_sha
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PullRequest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - activeLockReason
+          - baseLabel
+          - baseRef
+          - baseRepoId
+          - baseSha
+          - baseUserId
+          - closedAt
+          - createdAt
+          - draft
+          - headLabel
+          - headRef
+          - headRepoId
+          - headSha
+          - headUserId
+          - id
+          - issueId
+          - mergeCommitSha
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: PullRequestBoolExp
+  objectType: PullRequest
+  dataConnectorName: bigquery
+  dataConnectorObjectType: pull_request
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: activeLockReason
+      operators:
+        enableAll: true
+    - fieldName: baseLabel
+      operators:
+        enableAll: true
+    - fieldName: baseRef
+      operators:
+        enableAll: true
+    - fieldName: baseRepoId
+      operators:
+        enableAll: true
+    - fieldName: baseSha
+      operators:
+        enableAll: true
+    - fieldName: baseUserId
+      operators:
+        enableAll: true
+    - fieldName: closedAt
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: draft
+      operators:
+        enableAll: true
+    - fieldName: headLabel
+      operators:
+        enableAll: true
+    - fieldName: headRef
+      operators:
+        enableAll: true
+    - fieldName: headRepoId
+      operators:
+        enableAll: true
+    - fieldName: headSha
+      operators:
+        enableAll: true
+    - fieldName: headUserId
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: issueId
+      operators:
+        enableAll: true
+    - fieldName: mergeCommitSha
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: PullRequestBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: PullRequest
+  objectType: PullRequest
+  source:
+    dataConnectorName: bigquery
+    collection: pull_request
+  filterExpressionType: PullRequestBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: activeLockReason
+      orderByDirections:
+        enableAll: true
+    - fieldName: baseLabel
+      orderByDirections:
+        enableAll: true
+    - fieldName: baseRef
+      orderByDirections:
+        enableAll: true
+    - fieldName: baseRepoId
+      orderByDirections:
+        enableAll: true
+    - fieldName: baseSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: baseUserId
+      orderByDirections:
+        enableAll: true
+    - fieldName: closedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: draft
+      orderByDirections:
+        enableAll: true
+    - fieldName: headLabel
+      orderByDirections:
+        enableAll: true
+    - fieldName: headRef
+      orderByDirections:
+        enableAll: true
+    - fieldName: headRepoId
+      orderByDirections:
+        enableAll: true
+    - fieldName: headSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: headUserId
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+    - fieldName: mergeCommitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: pullRequest
+    selectUniques: []
+    orderByExpressionType: PullRequestOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: PullRequest
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

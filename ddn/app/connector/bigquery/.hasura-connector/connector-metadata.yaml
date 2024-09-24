@@ -1,0 +1,19 @@
+packagingDefinition:
+  type: PrebuiltDockerImage
+  dockerImage: ghcr.io/hasura/ndc-bigquery:v0.1.1
+supportedEnvironmentVariables:
+- name: HASURA_BIGQUERY_SERVICE_KEY
+  description: The BigQuery service key
+- name: HASURA_BIGQUERY_PROJECT_ID
+  description: The BigQuery project ID/name
+- name: HASURA_BIGQUERY_DATASET_ID
+  description: The BigQuery dataset ID/name
+commands:
+  update: hasura-ndc-bigquery update
+cliPlugin:
+  name: ndc-bigquery
+  version: v0.1.1
+dockerComposeWatch:
+- path: ./
+  target: /etc/connector
+  action: sync+restart

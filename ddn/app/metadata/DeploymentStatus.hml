@@ -1,0 +1,183 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeploymentStatus
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: createdAt
+      type: Timestamp
+    - name: creatorId
+      type: Bigint
+    - name: deploymentId
+      type: Bigint
+    - name: description
+      type: String_1
+    - name: environment
+      type: String_1
+    - name: id
+      type: Bigint
+    - name: state
+      type: String_1
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: DeploymentStatus
+    inputTypeName: DeploymentStatusInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: deployment_status
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        createdAt:
+          column:
+            name: created_at
+        creatorId:
+          column:
+            name: creator_id
+        deploymentId:
+          column:
+            name: deployment_id
+        description:
+          column:
+            name: description
+        environment:
+          column:
+            name: environment
+        id:
+          column:
+            name: id
+        state:
+          column:
+            name: state
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeploymentStatus
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - createdAt
+          - creatorId
+          - deploymentId
+          - description
+          - environment
+          - id
+          - state
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: DeploymentStatusBoolExp
+  objectType: DeploymentStatus
+  dataConnectorName: bigquery
+  dataConnectorObjectType: deployment_status
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: creatorId
+      operators:
+        enableAll: true
+    - fieldName: deploymentId
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: environment
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: DeploymentStatusBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: DeploymentStatus
+  objectType: DeploymentStatus
+  source:
+    dataConnectorName: bigquery
+    collection: deployment_status
+  filterExpressionType: DeploymentStatusBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: creatorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: deploymentId
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: environment
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: deploymentStatus
+    selectUniques: []
+    orderByExpressionType: DeploymentStatusOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: DeploymentStatus
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

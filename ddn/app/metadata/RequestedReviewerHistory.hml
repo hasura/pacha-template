@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: RequestedReviewerHistory
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: actorId
+      type: Bigint
+    - name: createdAt
+      type: Timestamp
+    - name: pullRequestId
+      type: Bigint
+    - name: removed
+      type: Boolean_1
+    - name: requestedId
+      type: Bigint
+    - name: requestedReviewerType
+      type: String_1
+  graphql:
+    typeName: RequestedReviewerHistory
+    inputTypeName: RequestedReviewerHistoryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: requested_reviewer_history
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        actorId:
+          column:
+            name: actor_id
+        createdAt:
+          column:
+            name: created_at
+        pullRequestId:
+          column:
+            name: pull_request_id
+        removed:
+          column:
+            name: removed
+        requestedId:
+          column:
+            name: requested_id
+        requestedReviewerType:
+          column:
+            name: requested_reviewer_type
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: RequestedReviewerHistory
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - actorId
+          - createdAt
+          - pullRequestId
+          - removed
+          - requestedId
+          - requestedReviewerType
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: RequestedReviewerHistoryBoolExp
+  objectType: RequestedReviewerHistory
+  dataConnectorName: bigquery
+  dataConnectorObjectType: requested_reviewer_history
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: actorId
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: pullRequestId
+      operators:
+        enableAll: true
+    - fieldName: removed
+      operators:
+        enableAll: true
+    - fieldName: requestedId
+      operators:
+        enableAll: true
+    - fieldName: requestedReviewerType
+      operators:
+        enableAll: true
+  graphql:
+    typeName: RequestedReviewerHistoryBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: RequestedReviewerHistory
+  objectType: RequestedReviewerHistory
+  source:
+    dataConnectorName: bigquery
+    collection: requested_reviewer_history
+  filterExpressionType: RequestedReviewerHistoryBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: actorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: pullRequestId
+      orderByDirections:
+        enableAll: true
+    - fieldName: removed
+      orderByDirections:
+        enableAll: true
+    - fieldName: requestedId
+      orderByDirections:
+        enableAll: true
+    - fieldName: requestedReviewerType
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: requestedReviewerHistory
+    selectUniques: []
+    orderByExpressionType: RequestedReviewerHistoryOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: RequestedReviewerHistory
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

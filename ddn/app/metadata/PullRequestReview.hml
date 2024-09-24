@@ -1,0 +1,159 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PullRequestReview
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: body
+      type: String_1
+    - name: commitSha
+      type: String_1
+    - name: id
+      type: Bigint
+    - name: pullRequestId
+      type: Bigint
+    - name: state
+      type: String_1
+    - name: submittedAt
+      type: Timestamp
+    - name: userId
+      type: Bigint
+  graphql:
+    typeName: PullRequestReview
+    inputTypeName: PullRequestReviewInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: pull_request_review
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        body:
+          column:
+            name: body
+        commitSha:
+          column:
+            name: commit_sha
+        id:
+          column:
+            name: id
+        pullRequestId:
+          column:
+            name: pull_request_id
+        state:
+          column:
+            name: state
+        submittedAt:
+          column:
+            name: submitted_at
+        userId:
+          column:
+            name: user_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PullRequestReview
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - body
+          - commitSha
+          - id
+          - pullRequestId
+          - state
+          - submittedAt
+          - userId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: PullRequestReviewBoolExp
+  objectType: PullRequestReview
+  dataConnectorName: bigquery
+  dataConnectorObjectType: pull_request_review
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: body
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: pullRequestId
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+    - fieldName: submittedAt
+      operators:
+        enableAll: true
+    - fieldName: userId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: PullRequestReviewBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: PullRequestReview
+  objectType: PullRequestReview
+  source:
+    dataConnectorName: bigquery
+    collection: pull_request_review
+  filterExpressionType: PullRequestReviewBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: body
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: pullRequestId
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+    - fieldName: submittedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: userId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: pullRequestReview
+    selectUniques: []
+    orderByExpressionType: PullRequestReviewOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: PullRequestReview
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

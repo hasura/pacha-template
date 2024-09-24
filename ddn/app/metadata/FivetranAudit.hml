@@ -1,0 +1,207 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: FivetranAudit
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: done
+      type: Timestamp
+    - name: id
+      type: String_1
+    - name: message
+      type: String_1
+    - name: progress
+      type: Timestamp
+    - name: rowsUpdatedOrInserted
+      type: Bigint
+    - name: schema
+      type: String_1
+    - name: start
+      type: Timestamp
+    - name: status
+      type: String_1
+    - name: table
+      type: String_1
+    - name: updateId
+      type: String_1
+    - name: updateStarted
+      type: Timestamp
+  graphql:
+    typeName: FivetranAudit
+    inputTypeName: FivetranAuditInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: fivetran_audit
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        done:
+          column:
+            name: done
+        id:
+          column:
+            name: id
+        message:
+          column:
+            name: message
+        progress:
+          column:
+            name: progress
+        rowsUpdatedOrInserted:
+          column:
+            name: rows_updated_or_inserted
+        schema:
+          column:
+            name: schema
+        start:
+          column:
+            name: start
+        status:
+          column:
+            name: status
+        table:
+          column:
+            name: table
+        updateId:
+          column:
+            name: update_id
+        updateStarted:
+          column:
+            name: update_started
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: FivetranAudit
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - done
+          - id
+          - message
+          - progress
+          - rowsUpdatedOrInserted
+          - schema
+          - start
+          - status
+          - table
+          - updateId
+          - updateStarted
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: FivetranAuditBoolExp
+  objectType: FivetranAudit
+  dataConnectorName: bigquery
+  dataConnectorObjectType: fivetran_audit
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: done
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: message
+      operators:
+        enableAll: true
+    - fieldName: progress
+      operators:
+        enableAll: true
+    - fieldName: rowsUpdatedOrInserted
+      operators:
+        enableAll: true
+    - fieldName: schema
+      operators:
+        enableAll: true
+    - fieldName: start
+      operators:
+        enableAll: true
+    - fieldName: status
+      operators:
+        enableAll: true
+    - fieldName: table
+      operators:
+        enableAll: true
+    - fieldName: updateId
+      operators:
+        enableAll: true
+    - fieldName: updateStarted
+      operators:
+        enableAll: true
+  graphql:
+    typeName: FivetranAuditBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: FivetranAudit
+  objectType: FivetranAudit
+  source:
+    dataConnectorName: bigquery
+    collection: fivetran_audit
+  filterExpressionType: FivetranAuditBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: done
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: message
+      orderByDirections:
+        enableAll: true
+    - fieldName: progress
+      orderByDirections:
+        enableAll: true
+    - fieldName: rowsUpdatedOrInserted
+      orderByDirections:
+        enableAll: true
+    - fieldName: schema
+      orderByDirections:
+        enableAll: true
+    - fieldName: start
+      orderByDirections:
+        enableAll: true
+    - fieldName: status
+      orderByDirections:
+        enableAll: true
+    - fieldName: table
+      orderByDirections:
+        enableAll: true
+    - fieldName: updateId
+      orderByDirections:
+        enableAll: true
+    - fieldName: updateStarted
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: fivetranAudit
+    selectUniques: []
+    orderByExpressionType: FivetranAuditOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: FivetranAudit
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

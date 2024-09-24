@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CommitFile
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: additions
+      type: Bigint
+    - name: changes
+      type: Bigint
+    - name: commitSha
+      type: String_1
+    - name: deletions
+      type: Bigint
+    - name: filename
+      type: String_1
+    - name: status
+      type: String_1
+  graphql:
+    typeName: CommitFile
+    inputTypeName: CommitFileInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: commit_file
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        additions:
+          column:
+            name: additions
+        changes:
+          column:
+            name: changes
+        commitSha:
+          column:
+            name: commit_sha
+        deletions:
+          column:
+            name: deletions
+        filename:
+          column:
+            name: filename
+        status:
+          column:
+            name: status
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CommitFile
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - additions
+          - changes
+          - commitSha
+          - deletions
+          - filename
+          - status
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommitFileBoolExp
+  objectType: CommitFile
+  dataConnectorName: bigquery
+  dataConnectorObjectType: commit_file
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: additions
+      operators:
+        enableAll: true
+    - fieldName: changes
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+    - fieldName: deletions
+      operators:
+        enableAll: true
+    - fieldName: filename
+      operators:
+        enableAll: true
+    - fieldName: status
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommitFileBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: CommitFile
+  objectType: CommitFile
+  source:
+    dataConnectorName: bigquery
+    collection: commit_file
+  filterExpressionType: CommitFileBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: additions
+      orderByDirections:
+        enableAll: true
+    - fieldName: changes
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: deletions
+      orderByDirections:
+        enableAll: true
+    - fieldName: filename
+      orderByDirections:
+        enableAll: true
+    - fieldName: status
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commitFile
+    selectUniques: []
+    orderByExpressionType: CommitFileOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: CommitFile
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

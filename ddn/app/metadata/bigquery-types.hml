@@ -1,0 +1,72 @@
+---
+kind: ScalarType
+version: v1
+definition:
+  name: Boolean_1
+  graphql:
+    typeName: Boolean1
+
+---
+kind: ScalarType
+version: v1
+definition:
+  name: Timestamp
+  graphql:
+    typeName: Timestamp
+
+---
+kind: ScalarType
+version: v1
+definition:
+  name: String_1
+  graphql:
+    typeName: String1
+
+---
+kind: ScalarType
+version: v1
+definition:
+  name: Bigint
+  graphql:
+    typeName: Bigint
+
+---
+kind: DataConnectorScalarRepresentation
+version: v1
+definition:
+  dataConnectorName: bigquery
+  dataConnectorScalarType: boolean
+  representation: Boolean_1
+  graphql:
+    comparisonExpressionTypeName: Boolean1ComparisonExp
+
+---
+kind: DataConnectorScalarRepresentation
+version: v1
+definition:
+  dataConnectorName: bigquery
+  dataConnectorScalarType: timestamp
+  representation: Timestamp
+  graphql:
+    comparisonExpressionTypeName: TimestampComparisonExp
+
+---
+kind: DataConnectorScalarRepresentation
+version: v1
+definition:
+  dataConnectorName: bigquery
+  dataConnectorScalarType: string
+  representation: String_1
+  graphql:
+    comparisonExpressionTypeName: String1ComparisonExp
+
+---
+kind: DataConnectorScalarRepresentation
+version: v1
+definition:
+  dataConnectorName: bigquery
+  dataConnectorScalarType: bigint
+  representation: Bigint
+  graphql:
+    comparisonExpressionTypeName: BigintComparisonExp
+

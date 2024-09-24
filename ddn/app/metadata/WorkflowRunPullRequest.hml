@@ -1,0 +1,111 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WorkflowRunPullRequest
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: pullRequestId
+      type: Bigint
+    - name: workflowRunId
+      type: Bigint
+  graphql:
+    typeName: WorkflowRunPullRequest
+    inputTypeName: WorkflowRunPullRequestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: workflow_run_pull_request
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        pullRequestId:
+          column:
+            name: pull_request_id
+        workflowRunId:
+          column:
+            name: workflow_run_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WorkflowRunPullRequest
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - pullRequestId
+          - workflowRunId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: WorkflowRunPullRequestBoolExp
+  objectType: WorkflowRunPullRequest
+  dataConnectorName: bigquery
+  dataConnectorObjectType: workflow_run_pull_request
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: pullRequestId
+      operators:
+        enableAll: true
+    - fieldName: workflowRunId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: WorkflowRunPullRequestBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: WorkflowRunPullRequest
+  objectType: WorkflowRunPullRequest
+  source:
+    dataConnectorName: bigquery
+    collection: workflow_run_pull_request
+  filterExpressionType: WorkflowRunPullRequestBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: pullRequestId
+      orderByDirections:
+        enableAll: true
+    - fieldName: workflowRunId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: workflowRunPullRequest
+    selectUniques: []
+    orderByExpressionType: WorkflowRunPullRequestOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: WorkflowRunPullRequest
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

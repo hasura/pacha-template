@@ -1,0 +1,99 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CommitParent
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: commitSha
+      type: String_1
+    - name: parentSha
+      type: String_1
+  graphql:
+    typeName: CommitParent
+    inputTypeName: CommitParentInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: commit_parent
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        commitSha:
+          column:
+            name: commit_sha
+        parentSha:
+          column:
+            name: parent_sha
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CommitParent
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - commitSha
+          - parentSha
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommitParentBoolExp
+  objectType: CommitParent
+  dataConnectorName: bigquery
+  dataConnectorObjectType: commit_parent
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+    - fieldName: parentSha
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommitParentBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: CommitParent
+  objectType: CommitParent
+  source:
+    dataConnectorName: bigquery
+    collection: commit_parent
+  filterExpressionType: CommitParentBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: parentSha
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commitParent
+    selectUniques: []
+    orderByExpressionType: CommitParentOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: CommitParent
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

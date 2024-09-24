@@ -1,0 +1,2754 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: bigquery
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_BIGQUERY_READ_URL
+      write:
+        valueFromEnv: APP_BIGQUERY_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_BIGQUERY_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        bigint:
+          representation:
+            type: int64
+          aggregate_functions:
+            APPROX_COUNT_DISTINCT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            AVG:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            COUNT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            MAX:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            MIN:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            SUM:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: bigint
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: bigint
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: bigint
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: bigint
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: bigint
+        boolean:
+          representation:
+            type: boolean
+          aggregate_functions:
+            APPROX_COUNT_DISTINCT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            COUNT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: boolean
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: boolean
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: boolean
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: boolean
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: boolean
+        string:
+          representation:
+            type: string
+          aggregate_functions:
+            APPROX_COUNT_DISTINCT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            COUNT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            MAX:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            MIN:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: string
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: string
+            _in:
+              type: in
+            _like:
+              type: custom
+              argument_type:
+                type: named
+                name: string
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: string
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: string
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: string
+            _nlike:
+              type: custom
+              argument_type:
+                type: named
+                name: string
+        timestamp:
+          representation: 
+            type: timestamp
+          aggregate_functions:
+            APPROX_COUNT_DISTINCT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            COUNT:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+      object_types:
+        asset:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            content_type:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            download_count:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            label:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            release_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            size:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            uploader_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        branch_commit_relation:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            branch_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        card:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            archived:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            column_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            creator_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            is_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            note:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        column:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            is_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            project_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        commit:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            author_date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            author_email:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            author_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            committer_date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            committer_email:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            committer_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            message:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        commit_file:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            additions:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            changes:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            deletions:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            filename:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            status:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        commit_parent:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            parent_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        commit_pull_request:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            pull_request_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        deployment:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            creator_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            environment:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            original_environment:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            payload:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            production_environment:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            ref:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            task:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            transient_environment:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        deployment_status:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            creator_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            deployment_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            environment:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        fivetran_audit:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            done:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            message:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            progress:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            rows_updated_or_inserted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            schema:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            start:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            status:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            table:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            update_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            update_started:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            closed_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            locked:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            milestone_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            pull_request:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            title:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        issue_assignee:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        issue_assignee_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            assigned:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            assigner_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        issue_closed_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            closed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue_comment:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        issue_label:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            label_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        issue_label_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            label_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            labeled:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue_locked_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            locked:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue_mention:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        issue_merged:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            merged_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue_milestone_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            milestone_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            milestoned:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue_project_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            card_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            column_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            previous_column_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            project_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            removed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue_referenced:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            referenced_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        issue_renamed:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            from_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            to_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        label:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            color:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            is_default:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        milestone:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            closed_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            creator_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            due_on:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            is_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            title:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        project:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            creator_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            is_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        pull_request:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            active_lock_reason:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            base_label:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            base_ref:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            base_repo_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            base_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            base_user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            closed_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            draft:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            head_label:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            head_ref:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            head_repo_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            head_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            head_user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            issue_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            merge_commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        pull_request_ready_for_review_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            pull_request_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            ready_for_review:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+        pull_request_review:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            pull_request_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            submitted_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        pull_request_review_comments:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            parent_comment_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            pull_request_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            pull_request_review_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            reaction_minus_count:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            reaction_plus_count:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        pull_request_review_dismissed:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            dismissal_commit_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            dismissal_message:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            pull_request_review_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        release:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            author_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            draft:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            prerelease:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            published_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            tag_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            target_commitish:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        repository:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            archived:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            default_branch:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            fork:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            forks_count:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            full_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            homepage:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            language:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            owner_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            private:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            watchers_count:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        repository_topic:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        requested_reviewer_history:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            pull_request_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            removed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            requested_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            requested_reviewer_type:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        stargazer:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            login:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            starred_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        team:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            org_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            parent_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            privacy:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            slug:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+        team_membership:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            team_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        user:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            bio:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            blog:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            company:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            hireable:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            location:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            login:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            site_admin:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            type:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        user_email:
+          fields:
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            email:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            user_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        workflow:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            path:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+        workflow_run:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            conclusion:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            event:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            head_branch:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            head_sha:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            repository_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            run_attempt:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            run_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            run_started_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            status:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: string
+            triggering_actor_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            workflow_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+        workflow_run_pull_request:
+          fields:
+            _fivetran_deleted:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: boolean
+            _fivetran_synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            pull_request_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+            workflow_run_id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bigint
+      collections:
+        - name: asset
+          arguments: {}
+          type: asset
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: branch_commit_relation
+          arguments: {}
+          type: branch_commit_relation
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: card
+          arguments: {}
+          type: card
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: column
+          arguments: {}
+          type: column
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: commit
+          arguments: {}
+          type: commit
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: commit_file
+          arguments: {}
+          type: commit_file
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: commit_parent
+          arguments: {}
+          type: commit_parent
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: commit_pull_request
+          arguments: {}
+          type: commit_pull_request
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: deployment
+          arguments: {}
+          type: deployment
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: deployment_status
+          arguments: {}
+          type: deployment_status
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: fivetran_audit
+          arguments: {}
+          type: fivetran_audit
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue
+          arguments: {}
+          type: issue
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_assignee
+          arguments: {}
+          type: issue_assignee
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_assignee_history
+          arguments: {}
+          type: issue_assignee_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_closed_history
+          arguments: {}
+          type: issue_closed_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_comment
+          arguments: {}
+          type: issue_comment
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_label
+          arguments: {}
+          type: issue_label
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_label_history
+          arguments: {}
+          type: issue_label_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_locked_history
+          arguments: {}
+          type: issue_locked_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_mention
+          arguments: {}
+          type: issue_mention
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_merged
+          arguments: {}
+          type: issue_merged
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_milestone_history
+          arguments: {}
+          type: issue_milestone_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_project_history
+          arguments: {}
+          type: issue_project_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_referenced
+          arguments: {}
+          type: issue_referenced
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: issue_renamed
+          arguments: {}
+          type: issue_renamed
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: label
+          arguments: {}
+          type: label
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: milestone
+          arguments: {}
+          type: milestone
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: project
+          arguments: {}
+          type: project
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: pull_request
+          arguments: {}
+          type: pull_request
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: pull_request_ready_for_review_history
+          arguments: {}
+          type: pull_request_ready_for_review_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: pull_request_review
+          arguments: {}
+          type: pull_request_review
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: pull_request_review_comments
+          arguments: {}
+          type: pull_request_review_comments
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: pull_request_review_dismissed
+          arguments: {}
+          type: pull_request_review_dismissed
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: release
+          arguments: {}
+          type: release
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: repository
+          arguments: {}
+          type: repository
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: repository_topic
+          arguments: {}
+          type: repository_topic
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: requested_reviewer_history
+          arguments: {}
+          type: requested_reviewer_history
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: stargazer
+          arguments: {}
+          type: stargazer
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: team
+          arguments: {}
+          type: team
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: team_membership
+          arguments: {}
+          type: team_membership
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: user
+          arguments: {}
+          type: user
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: user_email
+          arguments: {}
+          type: user_email
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: workflow
+          arguments: {}
+          type: workflow
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: workflow_run
+          arguments: {}
+          type: workflow_run
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: workflow_run_pull_request
+          arguments: {}
+          type: workflow_run_pull_request
+          uniqueness_constraints: {}
+          foreign_keys: {}
+      functions: []
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+          nested_fields:
+            filter_by: {}
+            order_by: {}
+        mutation:
+          transactional: {}
+          explain: {}
+        relationships:
+          relation_comparisons: {}
+          order_by_aggregate: {}

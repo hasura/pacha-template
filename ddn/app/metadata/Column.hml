@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Column
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: createdAt
+      type: Timestamp
+    - name: id
+      type: Bigint
+    - name: isDeleted
+      type: Boolean_1
+    - name: name
+      type: String_1
+    - name: projectId
+      type: Bigint
+    - name: updatedAt
+      type: Timestamp
+  graphql:
+    typeName: Column
+    inputTypeName: ColumnInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: column
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        createdAt:
+          column:
+            name: created_at
+        id:
+          column:
+            name: id
+        isDeleted:
+          column:
+            name: is_deleted
+        name:
+          column:
+            name: name
+        projectId:
+          column:
+            name: project_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Column
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - createdAt
+          - id
+          - isDeleted
+          - name
+          - projectId
+          - updatedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: ColumnBoolExp
+  objectType: Column
+  dataConnectorName: bigquery
+  dataConnectorObjectType: column
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: isDeleted
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: ColumnBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Column
+  objectType: Column
+  source:
+    dataConnectorName: bigquery
+    collection: column
+  filterExpressionType: ColumnBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: isDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: column
+    selectUniques: []
+    orderByExpressionType: ColumnOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Column
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

@@ -1,0 +1,243 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Repository
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: archived
+      type: Boolean_1
+    - name: createdAt
+      type: Timestamp
+    - name: defaultBranch
+      type: String_1
+    - name: description
+      type: String_1
+    - name: fork
+      type: Boolean_1
+    - name: forksCount
+      type: Bigint
+    - name: fullName
+      type: String_1
+    - name: homepage
+      type: String_1
+    - name: id
+      type: Bigint
+    - name: language
+      type: String_1
+    - name: name
+      type: String_1
+    - name: ownerId
+      type: Bigint
+    - name: private
+      type: Boolean_1
+    - name: watchersCount
+      type: Bigint
+  graphql:
+    typeName: Repository
+    inputTypeName: RepositoryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: repository
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        archived:
+          column:
+            name: archived
+        createdAt:
+          column:
+            name: created_at
+        defaultBranch:
+          column:
+            name: default_branch
+        description:
+          column:
+            name: description
+        fork:
+          column:
+            name: fork
+        forksCount:
+          column:
+            name: forks_count
+        fullName:
+          column:
+            name: full_name
+        homepage:
+          column:
+            name: homepage
+        id:
+          column:
+            name: id
+        language:
+          column:
+            name: language
+        name:
+          column:
+            name: name
+        ownerId:
+          column:
+            name: owner_id
+        private:
+          column:
+            name: private
+        watchersCount:
+          column:
+            name: watchers_count
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Repository
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - archived
+          - createdAt
+          - defaultBranch
+          - description
+          - fork
+          - forksCount
+          - fullName
+          - homepage
+          - id
+          - language
+          - name
+          - ownerId
+          - private
+          - watchersCount
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: RepositoryBoolExp
+  objectType: Repository
+  dataConnectorName: bigquery
+  dataConnectorObjectType: repository
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: archived
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: defaultBranch
+      operators:
+        enableAll: true
+    - fieldName: description
+      operators:
+        enableAll: true
+    - fieldName: fork
+      operators:
+        enableAll: true
+    - fieldName: forksCount
+      operators:
+        enableAll: true
+    - fieldName: fullName
+      operators:
+        enableAll: true
+    - fieldName: homepage
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: language
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: ownerId
+      operators:
+        enableAll: true
+    - fieldName: private
+      operators:
+        enableAll: true
+    - fieldName: watchersCount
+      operators:
+        enableAll: true
+  graphql:
+    typeName: RepositoryBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Repository
+  objectType: Repository
+  source:
+    dataConnectorName: bigquery
+    collection: repository
+  filterExpressionType: RepositoryBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: archived
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: defaultBranch
+      orderByDirections:
+        enableAll: true
+    - fieldName: description
+      orderByDirections:
+        enableAll: true
+    - fieldName: fork
+      orderByDirections:
+        enableAll: true
+    - fieldName: forksCount
+      orderByDirections:
+        enableAll: true
+    - fieldName: fullName
+      orderByDirections:
+        enableAll: true
+    - fieldName: homepage
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: language
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: ownerId
+      orderByDirections:
+        enableAll: true
+    - fieldName: private
+      orderByDirections:
+        enableAll: true
+    - fieldName: watchersCount
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: repository
+    selectUniques: []
+    orderByExpressionType: RepositoryOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Repository
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

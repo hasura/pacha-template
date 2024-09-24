@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: PullRequestReviewDismissed
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: actorId
+      type: Bigint
+    - name: createdAt
+      type: Timestamp
+    - name: dismissalCommitSha
+      type: String_1
+    - name: dismissalMessage
+      type: String_1
+    - name: pullRequestReviewId
+      type: Bigint
+    - name: state
+      type: String_1
+  graphql:
+    typeName: PullRequestReviewDismissed
+    inputTypeName: PullRequestReviewDismissedInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: pull_request_review_dismissed
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        actorId:
+          column:
+            name: actor_id
+        createdAt:
+          column:
+            name: created_at
+        dismissalCommitSha:
+          column:
+            name: dismissal_commit_sha
+        dismissalMessage:
+          column:
+            name: dismissal_message
+        pullRequestReviewId:
+          column:
+            name: pull_request_review_id
+        state:
+          column:
+            name: state
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: PullRequestReviewDismissed
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - actorId
+          - createdAt
+          - dismissalCommitSha
+          - dismissalMessage
+          - pullRequestReviewId
+          - state
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: PullRequestReviewDismissedBoolExp
+  objectType: PullRequestReviewDismissed
+  dataConnectorName: bigquery
+  dataConnectorObjectType: pull_request_review_dismissed
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: actorId
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: dismissalCommitSha
+      operators:
+        enableAll: true
+    - fieldName: dismissalMessage
+      operators:
+        enableAll: true
+    - fieldName: pullRequestReviewId
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+  graphql:
+    typeName: PullRequestReviewDismissedBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: PullRequestReviewDismissed
+  objectType: PullRequestReviewDismissed
+  source:
+    dataConnectorName: bigquery
+    collection: pull_request_review_dismissed
+  filterExpressionType: PullRequestReviewDismissedBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: actorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: dismissalCommitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: dismissalMessage
+      orderByDirections:
+        enableAll: true
+    - fieldName: pullRequestReviewId
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: pullRequestReviewDismissed
+    selectUniques: []
+    orderByExpressionType: PullRequestReviewDismissedOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: PullRequestReviewDismissed
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

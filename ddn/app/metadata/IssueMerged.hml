@@ -1,0 +1,123 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: IssueMerged
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: actorId
+      type: Bigint
+    - name: commitSha
+      type: String_1
+    - name: issueId
+      type: Bigint
+    - name: mergedAt
+      type: Timestamp
+  graphql:
+    typeName: IssueMerged
+    inputTypeName: IssueMergedInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: issue_merged
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        actorId:
+          column:
+            name: actor_id
+        commitSha:
+          column:
+            name: commit_sha
+        issueId:
+          column:
+            name: issue_id
+        mergedAt:
+          column:
+            name: merged_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: IssueMerged
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - actorId
+          - commitSha
+          - issueId
+          - mergedAt
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: IssueMergedBoolExp
+  objectType: IssueMerged
+  dataConnectorName: bigquery
+  dataConnectorObjectType: issue_merged
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: actorId
+      operators:
+        enableAll: true
+    - fieldName: commitSha
+      operators:
+        enableAll: true
+    - fieldName: issueId
+      operators:
+        enableAll: true
+    - fieldName: mergedAt
+      operators:
+        enableAll: true
+  graphql:
+    typeName: IssueMergedBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: IssueMerged
+  objectType: IssueMerged
+  source:
+    dataConnectorName: bigquery
+    collection: issue_merged
+  filterExpressionType: IssueMergedBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: actorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: commitSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: issueId
+      orderByDirections:
+        enableAll: true
+    - fieldName: mergedAt
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: issueMerged
+    selectUniques: []
+    orderByExpressionType: IssueMergedOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: IssueMerged
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

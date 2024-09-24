@@ -1,0 +1,183 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Commit
+  fields:
+    - name: fivetranSynced
+      type: Timestamp
+    - name: authorDate
+      type: Timestamp
+    - name: authorEmail
+      type: String_1
+    - name: authorName
+      type: String_1
+    - name: committerDate
+      type: Timestamp
+    - name: committerEmail
+      type: String_1
+    - name: committerName
+      type: String_1
+    - name: message
+      type: String_1
+    - name: repositoryId
+      type: Bigint
+    - name: sha
+      type: String_1
+  graphql:
+    typeName: Commit
+    inputTypeName: CommitInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: commit
+      fieldMapping:
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        authorDate:
+          column:
+            name: author_date
+        authorEmail:
+          column:
+            name: author_email
+        authorName:
+          column:
+            name: author_name
+        committerDate:
+          column:
+            name: committer_date
+        committerEmail:
+          column:
+            name: committer_email
+        committerName:
+          column:
+            name: committer_name
+        message:
+          column:
+            name: message
+        repositoryId:
+          column:
+            name: repository_id
+        sha:
+          column:
+            name: sha
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Commit
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranSynced
+          - authorDate
+          - authorEmail
+          - authorName
+          - committerDate
+          - committerEmail
+          - committerName
+          - message
+          - repositoryId
+          - sha
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CommitBoolExp
+  objectType: Commit
+  dataConnectorName: bigquery
+  dataConnectorObjectType: commit
+  comparableFields:
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: authorDate
+      operators:
+        enableAll: true
+    - fieldName: authorEmail
+      operators:
+        enableAll: true
+    - fieldName: authorName
+      operators:
+        enableAll: true
+    - fieldName: committerDate
+      operators:
+        enableAll: true
+    - fieldName: committerEmail
+      operators:
+        enableAll: true
+    - fieldName: committerName
+      operators:
+        enableAll: true
+    - fieldName: message
+      operators:
+        enableAll: true
+    - fieldName: repositoryId
+      operators:
+        enableAll: true
+    - fieldName: sha
+      operators:
+        enableAll: true
+  graphql:
+    typeName: CommitBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Commit
+  objectType: Commit
+  source:
+    dataConnectorName: bigquery
+    collection: commit
+  filterExpressionType: CommitBoolExp
+  orderableFields:
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: authorDate
+      orderByDirections:
+        enableAll: true
+    - fieldName: authorEmail
+      orderByDirections:
+        enableAll: true
+    - fieldName: authorName
+      orderByDirections:
+        enableAll: true
+    - fieldName: committerDate
+      orderByDirections:
+        enableAll: true
+    - fieldName: committerEmail
+      orderByDirections:
+        enableAll: true
+    - fieldName: committerName
+      orderByDirections:
+        enableAll: true
+    - fieldName: message
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryId
+      orderByDirections:
+        enableAll: true
+    - fieldName: sha
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: commit
+    selectUniques: []
+    orderByExpressionType: CommitOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Commit
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

@@ -1,0 +1,279 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: WorkflowRun
+  fields:
+    - name: fivetranDeleted
+      type: Boolean_1
+    - name: fivetranSynced
+      type: Timestamp
+    - name: actorId
+      type: Bigint
+    - name: conclusion
+      type: String_1
+    - name: createdAt
+      type: Timestamp
+    - name: event
+      type: String_1
+    - name: headBranch
+      type: String_1
+    - name: headSha
+      type: String_1
+    - name: id
+      type: Bigint
+    - name: name
+      type: String_1
+    - name: repositoryId
+      type: Bigint
+    - name: runAttempt
+      type: Bigint
+    - name: runNumber
+      type: Bigint
+    - name: runStartedAt
+      type: Timestamp
+    - name: status
+      type: String_1
+    - name: triggeringActorId
+      type: Bigint
+    - name: updatedAt
+      type: Timestamp
+    - name: workflowId
+      type: Bigint
+  graphql:
+    typeName: WorkflowRun
+    inputTypeName: WorkflowRunInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: bigquery
+      dataConnectorObjectType: workflow_run
+      fieldMapping:
+        fivetranDeleted:
+          column:
+            name: _fivetran_deleted
+        fivetranSynced:
+          column:
+            name: _fivetran_synced
+        actorId:
+          column:
+            name: actor_id
+        conclusion:
+          column:
+            name: conclusion
+        createdAt:
+          column:
+            name: created_at
+        event:
+          column:
+            name: event
+        headBranch:
+          column:
+            name: head_branch
+        headSha:
+          column:
+            name: head_sha
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        repositoryId:
+          column:
+            name: repository_id
+        runAttempt:
+          column:
+            name: run_attempt
+        runNumber:
+          column:
+            name: run_number
+        runStartedAt:
+          column:
+            name: run_started_at
+        status:
+          column:
+            name: status
+        triggeringActorId:
+          column:
+            name: triggering_actor_id
+        updatedAt:
+          column:
+            name: updated_at
+        workflowId:
+          column:
+            name: workflow_id
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: WorkflowRun
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - fivetranDeleted
+          - fivetranSynced
+          - actorId
+          - conclusion
+          - createdAt
+          - event
+          - headBranch
+          - headSha
+          - id
+          - name
+          - repositoryId
+          - runAttempt
+          - runNumber
+          - runStartedAt
+          - status
+          - triggeringActorId
+          - updatedAt
+          - workflowId
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: WorkflowRunBoolExp
+  objectType: WorkflowRun
+  dataConnectorName: bigquery
+  dataConnectorObjectType: workflow_run
+  comparableFields:
+    - fieldName: fivetranDeleted
+      operators:
+        enableAll: true
+    - fieldName: fivetranSynced
+      operators:
+        enableAll: true
+    - fieldName: actorId
+      operators:
+        enableAll: true
+    - fieldName: conclusion
+      operators:
+        enableAll: true
+    - fieldName: createdAt
+      operators:
+        enableAll: true
+    - fieldName: event
+      operators:
+        enableAll: true
+    - fieldName: headBranch
+      operators:
+        enableAll: true
+    - fieldName: headSha
+      operators:
+        enableAll: true
+    - fieldName: id
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: repositoryId
+      operators:
+        enableAll: true
+    - fieldName: runAttempt
+      operators:
+        enableAll: true
+    - fieldName: runNumber
+      operators:
+        enableAll: true
+    - fieldName: runStartedAt
+      operators:
+        enableAll: true
+    - fieldName: status
+      operators:
+        enableAll: true
+    - fieldName: triggeringActorId
+      operators:
+        enableAll: true
+    - fieldName: updatedAt
+      operators:
+        enableAll: true
+    - fieldName: workflowId
+      operators:
+        enableAll: true
+  graphql:
+    typeName: WorkflowRunBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: WorkflowRun
+  objectType: WorkflowRun
+  source:
+    dataConnectorName: bigquery
+    collection: workflow_run
+  filterExpressionType: WorkflowRunBoolExp
+  orderableFields:
+    - fieldName: fivetranDeleted
+      orderByDirections:
+        enableAll: true
+    - fieldName: fivetranSynced
+      orderByDirections:
+        enableAll: true
+    - fieldName: actorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: conclusion
+      orderByDirections:
+        enableAll: true
+    - fieldName: createdAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: event
+      orderByDirections:
+        enableAll: true
+    - fieldName: headBranch
+      orderByDirections:
+        enableAll: true
+    - fieldName: headSha
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: repositoryId
+      orderByDirections:
+        enableAll: true
+    - fieldName: runAttempt
+      orderByDirections:
+        enableAll: true
+    - fieldName: runNumber
+      orderByDirections:
+        enableAll: true
+    - fieldName: runStartedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: status
+      orderByDirections:
+        enableAll: true
+    - fieldName: triggeringActorId
+      orderByDirections:
+        enableAll: true
+    - fieldName: updatedAt
+      orderByDirections:
+        enableAll: true
+    - fieldName: workflowId
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: workflowRun
+    selectUniques: []
+    orderByExpressionType: WorkflowRunOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: WorkflowRun
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
