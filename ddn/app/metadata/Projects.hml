@@ -6,6 +6,10 @@ definition:
   fields:
     - name: projectId
       type: Text!
+    - name: name
+      type: Text
+    - name: ownerEmail
+      type: Text
   graphql:
     typeName: Projects
     inputTypeName: ProjectsInput
@@ -16,6 +20,12 @@ definition:
         projectId:
           column:
             name: project_id
+        name:
+          column:
+            name: name
+        ownerEmail:
+          column:
+            name: owner_email
 
 ---
 kind: TypePermissions
@@ -27,6 +37,8 @@ definition:
       output:
         allowedFields:
           - projectId
+          - name
+          - ownerEmail
 
 ---
 kind: ObjectBooleanExpressionType
@@ -38,6 +50,12 @@ definition:
   dataConnectorObjectType: projects
   comparableFields:
     - fieldName: projectId
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: ownerEmail
       operators:
         enableAll: true
   graphql:
@@ -55,6 +73,12 @@ definition:
   filterExpressionType: ProjectsBoolExp
   orderableFields:
     - fieldName: projectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: ownerEmail
       orderByDirections:
         enableAll: true
   graphql:

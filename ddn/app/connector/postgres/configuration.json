@@ -456,17 +456,17 @@
             "foreignSchema": "public",
             "foreignTable": "builds",
             "columnMapping": {
-              "build_id": "project_id",
-              "project_id": "build_id"
+              "build_id": "build_id",
+              "project_id": "project_id"
             }
           },
           "commands_project_id_build_id_subgraph_fkey": {
             "foreignSchema": "public",
             "foreignTable": "subgraphs",
             "columnMapping": {
-              "build_id": "project_id",
-              "project_id": "build_id",
-              "subgraph": "subgraph"
+              "build_id": "subgraph",
+              "project_id": "project_id",
+              "subgraph": "build_id"
             }
           }
         },
@@ -548,9 +548,9 @@
             "foreignTable": "commands",
             "columnMapping": {
               "build_id": "name",
-              "command_name": "project_id",
-              "project_id": "subgraph",
-              "subgraph": "build_id"
+              "command_name": "subgraph",
+              "project_id": "build_id",
+              "subgraph": "project_id"
             }
           },
           "commands_arguments_project_id_build_id_subgraph_fkey": {
@@ -680,18 +680,18 @@
             "foreignTable": "subgraphs",
             "columnMapping": {
               "build_id": "project_id",
-              "project_id": "subgraph",
-              "subgraph": "build_id"
+              "project_id": "build_id",
+              "subgraph": "subgraph"
             }
           },
           "model_project_id_build_id_subgraph_object_type_name_fkey": {
             "foreignSchema": "public",
             "foreignTable": "object_types",
             "columnMapping": {
-              "build_id": "project_id",
-              "object_type_name": "build_id",
-              "project_id": "name",
-              "subgraph": "subgraph"
+              "build_id": "subgraph",
+              "object_type_name": "name",
+              "project_id": "project_id",
+              "subgraph": "build_id"
             }
           }
         },
@@ -1022,8 +1022,8 @@
             "foreignSchema": "public",
             "foreignTable": "builds",
             "columnMapping": {
-              "build_id": "project_id",
-              "project_id": "build_id"
+              "build_id": "build_id",
+              "project_id": "project_id"
             }
           },
           "model_uniques_project_id_build_id_subgraph_fkey": {
@@ -1039,10 +1039,10 @@
             "foreignSchema": "public",
             "foreignTable": "model",
             "columnMapping": {
-              "build_id": "subgraph",
-              "model_name": "project_id",
-              "project_id": "build_id",
-              "subgraph": "name"
+              "build_id": "name",
+              "model_name": "subgraph",
+              "project_id": "project_id",
+              "subgraph": "build_id"
             }
           }
         },
@@ -1249,8 +1249,8 @@
             "foreignSchema": "public",
             "foreignTable": "builds",
             "columnMapping": {
-              "build_id": "build_id",
-              "project_id": "project_id"
+              "build_id": "project_id",
+              "project_id": "build_id"
             }
           },
           "object_types_project_id_build_id_subgraph_fkey": {
@@ -1258,8 +1258,8 @@
             "foreignTable": "subgraphs",
             "columnMapping": {
               "build_id": "project_id",
-              "project_id": "build_id",
-              "subgraph": "subgraph"
+              "project_id": "subgraph",
+              "subgraph": "build_id"
             }
           }
         },
@@ -1348,8 +1348,8 @@
             "foreignSchema": "public",
             "foreignTable": "subgraphs",
             "columnMapping": {
-              "build_id": "subgraph",
-              "project_id": "build_id",
+              "build_id": "build_id",
+              "project_id": "subgraph",
               "subgraph": "project_id"
             }
           },
@@ -1357,10 +1357,10 @@
             "foreignSchema": "public",
             "foreignTable": "object_types",
             "columnMapping": {
-              "build_id": "project_id",
-              "object_type_name": "build_id",
-              "project_id": "subgraph",
-              "subgraph": "name"
+              "build_id": "name",
+              "object_type_name": "subgraph",
+              "project_id": "project_id",
+              "subgraph": "build_id"
             }
           }
         },
@@ -1370,6 +1370,22 @@
         "schemaName": "public",
         "tableName": "projects",
         "columns": {
+          "name": {
+            "name": "name",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "owner_email": {
+            "name": "owner_email",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
           "project_id": {
             "name": "project_id",
             "type": {
