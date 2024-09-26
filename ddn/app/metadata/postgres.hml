@@ -697,6 +697,12 @@ definition:
               type:
                 type: named
                 name: text
+            deprecated:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
             description:
               type:
                 type: nullable
@@ -822,14 +828,14 @@ definition:
               column_mapping:
                 build_id: project_id
                 command_name: build_id
-                project_id: subgraph
-                subgraph: name
+                project_id: name
+                subgraph: subgraph
               foreign_collection: commands
             command_permissions_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: subgraph
+                build_id: project_id
                 project_id: build_id
-                subgraph: project_id
+                subgraph: subgraph
               foreign_collection: subgraphs
         - name: command_relationships
           arguments: {}
@@ -850,22 +856,22 @@ definition:
               foreign_collection: builds
             command_relationships_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: project_id
+                build_id: subgraph
                 project_id: build_id
-                subgraph: subgraph
+                subgraph: project_id
               foreign_collection: subgraphs
             command_relationships_project_id_build_id_subgraph_source__fkey:
               column_mapping:
-                build_id: subgraph
+                build_id: build_id
                 project_id: project_id
-                source_object_type_name: build_id
+                source_object_type_name: subgraph
                 subgraph: name
               foreign_collection: object_types
             command_relationships_project_id_build_id_target_command_s_fkey:
               column_mapping:
-                build_id: project_id
-                project_id: subgraph
-                target_command_name: build_id
+                build_id: build_id
+                project_id: project_id
+                target_command_name: subgraph
                 target_command_subgraph: name
               foreign_collection: commands
         - name: commands
@@ -881,14 +887,14 @@ definition:
           foreign_keys:
             commands_project_id_build_id_fkey:
               column_mapping:
-                build_id: build_id
-                project_id: project_id
+                build_id: project_id
+                project_id: build_id
               foreign_collection: builds
             commands_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: subgraph
-                project_id: project_id
-                subgraph: build_id
+                build_id: build_id
+                project_id: subgraph
+                subgraph: project_id
               foreign_collection: subgraphs
         - name: commands_arguments
           arguments: {}
@@ -909,10 +915,10 @@ definition:
               foreign_collection: builds
             commands_arguments_project_id_build_id_subgraph_command_na_fkey:
               column_mapping:
-                build_id: name
+                build_id: project_id
                 command_name: subgraph
-                project_id: build_id
-                subgraph: project_id
+                project_id: name
+                subgraph: build_id
               foreign_collection: commands
             commands_arguments_project_id_build_id_subgraph_fkey:
               column_mapping:
@@ -938,16 +944,16 @@ definition:
               foreign_collection: builds
             model_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: project_id
-                project_id: build_id
-                subgraph: subgraph
+                build_id: subgraph
+                project_id: project_id
+                subgraph: build_id
               foreign_collection: subgraphs
             model_project_id_build_id_subgraph_object_type_name_fkey:
               column_mapping:
-                build_id: subgraph
-                object_type_name: name
+                build_id: name
+                object_type_name: build_id
                 project_id: project_id
-                subgraph: build_id
+                subgraph: subgraph
               foreign_collection: object_types
         - name: model_permissions
           arguments: {}
@@ -969,15 +975,15 @@ definition:
             model_permissions_project_id_build_id_subgraph_fkey:
               column_mapping:
                 build_id: build_id
-                project_id: subgraph
-                subgraph: project_id
+                project_id: project_id
+                subgraph: subgraph
               foreign_collection: subgraphs
             model_permissions_project_id_build_id_subgraph_model_name_fkey:
               column_mapping:
                 build_id: name
-                model_name: build_id
-                project_id: project_id
-                subgraph: subgraph
+                model_name: subgraph
+                project_id: build_id
+                subgraph: project_id
               foreign_collection: model
         - name: model_relationships
           arguments: {}
@@ -998,16 +1004,16 @@ definition:
               foreign_collection: builds
             model_relationships_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: build_id
-                project_id: project_id
-                subgraph: subgraph
+                build_id: subgraph
+                project_id: build_id
+                subgraph: project_id
               foreign_collection: subgraphs
             model_relationships_project_id_build_id_subgraph_source_ob_fkey:
               column_mapping:
-                build_id: name
-                project_id: project_id
-                source_object_type_name: subgraph
-                subgraph: build_id
+                build_id: subgraph
+                project_id: build_id
+                source_object_type_name: project_id
+                subgraph: name
               foreign_collection: object_types
             model_relationships_project_id_build_id_target_model_subgr_fkey:
               column_mapping:
@@ -1023,8 +1029,8 @@ definition:
           foreign_keys:
             model_uniques_project_id_build_id_fkey:
               column_mapping:
-                build_id: build_id
-                project_id: project_id
+                build_id: project_id
+                project_id: build_id
               foreign_collection: builds
             model_uniques_project_id_build_id_subgraph_fkey:
               column_mapping:
@@ -1034,10 +1040,10 @@ definition:
               foreign_collection: subgraphs
             model_uniques_project_id_build_id_subgraph_model_name_fkey:
               column_mapping:
-                build_id: name
+                build_id: build_id
                 model_name: subgraph
                 project_id: project_id
-                subgraph: build_id
+                subgraph: name
               foreign_collection: model
         - name: object_type_permissions
           arguments: {}
@@ -1053,13 +1059,13 @@ definition:
           foreign_keys:
             object_type_permissions_project_id_build_id_fkey:
               column_mapping:
-                build_id: project_id
-                project_id: build_id
+                build_id: build_id
+                project_id: project_id
               foreign_collection: builds
             object_type_permissions_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: build_id
-                project_id: subgraph
+                build_id: subgraph
+                project_id: build_id
                 subgraph: project_id
               foreign_collection: subgraphs
             object_type_permissions_project_id_build_id_subgraph_objec_fkey:
@@ -1088,8 +1094,8 @@ definition:
             object_types_project_id_build_id_subgraph_fkey:
               column_mapping:
                 build_id: project_id
-                project_id: subgraph
-                subgraph: build_id
+                project_id: build_id
+                subgraph: subgraph
               foreign_collection: subgraphs
         - name: object_types_fields
           arguments: {}
@@ -1110,16 +1116,16 @@ definition:
               foreign_collection: builds
             object_types_fields_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: build_id
-                project_id: subgraph
+                build_id: subgraph
+                project_id: build_id
                 subgraph: project_id
               foreign_collection: subgraphs
             object_types_fields_project_id_build_id_subgraph_object_ty_fkey:
               column_mapping:
                 build_id: name
-                object_type_name: subgraph
-                project_id: project_id
-                subgraph: build_id
+                object_type_name: build_id
+                project_id: subgraph
+                subgraph: project_id
               foreign_collection: object_types
         - name: projects
           arguments: {}
@@ -1148,8 +1154,8 @@ definition:
             scalar_types_project_id_build_id_subgraph_fkey:
               column_mapping:
                 build_id: build_id
-                project_id: subgraph
-                subgraph: project_id
+                project_id: project_id
+                subgraph: subgraph
               foreign_collection: subgraphs
         - name: subgraphs
           arguments: {}

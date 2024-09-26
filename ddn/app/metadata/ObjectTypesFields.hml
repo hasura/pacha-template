@@ -18,6 +18,8 @@ definition:
       type: Text!
     - name: type
       type: Text!
+    - name: deprecated
+      type: Text
   graphql:
     typeName: ObjectTypesFields
     inputTypeName: ObjectTypesFieldsInput
@@ -46,6 +48,9 @@ definition:
         type:
           column:
             name: type
+        deprecated:
+          column:
+            name: deprecated
 
 ---
 kind: TypePermissions
@@ -63,6 +68,7 @@ definition:
           - projectId
           - subgraph
           - type
+          - deprecated
 
 ---
 kind: ObjectBooleanExpressionType
@@ -92,6 +98,9 @@ definition:
       operators:
         enableAll: true
     - fieldName: type
+      operators:
+        enableAll: true
+    - fieldName: deprecated
       operators:
         enableAll: true
   graphql:
@@ -127,6 +136,9 @@ definition:
       orderByDirections:
         enableAll: true
     - fieldName: type
+      orderByDirections:
+        enableAll: true
+    - fieldName: deprecated
       orderByDirections:
         enableAll: true
   graphql:
@@ -241,3 +253,4 @@ definition:
       target:
         modelField:
           - fieldName: subgraph
+
