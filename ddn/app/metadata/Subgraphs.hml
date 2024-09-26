@@ -106,6 +106,36 @@ definition:
 kind: Relationship
 version: v1
 definition:
+  name: commandPermissions
+  sourceType: Subgraphs
+  target:
+    model:
+      name: CommandPermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
   name: commandRelationships
   sourceType: Subgraphs
   target:
@@ -115,16 +145,16 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: buildId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: buildId
+          - fieldName: projectId
     - source:
         fieldPath:
-          - fieldName: projectId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: projectId
+          - fieldName: buildId
     - source:
         fieldPath:
           - fieldName: subgraph
@@ -145,6 +175,12 @@ definition:
   mapping:
     - source:
         fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
           - fieldName: buildId
       target:
         modelField:
@@ -155,12 +191,6 @@ definition:
       target:
         modelField:
           - fieldName: subgraph
-    - source:
-        fieldPath:
-          - fieldName: projectId
-      target:
-        modelField:
-          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -205,12 +235,6 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: buildId
-      target:
-        modelField:
-          - fieldName: buildId
-    - source:
-        fieldPath:
           - fieldName: projectId
       target:
         modelField:
@@ -221,6 +245,42 @@ definition:
       target:
         modelField:
           - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: modelPermissions
+  sourceType: Subgraphs
+  target:
+    model:
+      name: ModelPermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -286,6 +346,36 @@ definition:
 kind: Relationship
 version: v1
 definition:
+  name: objectTypePermissions
+  sourceType: Subgraphs
+  target:
+    model:
+      name: ObjectTypePermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
   name: objectTypes
   sourceType: Subgraphs
   target:
@@ -301,16 +391,16 @@ definition:
           - fieldName: projectId
     - source:
         fieldPath:
-          - fieldName: subgraph
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: subgraph
+          - fieldName: buildId
     - source:
         fieldPath:
-          - fieldName: buildId
+          - fieldName: subgraph
       target:
         modelField:
-          - fieldName: buildId
+          - fieldName: subgraph
 
 ---
 kind: Relationship
@@ -325,10 +415,10 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: projectId
+          - fieldName: subgraph
       target:
         modelField:
-          - fieldName: projectId
+          - fieldName: subgraph
     - source:
         fieldPath:
           - fieldName: buildId
@@ -337,10 +427,10 @@ definition:
           - fieldName: buildId
     - source:
         fieldPath:
-          - fieldName: subgraph
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: subgraph
+          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -355,10 +445,10 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: projectId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: projectId
+          - fieldName: buildId
     - source:
         fieldPath:
           - fieldName: subgraph
@@ -367,8 +457,7 @@ definition:
           - fieldName: subgraph
     - source:
         fieldPath:
-          - fieldName: buildId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: buildId
-
+          - fieldName: projectId

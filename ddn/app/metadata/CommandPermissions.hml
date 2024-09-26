@@ -2,139 +2,175 @@
 kind: ObjectType
 version: v1
 definition:
-  name: CommandsArguments
+  name: CommandPermissions
   fields:
+    - name: allowExecution
+      type: Bool!
+    - name: argumentPresets
+      type: Json
     - name: buildId
       type: Text!
     - name: commandName
       type: Text!
-    - name: name
+    - name: kind
       type: Text!
     - name: projectId
       type: Text!
+    - name: role
+      type: Text!
     - name: subgraph
       type: Text!
-    - name: type
-      type: Text!
+    - name: version
+      type: Text
   graphql:
-    typeName: CommandsArguments
-    inputTypeName: CommandsArgumentsInput
+    typeName: CommandPermissions
+    inputTypeName: CommandPermissionsInput
   dataConnectorTypeMapping:
     - dataConnectorName: postgres
-      dataConnectorObjectType: commands_arguments
+      dataConnectorObjectType: command_permissions
       fieldMapping:
+        allowExecution:
+          column:
+            name: allow_execution
+        argumentPresets:
+          column:
+            name: argument_presets
         buildId:
           column:
             name: build_id
         commandName:
           column:
             name: command_name
-        name:
+        kind:
           column:
-            name: name
+            name: kind
         projectId:
           column:
             name: project_id
+        role:
+          column:
+            name: role
         subgraph:
           column:
             name: subgraph
-        type:
+        version:
           column:
-            name: type
+            name: version
 
 ---
 kind: TypePermissions
 version: v1
 definition:
-  typeName: CommandsArguments
+  typeName: CommandPermissions
   permissions:
     - role: admin
       output:
         allowedFields:
+          - allowExecution
+          - argumentPresets
           - buildId
           - commandName
-          - name
+          - kind
           - projectId
+          - role
           - subgraph
-          - type
+          - version
 
 ---
 kind: ObjectBooleanExpressionType
 version: v1
 definition:
-  name: CommandsArgumentsBoolExp
-  objectType: CommandsArguments
+  name: CommandPermissionsBoolExp
+  objectType: CommandPermissions
   dataConnectorName: postgres
-  dataConnectorObjectType: commands_arguments
+  dataConnectorObjectType: command_permissions
   comparableFields:
+    - fieldName: allowExecution
+      operators:
+        enableAll: true
+    - fieldName: argumentPresets
+      operators:
+        enableAll: true
     - fieldName: buildId
       operators:
         enableAll: true
     - fieldName: commandName
       operators:
         enableAll: true
-    - fieldName: name
+    - fieldName: kind
       operators:
         enableAll: true
     - fieldName: projectId
       operators:
         enableAll: true
+    - fieldName: role
+      operators:
+        enableAll: true
     - fieldName: subgraph
       operators:
         enableAll: true
-    - fieldName: type
+    - fieldName: version
       operators:
         enableAll: true
   graphql:
-    typeName: CommandsArgumentsBoolExp
+    typeName: CommandPermissionsBoolExp
 
 ---
 kind: Model
 version: v1
 definition:
-  name: CommandsArguments
-  objectType: CommandsArguments
+  name: CommandPermissions
+  objectType: CommandPermissions
   source:
     dataConnectorName: postgres
-    collection: commands_arguments
-  filterExpressionType: CommandsArgumentsBoolExp
+    collection: command_permissions
+  filterExpressionType: CommandPermissionsBoolExp
   orderableFields:
+    - fieldName: allowExecution
+      orderByDirections:
+        enableAll: true
+    - fieldName: argumentPresets
+      orderByDirections:
+        enableAll: true
     - fieldName: buildId
       orderByDirections:
         enableAll: true
     - fieldName: commandName
       orderByDirections:
         enableAll: true
-    - fieldName: name
+    - fieldName: kind
       orderByDirections:
         enableAll: true
     - fieldName: projectId
       orderByDirections:
         enableAll: true
+    - fieldName: role
+      orderByDirections:
+        enableAll: true
     - fieldName: subgraph
       orderByDirections:
         enableAll: true
-    - fieldName: type
+    - fieldName: version
       orderByDirections:
         enableAll: true
   graphql:
     selectMany:
-      queryRootField: commandsArguments
+      queryRootField: commandPermissions
     selectUniques:
-      - queryRootField: commandsArgumentsByCommandsArgumentsPkey
+      - queryRootField: commandPermissionsByCommandPermissionsPkey
         uniqueIdentifier:
           - buildId
           - commandName
-          - name
           - projectId
+          - role
           - subgraph
-    orderByExpressionType: CommandsArgumentsOrderBy
+    orderByExpressionType: CommandPermissionsOrderBy
 
 ---
 kind: ModelPermissions
 version: v1
 definition:
-  modelName: CommandsArguments
+  modelName: CommandPermissions
   permissions:
     - role: admin
       select:
@@ -145,7 +181,7 @@ kind: Relationship
 version: v1
 definition:
   name: build
-  sourceType: CommandsArguments
+  sourceType: CommandPermissions
   target:
     model:
       name: Builds
@@ -169,7 +205,7 @@ kind: Relationship
 version: v1
 definition:
   name: command
-  sourceType: CommandsArguments
+  sourceType: CommandPermissions
   target:
     model:
       name: Commands
@@ -205,7 +241,7 @@ kind: Relationship
 version: v1
 definition:
   name: subgraphByBuildIdAndProjectIdAndSubgraph
-  sourceType: CommandsArguments
+  sourceType: CommandPermissions
   target:
     model:
       name: Subgraphs

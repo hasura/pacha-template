@@ -6,8 +6,6 @@ definition:
   fields:
     - name: buildId
       type: Text!
-    - name: commandId
-      type: Text!
     - name: description
       type: Text
     - name: graphqlRootFieldKind
@@ -42,9 +40,6 @@ definition:
         buildId:
           column:
             name: build_id
-        commandId:
-          column:
-            name: command_id
         description:
           column:
             name: description
@@ -92,7 +87,6 @@ definition:
       output:
         allowedFields:
           - buildId
-          - commandId
           - description
           - graphqlRootFieldKind
           - graphqlRootFieldName
@@ -116,9 +110,6 @@ definition:
   dataConnectorObjectType: commands
   comparableFields:
     - fieldName: buildId
-      operators:
-        enableAll: true
-    - fieldName: commandId
       operators:
         enableAll: true
     - fieldName: description
@@ -174,9 +165,6 @@ definition:
     - fieldName: buildId
       orderByDirections:
         enableAll: true
-    - fieldName: commandId
-      orderByDirections:
-        enableAll: true
     - fieldName: description
       orderByDirections:
         enableAll: true
@@ -217,9 +205,12 @@ definition:
     selectMany:
       queryRootField: commands
     selectUniques:
-      - queryRootField: commandsByCommandId
+      - queryRootField: commandsByCommandsPkey
         uniqueIdentifier:
-          - commandId
+          - buildId
+          - name
+          - projectId
+          - subgraph
     orderByExpressionType: CommandsOrderBy
 
 ---
@@ -236,6 +227,42 @@ definition:
 kind: Relationship
 version: v1
 definition:
+  name: commandPermissions
+  sourceType: Commands
+  target:
+    model:
+      name: CommandPermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: commandName
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
   name: commandRelationships
   sourceType: Commands
   target:
@@ -245,10 +272,28 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: commandId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: targetCommandId
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: targetCommandName
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: targetCommandSubgraph
 
 ---
 kind: Relationship
@@ -317,8 +362,25 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: commandId
+          - fieldName: name
       target:
         modelField:
-          - fieldName: commandId
-
+          - fieldName: commandName
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId

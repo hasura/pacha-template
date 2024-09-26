@@ -15,6 +15,63 @@ definition:
     version: v0.1
     schema:
       scalar_types:
+        bool:
+          representation:
+            type: boolean
+          aggregate_functions:
+            bool_and:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+            bool_or:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+            every:
+              result_type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+        json:
+          aggregate_functions: {}
+          comparison_operators:
+            _in:
+              type: in
         text:
           representation:
             type: string
@@ -176,6 +233,48 @@ definition:
               type:
                 type: named
                 name: text
+        command_permissions:
+          fields:
+            allow_execution:
+              type:
+                type: named
+                name: bool
+            argument_presets:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+            build_id:
+              type:
+                type: named
+                name: text
+            command_name:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            role:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
         command_relationships:
           fields:
             build_id:
@@ -186,14 +285,22 @@ definition:
               type:
                 type: named
                 name: text
-            mapping_source_field:
+            mapping_source_fields:
               type:
-                type: named
-                name: text
-            mapping_target_argument:
+                type: array
+                element_type:
+                  type: nullable
+                  underlying_type:
+                    type: named
+                    name: text
+            mapping_target_arguments:
               type:
-                type: named
-                name: text
+                type: array
+                element_type:
+                  type: nullable
+                  underlying_type:
+                    type: named
+                    name: text
             name:
               type:
                 type: named
@@ -202,40 +309,22 @@ definition:
               type:
                 type: named
                 name: text
-            relationship_id:
+            source_object_type_name:
               type:
                 type: named
                 name: text
-            source:
-              type:
-                type: named
-                name: text
-            source_object_type_id:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
             subgraph:
               type:
                 type: named
                 name: text
-            target_command_id:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
             target_command_name:
               type:
                 type: named
                 name: text
             target_command_subgraph:
               type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
+                type: named
+                name: text
             version:
               type:
                 type: nullable
@@ -245,10 +334,6 @@ definition:
         commands:
           fields:
             build_id:
-              type:
-                type: named
-                name: text
-            command_id:
               type:
                 type: named
                 name: text
@@ -318,12 +403,10 @@ definition:
               type:
                 type: named
                 name: text
-            command_id:
+            command_name:
               type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
+                type: named
+                name: text
             name:
               type:
                 type: named
@@ -346,11 +429,13 @@ definition:
               type:
                 type: named
                 name: text
-            kind:
+            description:
               type:
-                type: named
-                name: text
-            model_id:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            kind:
               type:
                 type: named
                 name: text
@@ -358,16 +443,10 @@ definition:
               type:
                 type: named
                 name: text
-            object_type:
+            object_type_name:
               type:
                 type: named
                 name: text
-            object_type_id:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
             project_id:
               type:
                 type: named
@@ -400,6 +479,44 @@ definition:
                 underlying_type:
                   type: named
                   name: text
+        model_permissions:
+          fields:
+            build_id:
+              type:
+                type: named
+                name: text
+            filter:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: json
+            kind:
+              type:
+                type: named
+                name: text
+            model_name:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            role:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
         model_relationships:
           fields:
             build_id:
@@ -410,14 +527,22 @@ definition:
               type:
                 type: named
                 name: text
-            mapping_source_field:
+            mapping_source_fields:
               type:
-                type: named
-                name: text
-            mapping_target_field:
+                type: array
+                element_type:
+                  type: nullable
+                  underlying_type:
+                    type: named
+                    name: text
+            mapping_target_fields:
               type:
-                type: named
-                name: text
+                type: array
+                element_type:
+                  type: nullable
+                  underlying_type:
+                    type: named
+                    name: text
             name:
               type:
                 type: named
@@ -426,35 +551,23 @@ definition:
               type:
                 type: named
                 name: text
-            relationship_id:
+            source_object_type_name:
               type:
                 type: named
                 name: text
-            source:
-              type:
-                type: named
-                name: text
-            source_object_type_id:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
             subgraph:
               type:
                 type: named
                 name: text
-            target_model_id:
-              type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
             target_model_name:
               type:
                 type: named
                 name: text
             target_model_relationship_type:
+              type:
+                type: named
+                name: text
+            target_model_subgraph:
               type:
                 type: named
                 name: text
@@ -470,12 +583,10 @@ definition:
               type:
                 type: named
                 name: text
-            model_id:
+            model_name:
               type:
-                type: nullable
-                underlying_type:
-                  type: named
-                  name: text
+                type: named
+                name: text
             project_id:
               type:
                 type: named
@@ -496,6 +607,46 @@ definition:
                   underlying_type:
                     type: named
                     name: text
+        object_type_permissions:
+          fields:
+            allowed_fields:
+              type:
+                type: array
+                element_type:
+                  type: nullable
+                  underlying_type:
+                    type: named
+                    name: text
+            build_id:
+              type:
+                type: named
+                name: text
+            kind:
+              type:
+                type: named
+                name: text
+            object_type_name:
+              type:
+                type: named
+                name: text
+            project_id:
+              type:
+                type: named
+                name: text
+            role:
+              type:
+                type: named
+                name: text
+            subgraph:
+              type:
+                type: named
+                name: text
+            version:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
         object_types:
           fields:
             build_id:
@@ -526,10 +677,6 @@ definition:
               type:
                 type: named
                 name: text
-            object_type_id:
-              type:
-                type: named
-                name: text
             project_id:
               type:
                 type: named
@@ -550,16 +697,20 @@ definition:
               type:
                 type: named
                 name: text
-            name:
-              type:
-                type: named
-                name: text
-            object_type_id:
+            description:
               type:
                 type: nullable
                 underlying_type:
                   type: named
                   name: text
+            name:
+              type:
+                type: named
+                name: text
+            object_type_name:
+              type:
+                type: named
+                name: text
             project_id:
               type:
                 type: named
@@ -638,13 +789,47 @@ definition:
               column_mapping:
                 project_id: project_id
               foreign_collection: projects
+        - name: command_permissions
+          arguments: {}
+          type: command_permissions
+          uniqueness_constraints:
+            command_permissions_pkey:
+              unique_columns:
+                - build_id
+                - command_name
+                - project_id
+                - role
+                - subgraph
+          foreign_keys:
+            command_permissions_project_id_build_id_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: project_id
+              foreign_collection: builds
+            command_permissions_project_id_build_id_subgraph_command_n_fkey:
+              column_mapping:
+                build_id: project_id
+                command_name: build_id
+                project_id: subgraph
+                subgraph: name
+              foreign_collection: commands
+            command_permissions_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: subgraph
+                project_id: build_id
+                subgraph: project_id
+              foreign_collection: subgraphs
         - name: command_relationships
           arguments: {}
           type: command_relationships
           uniqueness_constraints:
             command_relationships_pkey:
               unique_columns:
-                - relationship_id
+                - build_id
+                - name
+                - project_id
+                - source_object_type_name
+                - subgraph
           foreign_keys:
             command_relationships_project_id_build_id_fkey:
               column_mapping:
@@ -653,17 +838,23 @@ definition:
               foreign_collection: builds
             command_relationships_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: build_id
-                project_id: project_id
+                build_id: project_id
+                project_id: build_id
                 subgraph: subgraph
               foreign_collection: subgraphs
-            command_relationships_source_object_type_id_fkey:
+            command_relationships_project_id_build_id_subgraph_source__fkey:
               column_mapping:
-                source_object_type_id: object_type_id
+                build_id: subgraph
+                project_id: project_id
+                source_object_type_name: build_id
+                subgraph: name
               foreign_collection: object_types
-            command_relationships_target_command_id_fkey:
+            command_relationships_project_id_build_id_target_command_s_fkey:
               column_mapping:
-                target_command_id: command_id
+                build_id: project_id
+                project_id: subgraph
+                target_command_name: build_id
+                target_command_subgraph: name
               foreign_collection: commands
         - name: commands
           arguments: {}
@@ -671,7 +862,10 @@ definition:
           uniqueness_constraints:
             commands_pkey:
               unique_columns:
-                - command_id
+                - build_id
+                - name
+                - project_id
+                - subgraph
           foreign_keys:
             commands_project_id_build_id_fkey:
               column_mapping:
@@ -680,24 +874,34 @@ definition:
               foreign_collection: builds
             commands_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: build_id
-                project_id: subgraph
-                subgraph: project_id
+                build_id: project_id
+                project_id: build_id
+                subgraph: subgraph
               foreign_collection: subgraphs
         - name: commands_arguments
           arguments: {}
           type: commands_arguments
-          uniqueness_constraints: {}
+          uniqueness_constraints:
+            commands_arguments_pkey:
+              unique_columns:
+                - build_id
+                - command_name
+                - name
+                - project_id
+                - subgraph
           foreign_keys:
-            commands_arguments_command_id_fkey:
-              column_mapping:
-                command_id: command_id
-              foreign_collection: commands
             commands_arguments_project_id_build_id_fkey:
               column_mapping:
                 build_id: project_id
                 project_id: build_id
               foreign_collection: builds
+            commands_arguments_project_id_build_id_subgraph_command_na_fkey:
+              column_mapping:
+                build_id: name
+                command_name: project_id
+                project_id: subgraph
+                subgraph: build_id
+              foreign_collection: commands
             commands_arguments_project_id_build_id_subgraph_fkey:
               column_mapping:
                 build_id: subgraph
@@ -710,35 +914,75 @@ definition:
           uniqueness_constraints:
             model_pkey:
               unique_columns:
-                - model_id
+                - build_id
+                - name
+                - project_id
+                - subgraph
           foreign_keys:
-            model_object_type_id_fkey:
-              column_mapping:
-                object_type_id: object_type_id
-              foreign_collection: object_types
             model_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            model_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: subgraph
+                subgraph: build_id
+              foreign_collection: subgraphs
+            model_project_id_build_id_subgraph_object_type_name_fkey:
+              column_mapping:
+                build_id: project_id
+                object_type_name: build_id
+                project_id: name
+                subgraph: subgraph
+              foreign_collection: object_types
+        - name: model_permissions
+          arguments: {}
+          type: model_permissions
+          uniqueness_constraints:
+            model_permissions_pkey:
+              unique_columns:
+                - build_id
+                - model_name
+                - project_id
+                - role
+                - subgraph
+          foreign_keys:
+            model_permissions_project_id_build_id_fkey:
               column_mapping:
                 build_id: build_id
                 project_id: project_id
               foreign_collection: builds
-            model_project_id_build_id_subgraph_fkey:
+            model_permissions_project_id_build_id_subgraph_fkey:
               column_mapping:
                 build_id: build_id
+                project_id: subgraph
+                subgraph: project_id
+              foreign_collection: subgraphs
+            model_permissions_project_id_build_id_subgraph_model_name_fkey:
+              column_mapping:
+                build_id: name
+                model_name: build_id
                 project_id: project_id
                 subgraph: subgraph
-              foreign_collection: subgraphs
+              foreign_collection: model
         - name: model_relationships
           arguments: {}
           type: model_relationships
           uniqueness_constraints:
             model_relationships_pkey:
               unique_columns:
-                - relationship_id
+                - build_id
+                - name
+                - project_id
+                - source_object_type_name
+                - subgraph
           foreign_keys:
             model_relationships_project_id_build_id_fkey:
               column_mapping:
-                build_id: project_id
-                project_id: build_id
+                build_id: build_id
+                project_id: project_id
               foreign_collection: builds
             model_relationships_project_id_build_id_subgraph_fkey:
               column_mapping:
@@ -746,23 +990,25 @@ definition:
                 project_id: project_id
                 subgraph: subgraph
               foreign_collection: subgraphs
-            model_relationships_source_object_type_id_fkey:
+            model_relationships_project_id_build_id_subgraph_source_ob_fkey:
               column_mapping:
-                source_object_type_id: object_type_id
+                build_id: name
+                project_id: project_id
+                source_object_type_name: subgraph
+                subgraph: build_id
               foreign_collection: object_types
-            model_relationships_target_model_id_fkey:
+            model_relationships_project_id_build_id_target_model_subgr_fkey:
               column_mapping:
-                target_model_id: model_id
+                build_id: name
+                project_id: project_id
+                target_model_name: build_id
+                target_model_subgraph: subgraph
               foreign_collection: model
         - name: model_uniques
           arguments: {}
           type: model_uniques
           uniqueness_constraints: {}
           foreign_keys:
-            model_uniques_model_id_fkey:
-              column_mapping:
-                model_id: model_id
-              foreign_collection: model
             model_uniques_project_id_build_id_fkey:
               column_mapping:
                 build_id: project_id
@@ -774,13 +1020,53 @@ definition:
                 project_id: project_id
                 subgraph: subgraph
               foreign_collection: subgraphs
+            model_uniques_project_id_build_id_subgraph_model_name_fkey:
+              column_mapping:
+                build_id: subgraph
+                model_name: project_id
+                project_id: build_id
+                subgraph: name
+              foreign_collection: model
+        - name: object_type_permissions
+          arguments: {}
+          type: object_type_permissions
+          uniqueness_constraints:
+            object_type_permissions_pkey:
+              unique_columns:
+                - build_id
+                - object_type_name
+                - project_id
+                - role
+                - subgraph
+          foreign_keys:
+            object_type_permissions_project_id_build_id_fkey:
+              column_mapping:
+                build_id: project_id
+                project_id: build_id
+              foreign_collection: builds
+            object_type_permissions_project_id_build_id_subgraph_fkey:
+              column_mapping:
+                build_id: build_id
+                project_id: subgraph
+                subgraph: project_id
+              foreign_collection: subgraphs
+            object_type_permissions_project_id_build_id_subgraph_objec_fkey:
+              column_mapping:
+                build_id: subgraph
+                object_type_name: name
+                project_id: project_id
+                subgraph: build_id
+              foreign_collection: object_types
         - name: object_types
           arguments: {}
           type: object_types
           uniqueness_constraints:
             object_types_pkey:
               unique_columns:
-                - object_type_id
+                - build_id
+                - name
+                - project_id
+                - subgraph
           foreign_keys:
             object_types_project_id_build_id_fkey:
               column_mapping:
@@ -790,18 +1076,21 @@ definition:
             object_types_project_id_build_id_subgraph_fkey:
               column_mapping:
                 build_id: project_id
-                project_id: subgraph
-                subgraph: build_id
+                project_id: build_id
+                subgraph: subgraph
               foreign_collection: subgraphs
         - name: object_types_fields
           arguments: {}
           type: object_types_fields
-          uniqueness_constraints: {}
+          uniqueness_constraints:
+            object_types_fields_pkey:
+              unique_columns:
+                - build_id
+                - name
+                - object_type_name
+                - project_id
+                - subgraph
           foreign_keys:
-            object_types_fields_object_type_id_fkey:
-              column_mapping:
-                object_type_id: object_type_id
-              foreign_collection: object_types
             object_types_fields_project_id_build_id_fkey:
               column_mapping:
                 build_id: project_id
@@ -809,10 +1098,17 @@ definition:
               foreign_collection: builds
             object_types_fields_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: project_id
+                build_id: subgraph
                 project_id: build_id
-                subgraph: subgraph
+                subgraph: project_id
               foreign_collection: subgraphs
+            object_types_fields_project_id_build_id_subgraph_object_ty_fkey:
+              column_mapping:
+                build_id: project_id
+                object_type_name: build_id
+                project_id: subgraph
+                subgraph: name
+              foreign_collection: object_types
         - name: projects
           arguments: {}
           type: projects
@@ -824,7 +1120,13 @@ definition:
         - name: scalar_types
           arguments: {}
           type: scalar_types
-          uniqueness_constraints: {}
+          uniqueness_constraints:
+            scalar_types_pkey:
+              unique_columns:
+                - build_id
+                - name
+                - project_id
+                - subgraph
           foreign_keys:
             scalar_types_project_id_build_id_fkey:
               column_mapping:
@@ -833,9 +1135,9 @@ definition:
               foreign_collection: builds
             scalar_types_project_id_build_id_subgraph_fkey:
               column_mapping:
-                build_id: project_id
+                build_id: build_id
                 project_id: subgraph
-                subgraph: build_id
+                subgraph: project_id
               foreign_collection: subgraphs
         - name: subgraphs
           arguments: {}

@@ -6,16 +6,14 @@ definition:
   fields:
     - name: buildId
       type: Text!
+    - name: description
+      type: Text
     - name: kind
-      type: Text!
-    - name: modelId
       type: Text!
     - name: name
       type: Text!
-    - name: objectType
+    - name: objectTypeName
       type: Text!
-    - name: objectTypeId
-      type: Text
     - name: projectId
       type: Text!
     - name: selectManyQueryRootField
@@ -38,21 +36,18 @@ definition:
         buildId:
           column:
             name: build_id
+        description:
+          column:
+            name: description
         kind:
           column:
             name: kind
-        modelId:
-          column:
-            name: model_id
         name:
           column:
             name: name
-        objectType:
+        objectTypeName:
           column:
-            name: object_type
-        objectTypeId:
-          column:
-            name: object_type_id
+            name: object_type_name
         projectId:
           column:
             name: project_id
@@ -82,11 +77,10 @@ definition:
       output:
         allowedFields:
           - buildId
+          - description
           - kind
-          - modelId
           - name
-          - objectType
-          - objectTypeId
+          - objectTypeName
           - projectId
           - selectManyQueryRootField
           - sourceCollection
@@ -106,19 +100,16 @@ definition:
     - fieldName: buildId
       operators:
         enableAll: true
-    - fieldName: kind
+    - fieldName: description
       operators:
         enableAll: true
-    - fieldName: modelId
+    - fieldName: kind
       operators:
         enableAll: true
     - fieldName: name
       operators:
         enableAll: true
-    - fieldName: objectType
-      operators:
-        enableAll: true
-    - fieldName: objectTypeId
+    - fieldName: objectTypeName
       operators:
         enableAll: true
     - fieldName: projectId
@@ -156,19 +147,16 @@ definition:
     - fieldName: buildId
       orderByDirections:
         enableAll: true
-    - fieldName: kind
+    - fieldName: description
       orderByDirections:
         enableAll: true
-    - fieldName: modelId
+    - fieldName: kind
       orderByDirections:
         enableAll: true
     - fieldName: name
       orderByDirections:
         enableAll: true
-    - fieldName: objectType
-      orderByDirections:
-        enableAll: true
-    - fieldName: objectTypeId
+    - fieldName: objectTypeName
       orderByDirections:
         enableAll: true
     - fieldName: projectId
@@ -193,9 +181,12 @@ definition:
     selectMany:
       queryRootField: model
     selectUniques:
-      - queryRootField: modelByModelId
+      - queryRootField: modelByModelPkey
         uniqueIdentifier:
-          - modelId
+          - buildId
+          - name
+          - projectId
+          - subgraph
     orderByExpressionType: ModelOrderBy
 
 ---
@@ -207,24 +198,6 @@ definition:
     - role: admin
       select:
         filter: null
-
----
-kind: Relationship
-version: v1
-definition:
-  name: objectTypeByObjectTypeId
-  sourceType: Model
-  target:
-    model:
-      name: ObjectTypes
-      relationshipType: Object
-  mapping:
-    - source:
-        fieldPath:
-          - fieldName: objectTypeId
-      target:
-        modelField:
-          - fieldName: objectTypeId
 
 ---
 kind: Relationship
@@ -284,6 +257,78 @@ definition:
 kind: Relationship
 version: v1
 definition:
+  name: objectType
+  sourceType: Model
+  target:
+    model:
+      name: ObjectTypes
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: objectTypeName
+      target:
+        modelField:
+          - fieldName: name
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: modelPermissions
+  sourceType: Model
+  target:
+    model:
+      name: ModelPermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: modelName
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+
+---
+kind: Relationship
+version: v1
+definition:
   name: modelRelationships
   sourceType: Model
   target:
@@ -293,10 +338,28 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: modelId
+          - fieldName: name
       target:
         modelField:
-          - fieldName: targetModelId
+          - fieldName: targetModelName
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: targetModelSubgraph
 
 ---
 kind: Relationship
@@ -311,8 +374,25 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: modelId
+          - fieldName: subgraph
       target:
         modelField:
-          - fieldName: modelId
-
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: modelName

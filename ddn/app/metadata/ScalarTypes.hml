@@ -132,7 +132,13 @@ definition:
   graphql:
     selectMany:
       queryRootField: scalarTypes
-    selectUniques: []
+    selectUniques:
+      - queryRootField: scalarTypesByScalarTypesPkey
+        uniqueIdentifier:
+          - buildId
+          - name
+          - projectId
+          - subgraph
     orderByExpressionType: ScalarTypesOrderBy
 
 ---
@@ -198,4 +204,3 @@ definition:
       target:
         modelField:
           - fieldName: subgraph
-

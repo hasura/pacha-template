@@ -135,6 +135,30 @@ definition:
 kind: Relationship
 version: v1
 definition:
+  name: commandPermissions
+  sourceType: Builds
+  target:
+    model:
+      name: CommandPermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
   name: commandRelationships
   sourceType: Builds
   target:
@@ -168,16 +192,16 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: projectId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: projectId
+          - fieldName: buildId
     - source:
         fieldPath:
-          - fieldName: buildId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: buildId
+          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -192,16 +216,16 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: projectId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: projectId
+          - fieldName: buildId
     - source:
         fieldPath:
-          - fieldName: buildId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: buildId
+          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -231,6 +255,30 @@ definition:
 kind: Relationship
 version: v1
 definition:
+  name: modelPermissions
+  sourceType: Builds
+  target:
+    model:
+      name: ModelPermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
   name: modelRelationships
   sourceType: Builds
   target:
@@ -240,16 +288,16 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: projectId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: projectId
+          - fieldName: buildId
     - source:
         fieldPath:
-          - fieldName: buildId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: buildId
+          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -264,16 +312,40 @@ definition:
   mapping:
     - source:
         fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
           - fieldName: projectId
       target:
         modelField:
           - fieldName: projectId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: objectTypePermissions
+  sourceType: Builds
+  target:
+    model:
+      name: ObjectTypePermissions
+      relationshipType: Array
+  mapping:
     - source:
         fieldPath:
           - fieldName: buildId
       target:
         modelField:
           - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -312,16 +384,16 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: projectId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: projectId
+          - fieldName: buildId
     - source:
         fieldPath:
-          - fieldName: buildId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: buildId
+          - fieldName: projectId
 
 ---
 kind: Relationship
@@ -346,4 +418,3 @@ definition:
       target:
         modelField:
           - fieldName: projectId
-

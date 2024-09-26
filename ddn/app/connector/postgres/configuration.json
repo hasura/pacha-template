@@ -70,6 +70,123 @@
         },
         "description": null
       },
+      "command_permissions": {
+        "schemaName": "public",
+        "tableName": "command_permissions",
+        "columns": {
+          "allow_execution": {
+            "name": "allow_execution",
+            "type": {
+              "scalarType": "bool"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "argument_presets": {
+            "name": "argument_presets",
+            "type": {
+              "scalarType": "json"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "build_id": {
+            "name": "build_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "command_name": {
+            "name": "command_name",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "kind": {
+            "name": "kind",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "project_id": {
+            "name": "project_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "role": {
+            "name": "role",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "subgraph": {
+            "name": "subgraph",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "version": {
+            "name": "version",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "command_permissions_pkey": [
+            "build_id",
+            "command_name",
+            "project_id",
+            "role",
+            "subgraph"
+          ]
+        },
+        "foreignRelations": {
+          "command_permissions_project_id_build_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "builds",
+            "columnMapping": {
+              "build_id": "build_id",
+              "project_id": "project_id"
+            }
+          },
+          "command_permissions_project_id_build_id_subgraph_command_n_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "commands",
+            "columnMapping": {
+              "build_id": "project_id",
+              "command_name": "build_id",
+              "project_id": "subgraph",
+              "subgraph": "name"
+            }
+          },
+          "command_permissions_project_id_build_id_subgraph_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "subgraphs",
+            "columnMapping": {
+              "build_id": "subgraph",
+              "project_id": "build_id",
+              "subgraph": "project_id"
+            }
+          }
+        },
+        "description": null
+      },
       "command_relationships": {
         "schemaName": "public",
         "tableName": "command_relationships",
@@ -90,18 +207,22 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "mapping_source_field": {
-            "name": "mapping_source_field",
+          "mapping_source_fields": {
+            "name": "mapping_source_fields",
             "type": {
-              "scalarType": "text"
+              "arrayType": {
+                "scalarType": "text"
+              }
             },
             "nullable": "nonNullable",
             "description": null
           },
-          "mapping_target_argument": {
-            "name": "mapping_target_argument",
+          "mapping_target_arguments": {
+            "name": "mapping_target_arguments",
             "type": {
-              "scalarType": "text"
+              "arrayType": {
+                "scalarType": "text"
+              }
             },
             "nullable": "nonNullable",
             "description": null
@@ -122,28 +243,12 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "relationship_id": {
-            "name": "relationship_id",
+          "source_object_type_name": {
+            "name": "source_object_type_name",
             "type": {
               "scalarType": "text"
             },
             "nullable": "nonNullable",
-            "description": null
-          },
-          "source": {
-            "name": "source",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nonNullable",
-            "description": null
-          },
-          "source_object_type_id": {
-            "name": "source_object_type_id",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nullable",
             "description": null
           },
           "subgraph": {
@@ -152,14 +257,6 @@
               "scalarType": "text"
             },
             "nullable": "nonNullable",
-            "description": null
-          },
-          "target_command_id": {
-            "name": "target_command_id",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nullable",
             "description": null
           },
           "target_command_name": {
@@ -175,7 +272,7 @@
             "type": {
               "scalarType": "text"
             },
-            "nullable": "nullable",
+            "nullable": "nonNullable",
             "description": null
           },
           "version": {
@@ -189,7 +286,11 @@
         },
         "uniquenessConstraints": {
           "command_relationships_pkey": [
-            "relationship_id"
+            "build_id",
+            "name",
+            "project_id",
+            "source_object_type_name",
+            "subgraph"
           ]
         },
         "foreignRelations": {
@@ -205,23 +306,29 @@
             "foreignSchema": "public",
             "foreignTable": "subgraphs",
             "columnMapping": {
-              "build_id": "build_id",
-              "project_id": "project_id",
+              "build_id": "project_id",
+              "project_id": "build_id",
               "subgraph": "subgraph"
             }
           },
-          "command_relationships_source_object_type_id_fkey": {
+          "command_relationships_project_id_build_id_subgraph_source__fkey": {
             "foreignSchema": "public",
             "foreignTable": "object_types",
             "columnMapping": {
-              "source_object_type_id": "object_type_id"
+              "build_id": "subgraph",
+              "project_id": "project_id",
+              "source_object_type_name": "build_id",
+              "subgraph": "name"
             }
           },
-          "command_relationships_target_command_id_fkey": {
+          "command_relationships_project_id_build_id_target_command_s_fkey": {
             "foreignSchema": "public",
             "foreignTable": "commands",
             "columnMapping": {
-              "target_command_id": "command_id"
+              "build_id": "project_id",
+              "project_id": "subgraph",
+              "target_command_name": "build_id",
+              "target_command_subgraph": "name"
             }
           }
         },
@@ -233,14 +340,6 @@
         "columns": {
           "build_id": {
             "name": "build_id",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nonNullable",
-            "description": null
-          },
-          "command_id": {
-            "name": "command_id",
             "type": {
               "scalarType": "text"
             },
@@ -346,7 +445,10 @@
         },
         "uniquenessConstraints": {
           "commands_pkey": [
-            "command_id"
+            "build_id",
+            "name",
+            "project_id",
+            "subgraph"
           ]
         },
         "foreignRelations": {
@@ -362,9 +464,9 @@
             "foreignSchema": "public",
             "foreignTable": "subgraphs",
             "columnMapping": {
-              "build_id": "build_id",
-              "project_id": "subgraph",
-              "subgraph": "project_id"
+              "build_id": "project_id",
+              "project_id": "build_id",
+              "subgraph": "subgraph"
             }
           }
         },
@@ -382,12 +484,12 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "command_id": {
-            "name": "command_id",
+          "command_name": {
+            "name": "command_name",
             "type": {
               "scalarType": "text"
             },
-            "nullable": "nullable",
+            "nullable": "nonNullable",
             "description": null
           },
           "name": {
@@ -423,21 +525,32 @@
             "description": null
           }
         },
-        "uniquenessConstraints": {},
+        "uniquenessConstraints": {
+          "commands_arguments_pkey": [
+            "build_id",
+            "command_name",
+            "name",
+            "project_id",
+            "subgraph"
+          ]
+        },
         "foreignRelations": {
-          "commands_arguments_command_id_fkey": {
-            "foreignSchema": "public",
-            "foreignTable": "commands",
-            "columnMapping": {
-              "command_id": "command_id"
-            }
-          },
           "commands_arguments_project_id_build_id_fkey": {
             "foreignSchema": "public",
             "foreignTable": "builds",
             "columnMapping": {
               "build_id": "project_id",
               "project_id": "build_id"
+            }
+          },
+          "commands_arguments_project_id_build_id_subgraph_command_na_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "commands",
+            "columnMapping": {
+              "build_id": "name",
+              "command_name": "project_id",
+              "project_id": "subgraph",
+              "subgraph": "build_id"
             }
           },
           "commands_arguments_project_id_build_id_subgraph_fkey": {
@@ -464,16 +577,16 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "kind": {
-            "name": "kind",
+          "description": {
+            "name": "description",
             "type": {
               "scalarType": "text"
             },
-            "nullable": "nonNullable",
+            "nullable": "nullable",
             "description": null
           },
-          "model_id": {
-            "name": "model_id",
+          "kind": {
+            "name": "kind",
             "type": {
               "scalarType": "text"
             },
@@ -488,20 +601,12 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "object_type": {
-            "name": "object_type",
+          "object_type_name": {
+            "name": "object_type_name",
             "type": {
               "scalarType": "text"
             },
             "nullable": "nonNullable",
-            "description": null
-          },
-          "object_type_id": {
-            "name": "object_type_id",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nullable",
             "description": null
           },
           "project_id": {
@@ -555,18 +660,123 @@
         },
         "uniquenessConstraints": {
           "model_pkey": [
-            "model_id"
+            "build_id",
+            "name",
+            "project_id",
+            "subgraph"
           ]
         },
         "foreignRelations": {
-          "model_object_type_id_fkey": {
+          "model_project_id_build_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "builds",
+            "columnMapping": {
+              "build_id": "project_id",
+              "project_id": "build_id"
+            }
+          },
+          "model_project_id_build_id_subgraph_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "subgraphs",
+            "columnMapping": {
+              "build_id": "project_id",
+              "project_id": "subgraph",
+              "subgraph": "build_id"
+            }
+          },
+          "model_project_id_build_id_subgraph_object_type_name_fkey": {
             "foreignSchema": "public",
             "foreignTable": "object_types",
             "columnMapping": {
-              "object_type_id": "object_type_id"
+              "build_id": "project_id",
+              "object_type_name": "build_id",
+              "project_id": "name",
+              "subgraph": "subgraph"
             }
+          }
+        },
+        "description": null
+      },
+      "model_permissions": {
+        "schemaName": "public",
+        "tableName": "model_permissions",
+        "columns": {
+          "build_id": {
+            "name": "build_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
           },
-          "model_project_id_build_id_fkey": {
+          "filter": {
+            "name": "filter",
+            "type": {
+              "scalarType": "json"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
+          "kind": {
+            "name": "kind",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "model_name": {
+            "name": "model_name",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "project_id": {
+            "name": "project_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "role": {
+            "name": "role",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "subgraph": {
+            "name": "subgraph",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "version": {
+            "name": "version",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "model_permissions_pkey": [
+            "build_id",
+            "model_name",
+            "project_id",
+            "role",
+            "subgraph"
+          ]
+        },
+        "foreignRelations": {
+          "model_permissions_project_id_build_id_fkey": {
             "foreignSchema": "public",
             "foreignTable": "builds",
             "columnMapping": {
@@ -574,11 +784,21 @@
               "project_id": "project_id"
             }
           },
-          "model_project_id_build_id_subgraph_fkey": {
+          "model_permissions_project_id_build_id_subgraph_fkey": {
             "foreignSchema": "public",
             "foreignTable": "subgraphs",
             "columnMapping": {
               "build_id": "build_id",
+              "project_id": "subgraph",
+              "subgraph": "project_id"
+            }
+          },
+          "model_permissions_project_id_build_id_subgraph_model_name_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "model",
+            "columnMapping": {
+              "build_id": "name",
+              "model_name": "build_id",
               "project_id": "project_id",
               "subgraph": "subgraph"
             }
@@ -606,18 +826,22 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "mapping_source_field": {
-            "name": "mapping_source_field",
+          "mapping_source_fields": {
+            "name": "mapping_source_fields",
             "type": {
-              "scalarType": "text"
+              "arrayType": {
+                "scalarType": "text"
+              }
             },
             "nullable": "nonNullable",
             "description": null
           },
-          "mapping_target_field": {
-            "name": "mapping_target_field",
+          "mapping_target_fields": {
+            "name": "mapping_target_fields",
             "type": {
-              "scalarType": "text"
+              "arrayType": {
+                "scalarType": "text"
+              }
             },
             "nullable": "nonNullable",
             "description": null
@@ -638,28 +862,12 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "relationship_id": {
-            "name": "relationship_id",
+          "source_object_type_name": {
+            "name": "source_object_type_name",
             "type": {
               "scalarType": "text"
             },
             "nullable": "nonNullable",
-            "description": null
-          },
-          "source": {
-            "name": "source",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nonNullable",
-            "description": null
-          },
-          "source_object_type_id": {
-            "name": "source_object_type_id",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nullable",
             "description": null
           },
           "subgraph": {
@@ -668,14 +876,6 @@
               "scalarType": "text"
             },
             "nullable": "nonNullable",
-            "description": null
-          },
-          "target_model_id": {
-            "name": "target_model_id",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nullable",
             "description": null
           },
           "target_model_name": {
@@ -694,6 +894,14 @@
             "nullable": "nonNullable",
             "description": null
           },
+          "target_model_subgraph": {
+            "name": "target_model_subgraph",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
           "version": {
             "name": "version",
             "type": {
@@ -705,7 +913,11 @@
         },
         "uniquenessConstraints": {
           "model_relationships_pkey": [
-            "relationship_id"
+            "build_id",
+            "name",
+            "project_id",
+            "source_object_type_name",
+            "subgraph"
           ]
         },
         "foreignRelations": {
@@ -713,8 +925,8 @@
             "foreignSchema": "public",
             "foreignTable": "builds",
             "columnMapping": {
-              "build_id": "project_id",
-              "project_id": "build_id"
+              "build_id": "build_id",
+              "project_id": "project_id"
             }
           },
           "model_relationships_project_id_build_id_subgraph_fkey": {
@@ -726,18 +938,24 @@
               "subgraph": "subgraph"
             }
           },
-          "model_relationships_source_object_type_id_fkey": {
+          "model_relationships_project_id_build_id_subgraph_source_ob_fkey": {
             "foreignSchema": "public",
             "foreignTable": "object_types",
             "columnMapping": {
-              "source_object_type_id": "object_type_id"
+              "build_id": "name",
+              "project_id": "project_id",
+              "source_object_type_name": "subgraph",
+              "subgraph": "build_id"
             }
           },
-          "model_relationships_target_model_id_fkey": {
+          "model_relationships_project_id_build_id_target_model_subgr_fkey": {
             "foreignSchema": "public",
             "foreignTable": "model",
             "columnMapping": {
-              "target_model_id": "model_id"
+              "build_id": "name",
+              "project_id": "project_id",
+              "target_model_name": "build_id",
+              "target_model_subgraph": "subgraph"
             }
           }
         },
@@ -755,12 +973,12 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "model_id": {
-            "name": "model_id",
+          "model_name": {
+            "name": "model_name",
             "type": {
               "scalarType": "text"
             },
-            "nullable": "nullable",
+            "nullable": "nonNullable",
             "description": null
           },
           "project_id": {
@@ -800,13 +1018,6 @@
         },
         "uniquenessConstraints": {},
         "foreignRelations": {
-          "model_uniques_model_id_fkey": {
-            "foreignSchema": "public",
-            "foreignTable": "model",
-            "columnMapping": {
-              "model_id": "model_id"
-            }
-          },
           "model_uniques_project_id_build_id_fkey": {
             "foreignSchema": "public",
             "foreignTable": "builds",
@@ -822,6 +1033,127 @@
               "build_id": "build_id",
               "project_id": "project_id",
               "subgraph": "subgraph"
+            }
+          },
+          "model_uniques_project_id_build_id_subgraph_model_name_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "model",
+            "columnMapping": {
+              "build_id": "subgraph",
+              "model_name": "project_id",
+              "project_id": "build_id",
+              "subgraph": "name"
+            }
+          }
+        },
+        "description": null
+      },
+      "object_type_permissions": {
+        "schemaName": "public",
+        "tableName": "object_type_permissions",
+        "columns": {
+          "allowed_fields": {
+            "name": "allowed_fields",
+            "type": {
+              "arrayType": {
+                "scalarType": "text"
+              }
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "build_id": {
+            "name": "build_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "kind": {
+            "name": "kind",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "object_type_name": {
+            "name": "object_type_name",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "project_id": {
+            "name": "project_id",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "role": {
+            "name": "role",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "subgraph": {
+            "name": "subgraph",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nonNullable",
+            "description": null
+          },
+          "version": {
+            "name": "version",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          }
+        },
+        "uniquenessConstraints": {
+          "object_type_permissions_pkey": [
+            "build_id",
+            "object_type_name",
+            "project_id",
+            "role",
+            "subgraph"
+          ]
+        },
+        "foreignRelations": {
+          "object_type_permissions_project_id_build_id_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "builds",
+            "columnMapping": {
+              "build_id": "project_id",
+              "project_id": "build_id"
+            }
+          },
+          "object_type_permissions_project_id_build_id_subgraph_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "subgraphs",
+            "columnMapping": {
+              "build_id": "build_id",
+              "project_id": "subgraph",
+              "subgraph": "project_id"
+            }
+          },
+          "object_type_permissions_project_id_build_id_subgraph_objec_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "object_types",
+            "columnMapping": {
+              "build_id": "subgraph",
+              "object_type_name": "name",
+              "project_id": "project_id",
+              "subgraph": "build_id"
             }
           }
         },
@@ -879,14 +1211,6 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "object_type_id": {
-            "name": "object_type_id",
-            "type": {
-              "scalarType": "text"
-            },
-            "nullable": "nonNullable",
-            "description": null
-          },
           "project_id": {
             "name": "project_id",
             "type": {
@@ -914,7 +1238,10 @@
         },
         "uniquenessConstraints": {
           "object_types_pkey": [
-            "object_type_id"
+            "build_id",
+            "name",
+            "project_id",
+            "subgraph"
           ]
         },
         "foreignRelations": {
@@ -931,8 +1258,8 @@
             "foreignTable": "subgraphs",
             "columnMapping": {
               "build_id": "project_id",
-              "project_id": "subgraph",
-              "subgraph": "build_id"
+              "project_id": "build_id",
+              "subgraph": "subgraph"
             }
           }
         },
@@ -950,6 +1277,14 @@
             "nullable": "nonNullable",
             "description": null
           },
+          "description": {
+            "name": "description",
+            "type": {
+              "scalarType": "text"
+            },
+            "nullable": "nullable",
+            "description": null
+          },
           "name": {
             "name": "name",
             "type": {
@@ -958,12 +1293,12 @@
             "nullable": "nonNullable",
             "description": null
           },
-          "object_type_id": {
-            "name": "object_type_id",
+          "object_type_name": {
+            "name": "object_type_name",
             "type": {
               "scalarType": "text"
             },
-            "nullable": "nullable",
+            "nullable": "nonNullable",
             "description": null
           },
           "project_id": {
@@ -991,15 +1326,16 @@
             "description": null
           }
         },
-        "uniquenessConstraints": {},
+        "uniquenessConstraints": {
+          "object_types_fields_pkey": [
+            "build_id",
+            "name",
+            "object_type_name",
+            "project_id",
+            "subgraph"
+          ]
+        },
         "foreignRelations": {
-          "object_types_fields_object_type_id_fkey": {
-            "foreignSchema": "public",
-            "foreignTable": "object_types",
-            "columnMapping": {
-              "object_type_id": "object_type_id"
-            }
-          },
           "object_types_fields_project_id_build_id_fkey": {
             "foreignSchema": "public",
             "foreignTable": "builds",
@@ -1012,9 +1348,19 @@
             "foreignSchema": "public",
             "foreignTable": "subgraphs",
             "columnMapping": {
-              "build_id": "project_id",
+              "build_id": "subgraph",
               "project_id": "build_id",
-              "subgraph": "subgraph"
+              "subgraph": "project_id"
+            }
+          },
+          "object_types_fields_project_id_build_id_subgraph_object_ty_fkey": {
+            "foreignSchema": "public",
+            "foreignTable": "object_types",
+            "columnMapping": {
+              "build_id": "project_id",
+              "object_type_name": "build_id",
+              "project_id": "subgraph",
+              "subgraph": "name"
             }
           }
         },
@@ -1102,7 +1448,14 @@
             "description": null
           }
         },
-        "uniquenessConstraints": {},
+        "uniquenessConstraints": {
+          "scalar_types_pkey": [
+            "build_id",
+            "name",
+            "project_id",
+            "subgraph"
+          ]
+        },
         "foreignRelations": {
           "scalar_types_project_id_build_id_fkey": {
             "foreignSchema": "public",
@@ -1116,9 +1469,9 @@
             "foreignSchema": "public",
             "foreignTable": "subgraphs",
             "columnMapping": {
-              "build_id": "project_id",
+              "build_id": "build_id",
               "project_id": "subgraph",
-              "subgraph": "build_id"
+              "subgraph": "project_id"
             }
           }
         },
@@ -1166,6 +1519,82 @@
     },
     "types": {
       "scalar": {
+        "bool": {
+          "typeName": "bool",
+          "schemaName": "pg_catalog",
+          "description": null,
+          "aggregateFunctions": {
+            "bool_and": {
+              "returnType": "bool"
+            },
+            "bool_or": {
+              "returnType": "bool"
+            },
+            "every": {
+              "returnType": "bool"
+            }
+          },
+          "comparisonOperators": {
+            "_eq": {
+              "operatorName": "=",
+              "operatorKind": "equal",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_gt": {
+              "operatorName": ">",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_gte": {
+              "operatorName": ">=",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_in": {
+              "operatorName": "IN",
+              "operatorKind": "in",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_lt": {
+              "operatorName": "<",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_lte": {
+              "operatorName": "<=",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            },
+            "_neq": {
+              "operatorName": "<>",
+              "operatorKind": "custom",
+              "argumentType": "bool",
+              "isInfix": true
+            }
+          },
+          "typeRepresentation": "boolean"
+        },
+        "json": {
+          "typeName": "json",
+          "schemaName": "pg_catalog",
+          "description": null,
+          "aggregateFunctions": {},
+          "comparisonOperators": {
+            "_in": {
+              "operatorName": "IN",
+              "operatorKind": "in",
+              "argumentType": "json",
+              "isInfix": true
+            }
+          },
+          "typeRepresentation": null
+        },
         "text": {
           "typeName": "text",
           "schemaName": "pg_catalog",

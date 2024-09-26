@@ -8,27 +8,23 @@ definition:
       type: Text!
     - name: kind
       type: Text!
-    - name: mappingSourceField
-      type: Text!
-    - name: mappingTargetField
-      type: Text!
+    - name: mappingSourceFields
+      type: "[Text]!"
+    - name: mappingTargetFields
+      type: "[Text]!"
     - name: name
       type: Text!
     - name: projectId
       type: Text!
-    - name: relationshipId
+    - name: sourceObjectTypeName
       type: Text!
-    - name: source
-      type: Text!
-    - name: sourceObjectTypeId
-      type: Text
     - name: subgraph
       type: Text!
-    - name: targetModelId
-      type: Text
     - name: targetModelName
       type: Text!
     - name: targetModelRelationshipType
+      type: Text!
+    - name: targetModelSubgraph
       type: Text!
     - name: version
       type: Text
@@ -45,39 +41,33 @@ definition:
         kind:
           column:
             name: kind
-        mappingSourceField:
+        mappingSourceFields:
           column:
-            name: mapping_source_field
-        mappingTargetField:
+            name: mapping_source_fields
+        mappingTargetFields:
           column:
-            name: mapping_target_field
+            name: mapping_target_fields
         name:
           column:
             name: name
         projectId:
           column:
             name: project_id
-        relationshipId:
+        sourceObjectTypeName:
           column:
-            name: relationship_id
-        source:
-          column:
-            name: source
-        sourceObjectTypeId:
-          column:
-            name: source_object_type_id
+            name: source_object_type_name
         subgraph:
           column:
             name: subgraph
-        targetModelId:
-          column:
-            name: target_model_id
         targetModelName:
           column:
             name: target_model_name
         targetModelRelationshipType:
           column:
             name: target_model_relationship_type
+        targetModelSubgraph:
+          column:
+            name: target_model_subgraph
         version:
           column:
             name: version
@@ -93,17 +83,15 @@ definition:
         allowedFields:
           - buildId
           - kind
-          - mappingSourceField
-          - mappingTargetField
+          - mappingSourceFields
+          - mappingTargetFields
           - name
           - projectId
-          - relationshipId
-          - source
-          - sourceObjectTypeId
+          - sourceObjectTypeName
           - subgraph
-          - targetModelId
           - targetModelName
           - targetModelRelationshipType
+          - targetModelSubgraph
           - version
 
 ---
@@ -121,10 +109,10 @@ definition:
     - fieldName: kind
       operators:
         enableAll: true
-    - fieldName: mappingSourceField
+    - fieldName: mappingSourceFields
       operators:
         enableAll: true
-    - fieldName: mappingTargetField
+    - fieldName: mappingTargetFields
       operators:
         enableAll: true
     - fieldName: name
@@ -133,25 +121,19 @@ definition:
     - fieldName: projectId
       operators:
         enableAll: true
-    - fieldName: relationshipId
-      operators:
-        enableAll: true
-    - fieldName: source
-      operators:
-        enableAll: true
-    - fieldName: sourceObjectTypeId
+    - fieldName: sourceObjectTypeName
       operators:
         enableAll: true
     - fieldName: subgraph
-      operators:
-        enableAll: true
-    - fieldName: targetModelId
       operators:
         enableAll: true
     - fieldName: targetModelName
       operators:
         enableAll: true
     - fieldName: targetModelRelationshipType
+      operators:
+        enableAll: true
+    - fieldName: targetModelSubgraph
       operators:
         enableAll: true
     - fieldName: version
@@ -177,10 +159,10 @@ definition:
     - fieldName: kind
       orderByDirections:
         enableAll: true
-    - fieldName: mappingSourceField
+    - fieldName: mappingSourceFields
       orderByDirections:
         enableAll: true
-    - fieldName: mappingTargetField
+    - fieldName: mappingTargetFields
       orderByDirections:
         enableAll: true
     - fieldName: name
@@ -189,25 +171,19 @@ definition:
     - fieldName: projectId
       orderByDirections:
         enableAll: true
-    - fieldName: relationshipId
-      orderByDirections:
-        enableAll: true
-    - fieldName: source
-      orderByDirections:
-        enableAll: true
-    - fieldName: sourceObjectTypeId
+    - fieldName: sourceObjectTypeName
       orderByDirections:
         enableAll: true
     - fieldName: subgraph
-      orderByDirections:
-        enableAll: true
-    - fieldName: targetModelId
       orderByDirections:
         enableAll: true
     - fieldName: targetModelName
       orderByDirections:
         enableAll: true
     - fieldName: targetModelRelationshipType
+      orderByDirections:
+        enableAll: true
+    - fieldName: targetModelSubgraph
       orderByDirections:
         enableAll: true
     - fieldName: version
@@ -217,9 +193,13 @@ definition:
     selectMany:
       queryRootField: modelRelationships
     selectUniques:
-      - queryRootField: modelRelationshipsByRelationshipId
+      - queryRootField: modelRelationshipsByModelRelationshipsPkey
         uniqueIdentifier:
-          - relationshipId
+          - buildId
+          - name
+          - projectId
+          - sourceObjectTypeName
+          - subgraph
     orderByExpressionType: ModelRelationshipsOrderBy
 
 ---
@@ -299,10 +279,28 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: sourceObjectTypeId
+          - fieldName: buildId
       target:
         modelField:
-          - fieldName: objectTypeId
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: sourceObjectTypeName
+      target:
+        modelField:
+          - fieldName: name
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
 
 ---
 kind: Relationship
@@ -317,8 +315,25 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: targetModelId
+          - fieldName: targetModelName
       target:
         modelField:
-          - fieldName: modelId
-
+          - fieldName: name
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: targetModelSubgraph
+      target:
+        modelField:
+          - fieldName: subgraph

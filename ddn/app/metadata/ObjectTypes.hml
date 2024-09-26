@@ -16,8 +16,6 @@ definition:
       type: Text!
     - name: name
       type: Text!
-    - name: objectTypeId
-      type: Text!
     - name: projectId
       type: Text!
     - name: subgraph
@@ -49,9 +47,6 @@ definition:
         name:
           column:
             name: name
-        objectTypeId:
-          column:
-            name: object_type_id
         projectId:
           column:
             name: project_id
@@ -77,7 +72,6 @@ definition:
           - graphqlTypeName
           - kind
           - name
-          - objectTypeId
           - projectId
           - subgraph
           - version
@@ -107,9 +101,6 @@ definition:
       operators:
         enableAll: true
     - fieldName: name
-      operators:
-        enableAll: true
-    - fieldName: objectTypeId
       operators:
         enableAll: true
     - fieldName: projectId
@@ -153,9 +144,6 @@ definition:
     - fieldName: name
       orderByDirections:
         enableAll: true
-    - fieldName: objectTypeId
-      orderByDirections:
-        enableAll: true
     - fieldName: projectId
       orderByDirections:
         enableAll: true
@@ -169,9 +157,12 @@ definition:
     selectMany:
       queryRootField: objectTypes
     selectUniques:
-      - queryRootField: objectTypesByObjectTypeId
+      - queryRootField: objectTypesByObjectTypesPkey
         uniqueIdentifier:
-          - objectTypeId
+          - buildId
+          - name
+          - projectId
+          - subgraph
     orderByExpressionType: ObjectTypesOrderBy
 
 ---
@@ -197,10 +188,28 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: objectTypeId
+          - fieldName: subgraph
       target:
         modelField:
-          - fieldName: sourceObjectTypeId
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: sourceObjectTypeName
 
 ---
 kind: Relationship
@@ -215,10 +224,28 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: objectTypeId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: objectTypeId
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: objectTypeName
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
 
 ---
 kind: Relationship
@@ -233,10 +260,64 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: objectTypeId
+          - fieldName: name
       target:
         modelField:
-          - fieldName: sourceObjectTypeId
+          - fieldName: sourceObjectTypeName
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: objectTypePermissions
+  sourceType: ObjectTypes
+  target:
+    model:
+      name: ObjectTypePermissions
+      relationshipType: Array
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: objectTypeName
+    - source:
+        fieldPath:
+          - fieldName: projectId
+      target:
+        modelField:
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
 
 ---
 kind: Relationship
@@ -305,8 +386,26 @@ definition:
   mapping:
     - source:
         fieldPath:
-          - fieldName: objectTypeId
+          - fieldName: projectId
       target:
         modelField:
-          - fieldName: objectTypeId
+          - fieldName: projectId
+    - source:
+        fieldPath:
+          - fieldName: buildId
+      target:
+        modelField:
+          - fieldName: buildId
+    - source:
+        fieldPath:
+          - fieldName: subgraph
+      target:
+        modelField:
+          - fieldName: subgraph
+    - source:
+        fieldPath:
+          - fieldName: name
+      target:
+        modelField:
+          - fieldName: objectTypeName
 
